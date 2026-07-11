@@ -82,7 +82,7 @@ const ContactSection: React.FC = () => {
         {/* Left Side */}
         <div className="w-full md:w-1/2 flex flex-col items-start pt-8 md:pl-16">
           <FadeIn delay={0.1}>
-            <h2 className="text-black font-black text-6xl sm:text-7xl md:text-[6.5rem] leading-[0.85] tracking-tighter uppercase mb-8">
+            <h2 className="text-black font-black text-6xl sm:text-7xl md:text-[6.5rem] leading-[0.85] tracking-normal uppercase mb-8">
               Let's<br/>Get In<br/>Touch
             </h2>
             <a href="mailto:patromahadev544@gmail.com" className="text-black text-xl md:text-2xl font-bold underline decoration-4 underline-offset-8 decoration-black hover:text-[#8A2BE2] hover:decoration-[#8A2BE2] transition-colors">
