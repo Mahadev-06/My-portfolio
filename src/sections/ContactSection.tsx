@@ -1,10 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import FadeIn from '../components/FadeIn'
 import { motion } from 'framer-motion'
-import { useForm, ValidationError } from '@formspree/react'
 
 const ContactSection: React.FC = () => {
-  const [state, handleSubmit] = useForm('xwvgevpw')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [succeeded, setSucceeded] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setErrorMessage(null)
+
+    const formData = new FormData(e.currentTarget)
+    const data = Object.fromEntries(formData.entries())
+
+    try {
+      const response = await fetch('https://formspree.io/f/xwvgevpw', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (response.ok) {
+        setSucceeded(true)
+      } else {
+        const result = await response.json()
+        if (result && result.errors) {
+          setErrorMessage(result.errors.map((err: any) => err.message).join(', '))
+        } else {
+          setErrorMessage('Something went wrong. Please try again.')
+        }
+      }
+    } catch (error) {
+      setErrorMessage('Failed to connect. Please check your internet connection.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <section id="contact" className="relative bg-[#F4F4F5] pt-28 pb-40 px-6 md:px-16 overflow-hidden z-20 rounded-t-[40px] -mt-10">
@@ -58,7 +94,7 @@ const ContactSection: React.FC = () => {
         {/* Right Side Form */}
         <div className="w-full md:w-[45%]">
           <FadeIn delay={0.3} className="w-full bg-transparent">
-            {state.succeeded ? (
+            {succeeded ? (
               <div className="mt-8 p-8 rounded-3xl border border-[#7C3AED]/20 bg-white/50 backdrop-blur-md flex flex-col items-center justify-center text-center gap-4 shadow-lg min-h-[320px]">
                 <div className="w-16 h-16 rounded-full bg-[#7C3AED]/15 flex items-center justify-center text-3xl">
                   ✨
@@ -81,7 +117,6 @@ const ContactSection: React.FC = () => {
                     placeholder="Full Name*" 
                     className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
                   />
-                  <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-xs mt-1" />
                 </div>
                 <div className="flex flex-col sm:flex-row gap-10">
                   <div className="relative w-full">
@@ -93,7 +128,6 @@ const ContactSection: React.FC = () => {
                       placeholder="Email*" 
                       className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
                     />
-                    <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-xs mt-1" />
                   </div>
                   <div className="relative w-full">
                     <input 
@@ -103,7 +137,6 @@ const ContactSection: React.FC = () => {
                       placeholder="Phone" 
                       className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
                     />
-                    <ValidationError prefix="Phone" field="phone" errors={state.errors} className="text-red-500 text-xs mt-1" />
                   </div>
                 </div>
                 <div className="relative">
@@ -115,15 +148,20 @@ const ContactSection: React.FC = () => {
                     placeholder="Message*" 
                     className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
                   />
-                  <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-xs mt-1" />
                 </div>
                 
+                {errorMessage && (
+                  <div className="text-red-500 text-sm -mt-6">
+                    {errorMessage}
+                  </div>
+                )}
+
                 <button 
                   type="submit" 
-                  disabled={state.submitting}
+                  disabled={isSubmitting}
                   className="mt-8 w-full rounded-full border border-[#7C3AED] text-[#7C3AED] font-bold tracking-[0.2em] uppercase py-4 text-xs hover:bg-[#7C3AED] hover:text-white transition-all duration-300 shadow-sm hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {state.submitting ? 'Sending...' : 'Send'}
+                  {isSubmitting ? 'Sending...' : 'Send'}
                 </button>
               </form>
             )}

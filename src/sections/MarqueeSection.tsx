@@ -1,4 +1,9 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface Skill {
   name: string
@@ -447,11 +452,9 @@ const SKILLS: Skill[] = [
 const SkillCard: React.FC<{ skill: Skill }> = ({ skill }) => {
   return (
     <div
-      className="w-[240px] h-[80px] rounded-2xl flex items-center gap-4 px-5 py-4 flex-shrink-0 relative overflow-hidden transition-all duration-300 border border-[#D7E2EA]/10 group hover:border-[#D7E2EA]/25 font-kanit"
+      className="w-[240px] h-[80px] rounded-2xl flex items-center gap-4 px-5 py-4 flex-shrink-0 relative overflow-hidden transition-colors duration-300 border border-[#D7E2EA]/10 group hover:border-[#D7E2EA]/25 font-kanit"
       style={{
-        background: 'rgba(12, 12, 12, 0.45)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
+        background: '#101010',
         transform: 'rotate(3deg)', // Counteract the track rotation
       }}
     >
@@ -486,30 +489,24 @@ const MarqueeSection: React.FC = () => {
   const row1Ref = useRef<HTMLDivElement>(null)
   const row2Ref = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    let active = true
+  useGSAP(() => {
+    const section = sectionRef.current
+    const row1 = row1Ref.current
+    const row2 = row2Ref.current
 
-    const handleScroll = () => {
-      if (!active) return
-      if (!sectionRef.current || !row1Ref.current || !row2Ref.current) return
-      
-      const sectionTop = sectionRef.current.offsetTop
-      const raw = (window.scrollY - sectionTop + window.innerHeight) * 0.32
-      
-      // Direct DOM style updates to completely bypass React rendering cycles and prevent page-wide flickering
-      row1Ref.current.style.transform = `translate3d(${raw - 300}px, 0px, 0px)`
-      row2Ref.current.style.transform = `translate3d(${-(raw - 300)}px, 0px, 0px)`
+    if (!section || !row1 || !row2) return
+
+    const scrollTrigger = {
+      trigger: section,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 0.35,
+      invalidateOnRefresh: true,
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    // Trigger initial positioning
-    handleScroll()
-
-    return () => {
-      active = false
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+    gsap.fromTo(row1, { x: -300 }, { x: 300, ease: 'none', force3D: true, scrollTrigger })
+    gsap.fromTo(row2, { x: 300 }, { x: -300, ease: 'none', force3D: true, scrollTrigger })
+  }, { scope: sectionRef })
 
   const row1Skills = SKILLS.slice(0, 9)
   const row2Skills = SKILLS.slice(9)
@@ -524,7 +521,6 @@ const MarqueeSection: React.FC = () => {
       style={{ 
         background: '#0C0C0C',
         transform: 'rotate(-3deg) scale(1.05)',
-        willChange: 'transform'
       }}
     >
       {/* Row 1 - moves RIGHT */}

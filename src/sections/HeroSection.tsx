@@ -17,11 +17,13 @@ const HeroSection: React.FC = () => {
       y: -90,
       scale: 0.96,
       ease: 'none',
+      force3D: true,
       scrollTrigger: {
         trigger: sectionRef.current,
         start: 'top top',
         end: 'bottom top',
-        scrub: true
+        scrub: 0.3,
+        invalidateOnRefresh: true
       }
     })
   }, { scope: sectionRef })

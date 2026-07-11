@@ -9,7 +9,7 @@ interface Project {
   name: string
   col1Images: [string, string]
   col2Image: string
-  isLive?: boolean
+  liveUrl?: string
 }
 
 const PROJECTS: Project[] = [
@@ -22,7 +22,6 @@ const PROJECTS: Project[] = [
       '/premashraya2.png',
     ],
     col2Image: '/premashraya3.png',
-    isLive: true,
   },
   {
     number: '02',
@@ -33,7 +32,6 @@ const PROJECTS: Project[] = [
       '/kinfolk2.png',
     ],
     col2Image: '/kinfolk3.png',
-    isLive: false,
   },
   {
     number: '03',
@@ -44,7 +42,6 @@ const PROJECTS: Project[] = [
       '/wardrobe2.png',
     ],
     col2Image: '/wardrobe3.png',
-    isLive: false,
   },
 ]
 
@@ -80,8 +77,8 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           </div>
         </div>
         <div className="flex-shrink-0 pt-1 sm:pt-2">
-          {project.isLive !== false ? (
-            <LiveProjectButton />
+          {project.liveUrl ? (
+            <LiveProjectButton href={project.liveUrl} />
           ) : (
             <button
               disabled
