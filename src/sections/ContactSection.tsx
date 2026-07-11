@@ -1,8 +1,11 @@
 import React from 'react'
 import FadeIn from '../components/FadeIn'
 import { motion } from 'framer-motion'
+import { useForm, ValidationError } from '@formspree/react'
 
 const ContactSection: React.FC = () => {
+  const [state, handleSubmit] = useForm('xwvgevpw')
+
   return (
     <section id="contact" className="relative bg-[#F4F4F5] pt-28 pb-40 px-6 md:px-16 overflow-hidden z-20 rounded-t-[40px] -mt-10">
       
@@ -55,26 +58,75 @@ const ContactSection: React.FC = () => {
         {/* Right Side Form */}
         <div className="w-full md:w-[45%]">
           <FadeIn delay={0.3} className="w-full bg-transparent">
-            <form className="flex flex-col gap-10 mt-8">
-              <div className="relative">
-                <input type="text" placeholder="Full Name*" className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" />
-              </div>
-              <div className="flex flex-col sm:flex-row gap-10">
-                <div className="relative w-full">
-                  <input type="email" placeholder="Email*" className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" />
+            {state.succeeded ? (
+              <div className="mt-8 p-8 rounded-3xl border border-[#7C3AED]/20 bg-white/50 backdrop-blur-md flex flex-col items-center justify-center text-center gap-4 shadow-lg min-h-[320px]">
+                <div className="w-16 h-16 rounded-full bg-[#7C3AED]/15 flex items-center justify-center text-3xl">
+                  ✨
                 </div>
-                <div className="relative w-full">
-                  <input type="tel" placeholder="Phone" className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" />
+                <h3 className="text-2xl font-black uppercase text-black font-kanit">
+                  Message Sent!
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed max-w-xs">
+                  Thanks for reaching out, Mahadev will get back to you shortly!
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-10 mt-8">
+                <div className="relative">
+                  <input 
+                    required
+                    type="text" 
+                    id="name"
+                    name="name" 
+                    placeholder="Full Name*" 
+                    className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
+                  />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-xs mt-1" />
                 </div>
-              </div>
-              <div className="relative">
-                <input type="text" placeholder="Message" className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" />
-              </div>
-              
-              <button type="button" className="mt-8 w-full rounded-full border border-[#7C3AED] text-[#7C3AED] font-bold tracking-[0.2em] uppercase py-4 text-xs hover:bg-[#7C3AED] hover:text-white transition-all duration-300 shadow-sm hover:shadow-lg">
-                Send
-              </button>
-            </form>
+                <div className="flex flex-col sm:flex-row gap-10">
+                  <div className="relative w-full">
+                    <input 
+                      required
+                      type="email" 
+                      id="email"
+                      name="email" 
+                      placeholder="Email*" 
+                      className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
+                    />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-xs mt-1" />
+                  </div>
+                  <div className="relative w-full">
+                    <input 
+                      type="tel" 
+                      id="phone"
+                      name="phone" 
+                      placeholder="Phone" 
+                      className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
+                    />
+                    <ValidationError prefix="Phone" field="phone" errors={state.errors} className="text-red-500 text-xs mt-1" />
+                  </div>
+                </div>
+                <div className="relative">
+                  <input 
+                    required
+                    type="text" 
+                    id="message"
+                    name="message" 
+                    placeholder="Message*" 
+                    className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
+                  />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-xs mt-1" />
+                </div>
+                
+                <button 
+                  type="submit" 
+                  disabled={state.submitting}
+                  className="mt-8 w-full rounded-full border border-[#7C3AED] text-[#7C3AED] font-bold tracking-[0.2em] uppercase py-4 text-xs hover:bg-[#7C3AED] hover:text-white transition-all duration-300 shadow-sm hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {state.submitting ? 'Sending...' : 'Send'}
+                </button>
+              </form>
+            )}
           </FadeIn>
         </div>
 
