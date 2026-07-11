@@ -504,8 +504,8 @@ const MarqueeSection: React.FC = () => {
       invalidateOnRefresh: true,
     }
 
-    gsap.fromTo(row1, { x: -300 }, { x: 300, ease: 'none', force3D: true, scrollTrigger })
-    gsap.fromTo(row2, { x: 300 }, { x: -300, ease: 'none', force3D: true, scrollTrigger })
+    gsap.fromTo(row1, { x: -1500 }, { x: -900, ease: 'none', force3D: true, scrollTrigger })
+    gsap.fromTo(row2, { x: -900 }, { x: -1500, ease: 'none', force3D: true, scrollTrigger })
   }, { scope: sectionRef })
 
   const row1Skills = SKILLS.slice(0, 9)
@@ -527,7 +527,7 @@ const MarqueeSection: React.FC = () => {
       <div 
         ref={row1Ref}
         className="flex gap-5 mb-5" 
-        style={{ transform: `translate3d(-300px, 0px, 0px)`, willChange: 'transform' }}
+        style={{ transform: `translate3d(-1500px, 0px, 0px)`, willChange: 'transform' }}
       >
         {tripled1.map((skill, i) => (
           <SkillCard key={`r1-${skill.name}-${i}`} skill={skill} />
@@ -538,7 +538,7 @@ const MarqueeSection: React.FC = () => {
       <div 
         ref={row2Ref}
         className="flex gap-5" 
-        style={{ transform: `translate3d(300px, 0px, 0px)`, willChange: 'transform' }}
+        style={{ transform: `translate3d(-900px, 0px, 0px)`, willChange: 'transform' }}
       >
         {tripled2.map((skill, i) => (
           <SkillCard key={`r2-${skill.name}-${i}`} skill={skill} />
