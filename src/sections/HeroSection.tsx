@@ -48,17 +48,17 @@ const HeroSection: React.FC = () => {
 
       {/* Hero Content - takes remaining space */}
       <div className="flex-1 flex flex-col justify-between relative max-w-[1400px] w-full mx-auto">
-        {/* Hero Heading - z-10 for depth overlay */}
-        <FadeIn delay={0.15} y={40} className="relative z-10">
+        {/* Hero Heading */}
+        <FadeIn delay={0.15} y={40}>
           <div className="px-4 sm:px-6 md:px-8 w-full text-center">
-            <h1 className="apple-lockscreen-heading uppercase whitespace-nowrap mt-14 sm:mt-18 md:mt-24" style={{ fontSize: 'clamp(4.5rem, 18.5vw, 280px)', lineHeight: 1.1 }}>
+            <h1 className="hero-heading font-black uppercase tracking-normal leading-[0.8] whitespace-nowrap mt-8 sm:mt-10 md:mt-12 inline-block transform-gpu origin-center" style={{ fontSize: 'clamp(3rem, 15.5vw, 250px)', transform: 'scaleY(1.55)' }}>
               HI, I'M DEV
             </h1>
           </div>
         </FadeIn>
 
-        {/* Portrait - centered with flex to avoid Framer Motion transform override - z-20 to sit on top of the text */}
-        <div ref={cardContainerRef} className="absolute inset-x-0 bottom-[18%] sm:bottom-0 top-[22%] sm:top-auto h-[55%] sm:h-auto flex justify-center items-center sm:items-center sm:pb-12 z-20 pointer-events-none">
+        {/* Portrait - centered with flex to avoid Framer Motion transform override */}
+        <div ref={cardContainerRef} className="absolute inset-x-0 bottom-[18%] sm:bottom-0 top-[22%] sm:top-auto h-[55%] sm:h-auto flex justify-center items-center sm:items-center sm:pb-12 z-10 pointer-events-none">
           <FadeIn
             delay={0.6}
             y={30}
@@ -86,8 +86,8 @@ const HeroSection: React.FC = () => {
           </FadeIn>
         </div>
 
-        {/* Bottom bar - z-30 allows links and buttons to be fully clickable and on top */}
-        <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end gap-6 sm:gap-0 pb-8 sm:pb-12 md:pb-16 px-6 md:px-12 z-30 pointer-events-none transform-gpu will-change-transform" style={{ backfaceVisibility: 'hidden' }}>
+        {/* Bottom bar - pointer-events-none allows cursor to hover the card underneath */}
+        <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end gap-6 sm:gap-0 pb-8 sm:pb-12 md:pb-16 px-6 md:px-12 z-20 pointer-events-none transform-gpu will-change-transform" style={{ backfaceVisibility: 'hidden' }}>
           <FadeIn delay={0.35} y={20} className="pointer-events-auto transform-gpu will-change-transform text-center sm:text-left">
             <p
               className="text-[#D7E2EA] font-medium uppercase tracking-wide leading-relaxed max-w-[280px]"

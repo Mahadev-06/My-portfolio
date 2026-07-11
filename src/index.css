@@ -62,16 +62,4 @@ html, body, #root {
   transform: translateY(-100%);
 }
 
-.apple-lockscreen-heading {
-  font-family: 'Antonio', sans-serif;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.03);
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.3);
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  letter-spacing: 0.05em;
-  transform: scaleY(1.35);
-  display: inline-block;
-  transform-origin: center center;
-}
-
 
