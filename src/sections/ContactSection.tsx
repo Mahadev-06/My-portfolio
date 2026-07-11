@@ -49,7 +49,7 @@ const ContactSection: React.FC = () => {
       <motion.div 
         animate={{ y: [0, 20, 0] }} 
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[-2%] md:left-[2%] top-[30%] hidden md:block z-20"
+        className="absolute left-[-5%] md:left-[2%] top-[35%] md:top-[30%] z-0 scale-[0.55] md:scale-100 origin-left pointer-events-none opacity-60 md:opacity-100"
       >
         <div className="relative w-[150px] h-[250px] drop-shadow-2xl">
           <div className="absolute top-10 left-10 w-20 h-32 bg-[#8A2BE2] rounded-[100px] shadow-inner rotate-45" style={{ background: 'radial-gradient(circle at 30% 30%, #E9D5FF, #9333EA, #4C1D95)' }}></div>
@@ -63,7 +63,7 @@ const ContactSection: React.FC = () => {
       <motion.div 
         animate={{ y: [0, -15, 0], rotate: [12, 16, 12] }} 
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute right-[-2%] top-[10%] hidden md:block"
+        className="absolute right-[-5%] md:right-[-2%] top-[8%] md:top-[10%] z-0 scale-[0.5] md:scale-100 origin-right pointer-events-none opacity-60 md:opacity-100"
       >
         <svg viewBox="0 0 24 24" className="w-[150px] h-[150px] md:w-[220px] md:h-[220px] drop-shadow-2xl opacity-90">
           <defs>
