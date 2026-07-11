@@ -51,14 +51,14 @@ const HeroSection: React.FC = () => {
         {/* Hero Heading */}
         <FadeIn delay={0.15} y={40}>
           <div className="px-4 sm:px-6 md:px-8 w-full text-center">
-            <h1 className="hero-heading font-black uppercase tracking-normal leading-[0.8] whitespace-nowrap mt-8 sm:mt-10 md:mt-12 inline-block transform-gpu origin-center" style={{ fontSize: 'clamp(3rem, 15.5vw, 250px)', transform: 'scaleY(1.55)' }}>
-              HI, I'M DEV
+            <h1 className="hero-heading font-black uppercase tracking-normal leading-[0.8] whitespace-nowrap mt-8 sm:mt-10 md:mt-12 inline-block transform-gpu origin-center" style={{ fontSize: 'clamp(2.6rem, 11vw, 250px)', transform: 'scaleY(1.55)' }}>
+              HI, I'M MAHADEV
             </h1>
           </div>
         </FadeIn>
 
         {/* Portrait - centered with flex to avoid Framer Motion transform override */}
-        <div ref={cardContainerRef} className="absolute inset-x-0 bottom-[18%] sm:bottom-0 top-[22%] sm:top-auto h-[55%] sm:h-auto flex justify-center items-center sm:items-center sm:pb-12 z-10 pointer-events-none">
+        <div ref={cardContainerRef} className="absolute inset-x-0 bottom-[12%] sm:bottom-0 top-[20%] sm:top-auto h-[62%] sm:h-auto flex justify-center items-center sm:items-center sm:pb-12 z-10 pointer-events-none">
           <FadeIn
             delay={0.6}
             y={30}
@@ -68,10 +68,10 @@ const HeroSection: React.FC = () => {
               imageSrc="/me.jpg"
               altText="Mahadev patro - Full-Stack Developer"
               captionText="Mahadev patro - GNX"
-              containerHeight="clamp(220px, 38vw, 520px)"
-              containerWidth="clamp(220px, 38vw, 520px)"
-              imageHeight="clamp(220px, 38vw, 520px)"
-              imageWidth="clamp(220px, 38vw, 520px)"
+              containerHeight="clamp(280px, 46vw, 520px)"
+              containerWidth="clamp(280px, 46vw, 520px)"
+              imageHeight="clamp(280px, 46vw, 520px)"
+              imageWidth="clamp(280px, 46vw, 520px)"
               rotateAmplitude={12}
               scaleOnHover={1.05}
               showMobileWarning={false}
