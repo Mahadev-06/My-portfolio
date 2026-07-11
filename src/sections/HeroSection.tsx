@@ -51,8 +51,8 @@ const HeroSection: React.FC = () => {
         {/* Hero Heading */}
         <FadeIn delay={0.15} y={40}>
           <div className="px-4 sm:px-6 md:px-8 w-full text-center">
-            <h1 className="hero-heading font-black uppercase tracking-normal leading-[0.8] whitespace-nowrap mt-8 sm:mt-10 md:mt-12 inline-block transform-gpu origin-center" style={{ fontSize: 'clamp(2.6rem, 11vw, 250px)', transform: 'scaleY(1.55)' }}>
-              HI, I'M MAHADEV
+            <h1 className="hero-heading font-black uppercase tracking-normal leading-[0.8] whitespace-nowrap mt-8 sm:mt-10 md:mt-12 inline-block transform-gpu origin-center" style={{ fontSize: 'clamp(3.2rem, 15.5vw, 250px)', transform: 'scaleY(1.55)' }}>
+              HI, I'M DEV
             </h1>
           </div>
         </FadeIn>
