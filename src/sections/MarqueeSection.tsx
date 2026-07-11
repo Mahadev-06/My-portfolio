@@ -24,7 +24,7 @@ const SKILLS: Skill[] = [
       <svg viewBox="0 0 100 100" fill="none" className="w-12 h-12">
         <defs>
           <filter id="glow-react" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="3.5" result="blur" />
+            <feGaussianBlur stdDeviation="4" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
           <radialGradient id="grad-react-core" cx="50%" cy="50%" r="50%">
@@ -32,12 +32,12 @@ const SKILLS: Skill[] = [
             <stop offset="100%" stopColor="#0088cc" />
           </radialGradient>
         </defs>
-        {/* Glowing orbit paths scaled down to fit within card boundaries */}
-        <ellipse cx="50" cy="50" rx="30" ry="11" stroke="#61DAFB" strokeWidth="3.5" transform="rotate(0 50 50)" filter="url(#glow-react)" opacity="0.8" />
-        <ellipse cx="50" cy="50" rx="30" ry="11" stroke="#61DAFB" strokeWidth="3.5" transform="rotate(60 50 50)" filter="url(#glow-react)" opacity="0.8" />
-        <ellipse cx="50" cy="50" rx="30" ry="11" stroke="#61DAFB" strokeWidth="3.5" transform="rotate(120 50 50)" filter="url(#glow-react)" opacity="0.8" />
+        {/* Glowing orbit paths */}
+        <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(0 50 50)" filter="url(#glow-react)" opacity="0.8" />
+        <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(60 50 50)" filter="url(#glow-react)" opacity="0.8" />
+        <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(120 50 50)" filter="url(#glow-react)" opacity="0.8" />
         {/* 3D central sphere */}
-        <circle cx="50" cy="50" r="7" fill="url(#grad-react-core)" filter="url(#glow-react)" />
+        <circle cx="50" cy="50" r="8" fill="url(#grad-react-core)" filter="url(#glow-react)" />
       </svg>
     ),
   },
@@ -452,7 +452,7 @@ const SKILLS: Skill[] = [
 const SkillCard: React.FC<{ skill: Skill }> = ({ skill }) => {
   return (
     <div
-      className="w-[240px] h-[80px] rounded-2xl flex items-center gap-4 px-5 py-4 flex-shrink-0 relative overflow-hidden transition-colors duration-300 border border-[#D7E2EA]/10 group hover:border-[#D7E2EA]/25 font-kanit"
+      className="w-[160px] h-[56px] sm:w-[240px] sm:h-[80px] rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-4 px-3 py-2 sm:px-5 sm:py-4 flex-shrink-0 relative overflow-hidden transition-colors duration-300 border border-[#D7E2EA]/10 group hover:border-[#D7E2EA]/25 font-kanit"
       style={{
         background: '#101010',
         transform: 'rotate(3deg)', // Counteract the track rotation
@@ -469,14 +469,14 @@ const SkillCard: React.FC<{ skill: Skill }> = ({ skill }) => {
       {/* Icon */}
       <div 
         style={{ color: skill.color }} 
-        className="transition-transform duration-500 group-hover:scale-110 flex-shrink-0 flex items-center justify-center z-10 w-12 h-12"
+        className="transition-transform duration-500 group-hover:scale-110 flex-shrink-0 flex items-center justify-center z-10 w-8 h-8 sm:w-12 sm:h-12 [&>svg]:w-8 [&>svg]:h-8 sm:[&>svg]:w-12 sm:[&>svg]:h-12"
       >
         {skill.icon}
       </div>
 
       {/* Name */}
       <div className="flex flex-col z-10">
-        <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-wider text-white font-kanit leading-none">
+        <h3 className="text-xs sm:text-lg font-bold uppercase tracking-wider text-white font-kanit leading-none">
           {skill.name}
         </h3>
       </div>
@@ -517,7 +517,7 @@ const MarqueeSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-32 overflow-hidden select-none"
+      className="py-16 sm:py-32 overflow-hidden select-none"
       style={{ 
         background: '#0C0C0C',
         transform: 'rotate(-3deg) scale(1.05)',
