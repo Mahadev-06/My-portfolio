@@ -24,7 +24,7 @@ const SKILLS: Skill[] = [
       <svg viewBox="0 0 100 100" fill="none" className="w-12 h-12">
         <defs>
           <filter id="glow-react" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feGaussianBlur stdDeviation="3.5" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
           <radialGradient id="grad-react-core" cx="50%" cy="50%" r="50%">
@@ -32,12 +32,12 @@ const SKILLS: Skill[] = [
             <stop offset="100%" stopColor="#0088cc" />
           </radialGradient>
         </defs>
-        {/* Glowing orbit paths */}
-        <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(0 50 50)" filter="url(#glow-react)" opacity="0.8" />
-        <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(60 50 50)" filter="url(#glow-react)" opacity="0.8" />
-        <ellipse cx="50" cy="50" rx="38" ry="14" stroke="#61DAFB" strokeWidth="3" transform="rotate(120 50 50)" filter="url(#glow-react)" opacity="0.8" />
+        {/* Glowing orbit paths scaled down to fit within card boundaries */}
+        <ellipse cx="50" cy="50" rx="30" ry="11" stroke="#61DAFB" strokeWidth="3.5" transform="rotate(0 50 50)" filter="url(#glow-react)" opacity="0.8" />
+        <ellipse cx="50" cy="50" rx="30" ry="11" stroke="#61DAFB" strokeWidth="3.5" transform="rotate(60 50 50)" filter="url(#glow-react)" opacity="0.8" />
+        <ellipse cx="50" cy="50" rx="30" ry="11" stroke="#61DAFB" strokeWidth="3.5" transform="rotate(120 50 50)" filter="url(#glow-react)" opacity="0.8" />
         {/* 3D central sphere */}
-        <circle cx="50" cy="50" r="8" fill="url(#grad-react-core)" filter="url(#glow-react)" />
+        <circle cx="50" cy="50" r="7" fill="url(#grad-react-core)" filter="url(#glow-react)" />
       </svg>
     ),
   },
