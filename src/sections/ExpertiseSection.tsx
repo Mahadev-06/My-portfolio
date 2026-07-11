@@ -1,5 +1,5 @@
-import React from 'react'
-import FadeIn from '../components/FadeIn'
+import React, { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 
 const EXPERTISE = [
   {
@@ -34,55 +34,108 @@ const EXPERTISE = [
   },
 ]
 
+interface ExpertiseItemProps {
+  number: string
+  name: string
+  description: string
+  isFirst: boolean
+  index: number
+}
+
+const ExpertiseItem: React.FC<ExpertiseItemProps> = ({ number, name, description, isFirst, index }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-10%' })
+
+  return (
+    <div ref={ref} className="relative py-8 sm:py-10 md:py-12 flex items-start gap-6 sm:gap-8 md:gap-12 overflow-hidden">
+      {/* Top Border Line Animation for the first item */}
+      {isFirst && (
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.1 }}
+          className="absolute top-0 left-0 right-0 h-[1px] bg-black/15 origin-left"
+        />
+      )}
+
+      {/* Number */}
+      <motion.span
+        initial={{ opacity: 0, y: 40 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.15 }}
+        className="font-black text-[#0C0C0C] flex-shrink-0"
+        style={{ fontSize: 'clamp(3rem, 10vw, 140px)', lineHeight: 1 }}
+      >
+        {number}
+      </motion.span>
+
+      {/* Text Content */}
+      <div className="flex flex-col gap-2 pt-2 sm:pt-4 md:pt-6">
+        <motion.h3
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.15 + 0.1 }}
+          className="font-medium uppercase text-[#0C0C0C]"
+          style={{ fontSize: 'clamp(1rem, 2.2vw, 2.1rem)' }}
+        >
+          {name}
+        </motion.h3>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 0.6, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.15 + 0.2 }}
+          className="font-light leading-relaxed max-w-2xl text-[#0C0C0C]"
+          style={{
+            fontSize: 'clamp(0.85rem, 1.6vw, 1.25rem)',
+          }}
+        >
+          {description}
+        </motion.p>
+      </div>
+
+      {/* Bottom Border Line Animation */}
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+        transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.1 + 0.15 }}
+        className="absolute bottom-0 left-0 right-0 h-[1px] bg-black/15 origin-left"
+      />
+    </div>
+  )
+}
+
 const ExpertiseSection: React.FC = () => {
+  const headingRef = useRef(null)
+  const isHeadingInView = useInView(headingRef, { once: true, margin: '-10%' })
+
   return (
     <section
-      id="about" // Linked to #about target or let's keep it as expertise section
+      id="expertise"
       className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32"
       style={{ background: '#FFFFFF' }}
     >
-      <h2
-        className="font-black uppercase text-center text-[#0C0C0C] mb-16 sm:mb-20 md:mb-28"
-        style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
-      >
-        Expertise
-      </h2>
+      <div ref={headingRef}>
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          animate={isHeadingInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="font-black uppercase text-center text-[#0C0C0C] mb-16 sm:mb-20 md:mb-28"
+          style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+        >
+          Expertise
+        </motion.h2>
+      </div>
 
       <div className="max-w-5xl mx-auto">
         {EXPERTISE.map((item, i) => (
-          <FadeIn key={item.number} delay={i * 0.1} y={30}>
-            <div
-              className="flex items-start gap-6 sm:gap-8 md:gap-12 py-8 sm:py-10 md:py-12"
-              style={{
-                borderBottom: i < EXPERTISE.length - 1 ? '1px solid rgba(12, 12, 12, 0.15)' : 'none',
-                borderTop: i === 0 ? '1px solid rgba(12, 12, 12, 0.15)' : 'none',
-              }}
-            >
-              <span
-                className="font-black text-[#0C0C0C] flex-shrink-0"
-                style={{ fontSize: 'clamp(3rem, 10vw, 140px)', lineHeight: 1 }}
-              >
-                {item.number}
-              </span>
-              <div className="flex flex-col gap-2 pt-2 sm:pt-4 md:pt-6">
-                <h3
-                  className="font-medium uppercase text-[#0C0C0C]"
-                  style={{ fontSize: 'clamp(1rem, 2.2vw, 2.1rem)' }}
-                >
-                  {item.name}
-                </h3>
-                <p
-                  className="font-light leading-relaxed max-w-2xl text-[#0C0C0C]"
-                  style={{
-                    fontSize: 'clamp(0.85rem, 1.6vw, 1.25rem)',
-                    opacity: 0.6,
-                  }}
-                >
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          </FadeIn>
+          <ExpertiseItem
+            key={item.number}
+            number={item.number}
+            name={item.name}
+            description={item.description}
+            isFirst={i === 0}
+            index={i}
+          />
         ))}
       </div>
     </section>

@@ -1,12 +1,7 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import FadeIn from '../components/FadeIn'
-import AnimatedText from '../components/AnimatedText'
+import SplitText from '../components/SplitText'
 import ContactButton from '../components/ContactButton'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const DECORATIVE_IMAGES = [
   {
@@ -36,21 +31,8 @@ const DECORATIVE_IMAGES = [
 ]
 
 const AboutSection: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useGSAP(() => {
-    ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: 'top top',
-      end: '+=100%',
-      pin: true,
-      scrub: true,
-      pinSpacing: true,
-    })
-  }, { scope: sectionRef })
-
   return (
-    <section ref={sectionRef} id="about" className="relative min-h-screen flex items-center justify-center px-5 sm:px-8 md:px-10 py-20 bg-[#0C0C0C]">
+    <section id="about" className="relative min-h-screen flex items-center justify-center px-5 sm:px-8 md:px-10 py-20 bg-[#0C0C0C]">
       {/* Decorative images */}
       {DECORATIVE_IMAGES.map((img, i) => (
         <FadeIn key={i} {...img.fadeProps} className={img.className}>
@@ -70,7 +52,7 @@ const AboutSection: React.FC = () => {
             </h2>
           </FadeIn>
 
-          <AnimatedText
+          <SplitText
             text="I build modern, scalable web applications that combine clean design with robust functionality. Passionate about full-stack development, I leverage modern technologies and AI-assisted workflows to transform ideas into impactful digital products while continuously learning Python, Artificial Intelligence, and Machine Learning."
             className="text-[#D7E2EA] font-medium text-center leading-relaxed w-full"
             style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', lineHeight: 1.5 }}
