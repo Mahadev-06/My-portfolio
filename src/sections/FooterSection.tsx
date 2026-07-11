@@ -10,16 +10,20 @@ const FooterSection: React.FC = () => {
   const container = useRef<HTMLElement>(null)
 
   useGSAP(() => {
-    const shapes = gsap.utils.toArray('.shape')
-    shapes.forEach((shape: any) => {
-      // pin shape when it reaches the center of the viewport, for 300px
-      ScrollTrigger.create({
-        trigger: shape,
-        pin: true,
-        start: "center center",
-        end: "+=300"
+    const mm = gsap.matchMedia()
+    mm.add("(min-width: 768px)", () => {
+      const shapes = gsap.utils.toArray('.shape')
+      shapes.forEach((shape: any) => {
+        // pin shape when it reaches the center of the viewport, for 300px
+        ScrollTrigger.create({
+          trigger: shape,
+          pin: true,
+          start: "center center",
+          end: "+=300"
+        })
       })
     })
+    return () => mm.revert()
   }, { scope: container })
 
   return (

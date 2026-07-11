@@ -82,7 +82,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           ) : (
             <button
               disabled
-              className="rounded-full border-2 border-gray-700 text-gray-600 font-medium uppercase tracking-widest px-8 py-3 sm:px-10 sm:py-3.5 text-sm sm:text-base cursor-not-allowed"
+              className="rounded-full border-2 border-gray-700 text-gray-600 font-semibold uppercase tracking-widest px-5 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 text-[10px] sm:text-xs md:text-sm cursor-not-allowed"
             >
               Soon
             </button>
@@ -108,11 +108,12 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           />
         </div>
         {/* Right column - 60% */}
-        <div className="w-[60%]">
+        <div className="w-[60%] flex">
           <img
             src={project.col2Image}
             alt={`${project.name} main preview`}
-            className="w-full h-full rounded-[30px] sm:rounded-[40px] md:rounded-[45px] object-cover"
+            className="w-full rounded-[30px] sm:rounded-[40px] md:rounded-[45px] object-cover"
+            style={{ height: '100%', minHeight: '100%', objectFit: 'cover' }}
           />
         </div>
       </div>

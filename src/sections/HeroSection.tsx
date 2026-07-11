@@ -58,7 +58,7 @@ const HeroSection: React.FC = () => {
         </FadeIn>
 
         {/* Portrait - centered with flex to avoid Framer Motion transform override */}
-        <div ref={cardContainerRef} className="absolute inset-x-0 bottom-0 top-[28%] sm:top-auto h-[72%] sm:h-auto flex justify-center items-center sm:items-center sm:pb-12 z-10 pointer-events-none">
+        <div ref={cardContainerRef} className="absolute inset-x-0 bottom-[18%] sm:bottom-0 top-[22%] sm:top-auto h-[55%] sm:h-auto flex justify-center items-center sm:items-center sm:pb-12 z-10 pointer-events-none">
           <FadeIn
             delay={0.6}
             y={30}
@@ -68,10 +68,10 @@ const HeroSection: React.FC = () => {
               imageSrc="/me.jpg"
               altText="Mahadev patro - Full-Stack Developer"
               captionText="Mahadev patro - GNX"
-              containerHeight="clamp(300px, 48vh, 520px)"
-              containerWidth="clamp(300px, 48vh, 520px)"
-              imageHeight="clamp(300px, 48vh, 520px)"
-              imageWidth="clamp(300px, 48vh, 520px)"
+              containerHeight="clamp(220px, 38vw, 520px)"
+              containerWidth="clamp(220px, 38vw, 520px)"
+              imageHeight="clamp(220px, 38vw, 520px)"
+              imageWidth="clamp(220px, 38vw, 520px)"
               rotateAmplitude={12}
               scaleOnHover={1.05}
               showMobileWarning={false}
@@ -87,11 +87,11 @@ const HeroSection: React.FC = () => {
         </div>
 
         {/* Bottom bar - pointer-events-none allows cursor to hover the card underneath */}
-        <div className="flex justify-between items-end pb-10 sm:pb-12 md:pb-16 px-6 md:px-12 z-20 pointer-events-none transform-gpu will-change-transform" style={{ backfaceVisibility: 'hidden' }}>
-          <FadeIn delay={0.35} y={20} className="pointer-events-auto transform-gpu will-change-transform">
+        <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end gap-6 sm:gap-0 pb-8 sm:pb-12 md:pb-16 px-6 md:px-12 z-20 pointer-events-none transform-gpu will-change-transform" style={{ backfaceVisibility: 'hidden' }}>
+          <FadeIn delay={0.35} y={20} className="pointer-events-auto transform-gpu will-change-transform text-center sm:text-left">
             <p
-              className="text-[#D7E2EA] font-medium uppercase tracking-wide leading-relaxed max-w-[200px] sm:max-w-[240px] md:max-w-[280px]"
-              style={{ fontSize: 'clamp(0.6rem, 1vw, 0.9rem)', backfaceVisibility: 'hidden' }}
+              className="text-[#D7E2EA] font-medium uppercase tracking-wide leading-relaxed max-w-[280px]"
+              style={{ fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)', backfaceVisibility: 'hidden' }}
             >
               A FULL-STACK DEVELOPER<br/>
               BUILDING MODERN WEB<br/>
