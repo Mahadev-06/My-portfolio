@@ -39,22 +39,19 @@ const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
-    const mm = gsap.matchMedia()
-    mm.add("(min-width: 768px)", () => {
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: 'top top',
-        end: '+=100%',
-        pin: true,
-        scrub: true,
-        pinSpacing: true,
-      })
+    ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: 'top top',
+      end: '+=100%',
+      pin: true,
+      scrub: true,
+      pinSpacing: true,
+      invalidateOnRefresh: true,
     })
-    return () => mm.revert()
   }, { scope: sectionRef })
 
   return (
-    <section ref={sectionRef} id="about" className="relative min-h-screen flex items-center justify-center px-5 sm:px-8 md:px-10 py-20 bg-[#0C0C0C]">
+    <section ref={sectionRef} id="about" className="relative h-screen flex items-center justify-center px-5 sm:px-8 md:px-10 py-12 bg-[#0C0C0C] overflow-hidden">
       {/* Decorative images */}
       {DECORATIVE_IMAGES.map((img, i) => (
         <FadeIn key={i} {...img.fadeProps} className={img.className}>
@@ -63,12 +60,12 @@ const AboutSection: React.FC = () => {
       ))}
 
       {/* Center content */}
-      <div className="flex flex-col items-center max-w-[900px] w-full">
-        <div className="flex flex-col items-center gap-10 sm:gap-14 md:gap-16 w-full">
+      <div className="flex flex-col items-center max-w-[900px] w-full z-10">
+        <div className="flex flex-col items-center gap-6 sm:gap-14 md:gap-16 w-full">
           <FadeIn delay={0} y={40}>
             <h2
               className="hero-heading font-black uppercase leading-none tracking-tight text-center"
-              style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+              style={{ fontSize: 'clamp(2.5rem, 12vw, 160px)' }}
             >
               About me
             </h2>
@@ -77,11 +74,11 @@ const AboutSection: React.FC = () => {
           <AnimatedText
             text="I build modern, scalable web applications that combine clean design with robust functionality. Passionate about full-stack development, I leverage modern technologies and AI-assisted workflows to transform ideas into impactful digital products while continuously learning Python, Artificial Intelligence, and Machine Learning."
             className="text-[#D7E2EA] font-medium text-center leading-relaxed w-full"
-            style={{ fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', lineHeight: 1.5 }}
+            style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.8rem)', lineHeight: 1.4 }}
           />
         </div>
 
-        <div className="mt-16 sm:mt-20 md:mt-24">
+        <div className="mt-8 sm:mt-20 md:mt-24">
           <FadeIn delay={0.2} y={20}>
             <ContactButton />
           </FadeIn>
