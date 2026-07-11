@@ -70,6 +70,14 @@ const FooterSection: React.FC = () => {
             <p className="text-gray-300 text-xs sm:text-sm font-medium leading-relaxed mt-2">
               Gadamahaveer Road, Bhubaneswar<br/>Odisha 751002
             </p>
+            <button
+              onClick={() => {
+                throw new Error('This is your first error!');
+              }}
+              className="text-gray-600 hover:text-red-500 transition-colors text-[10px] uppercase font-bold tracking-wider mt-4 text-left cursor-pointer"
+            >
+              Test Error Tracking ⚠️
+            </button>
           </FadeIn>
         </div>
       </div>
