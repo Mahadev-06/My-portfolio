@@ -62,44 +62,28 @@ html, body, #root {
   transform: translateY(-100%);
 }
 
-/* ==========================================
-   CSS MASK BUTTON HOVER ANIMATION (Codrops style)
-   ========================================== */
-@keyframes mask-in {
-  from {
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
-  }
-  to {
-    -webkit-mask-position: 100% 0;
-    mask-position: 100% 0;
-  }
-}
-
-@keyframes mask-out {
-  from {
-    -webkit-mask-position: 100% 0;
-    mask-position: 100% 0;
-  }
-  to {
-    -webkit-mask-position: 0 0;
-    mask-position: 0 0;
-  }
-}
-
-.mask-btn-container {
+/* CSS Mask Button Hover Animation */
+.mask-button-container {
   position: relative;
+  width: 100%;
+  height: 56px;
   overflow: hidden;
-  display: inline-block;
+  border: 2px solid #7C3AED;
+  border-radius: 9999px; /* rounded-full */
+  font-family: 'Kanit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  transition: border-color 0.3s ease;
+  background-color: transparent;
   cursor: pointer;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-  will-change: transform;
 }
 
-.mask-btn-under {
+.mask-button-container:hover {
+  border-color: #7C3AED;
+}
+
+.mask-button-container .mas {
   position: absolute;
   top: 0;
   left: 0;
@@ -108,37 +92,102 @@ html, body, #root {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  pointer-events: none;
+  color: #7C3AED;
+  text-align: center;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   z-index: 1;
+  pointer-events: none;
+  transition: color 0.3s ease;
 }
 
-.mask-btn-above {
+.mask-button-container button {
   position: relative;
-  width: 100%;
+  width: 101%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  cursor: pointer;
+  background: #7C3AED;
+  color: #fff;
   border: none;
-  outline: none;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
   z-index: 2;
   
-  /* Mask 3 sprite (nature-sprite with 70 steps) */
-  -webkit-mask: url("https://raw.githubusercontent.com/pizza3/asset/master/natureSmaller.png");
-  mask: url("https://raw.githubusercontent.com/pizza3/asset/master/natureSmaller.png");
-  -webkit-mask-size: 7100% 100%;
-  mask-size: 7100% 100%;
+  /* Mask settings using nature-sprite.png (23 frames, so 2300% width) */
+  -webkit-mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
+  mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
+  -webkit-mask-size: 2300% 100%;
+  mask-size: 2300% 100%;
   
-  -webkit-animation: mask-out 0.7s steps(70) forwards;
-  animation: mask-out 0.7s steps(70) forwards;
+  -webkit-animation: mask-play-out 0.7s steps(22) forwards;
+  animation: mask-play-out 0.7s steps(22) forwards;
 }
 
-.mask-btn-container:hover .mask-btn-above {
-  -webkit-animation: mask-in 0.7s steps(70) forwards;
-  animation: mask-in 0.7s steps(70) forwards;
+.mask-button-container:hover button {
+  -webkit-animation: mask-play-in 0.7s steps(22) forwards;
+  animation: mask-play-in 0.7s steps(22) forwards;
+}
+
+/* Disabled state */
+.mask-button-container.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  border-color: #9CA3AF;
+}
+
+.mask-button-container.disabled .mas {
+  color: #9CA3AF;
+}
+
+.mask-button-container.disabled button {
+  background: #9CA3AF;
+  pointer-events: none;
+}
+
+@keyframes mask-play-in {
+  from {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+  to {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+}
+
+@-webkit-keyframes mask-play-in {
+  from {
+    -webkit-mask-position: 0 0;
+  }
+  to {
+    -webkit-mask-position: 100% 0;
+  }
+}
+
+@keyframes mask-play-out {
+  from {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  to {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+}
+
+@-webkit-keyframes mask-play-out {
+  from {
+    -webkit-mask-position: 100% 0;
+  }
+  to {
+    -webkit-mask-position: 0 0;
+  }
 }
 
 

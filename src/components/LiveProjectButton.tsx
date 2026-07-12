@@ -6,39 +6,10 @@ interface LiveProjectButtonProps {
 
 const LiveProjectButton: React.FC<LiveProjectButtonProps> = ({ href }) => {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mask-btn-container rounded-full hover:scale-105"
-      style={{
-        width: 'clamp(110px, 12vw, 160px)',
-        height: 'clamp(36px, 3.8vw, 48px)',
-        background: '#0C0C0C', // Under layer background is dark
-        border: '1px solid #D7E2EA',
-      }}
+    <a href={href} target="_blank" rel="noopener noreferrer"
+      className="rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] font-semibold uppercase tracking-widest px-5 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 text-[10px] sm:text-xs md:text-sm hover:bg-[#D7E2EA]/10 transition-colors duration-200 cursor-pointer inline-flex items-center"
     >
-      {/* Under Layer: Visible when above layer is masked out (hover state) */}
-      <span 
-        className="mask-btn-under text-[#D7E2EA] font-semibold uppercase tracking-widest font-kanit"
-        style={{
-          fontSize: 'clamp(9px, 0.9vw, 12px)',
-        }}
-      >
-        Live Project
-      </span>
-
-      {/* Above Layer: Normal state, animated/masked out on hover */}
-      <button
-        type="button"
-        className="mask-btn-above text-[#0C0C0C] font-semibold uppercase tracking-widest font-kanit rounded-full"
-        style={{
-          background: '#D7E2EA',
-          fontSize: 'clamp(9px, 0.9vw, 12px)',
-        }}
-      >
-        Live Project
-      </button>
+      Live Project
     </a>
   )
 }

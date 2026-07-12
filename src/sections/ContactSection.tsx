@@ -156,27 +156,11 @@ const ContactSection: React.FC = () => {
                   </div>
                 )}
 
-                <div
-                  className="mask-btn-container rounded-full mt-8 w-full hover:scale-[1.02] hover:shadow-lg transition-transform duration-300"
-                  style={{
-                    height: '52px',
-                    background: '#7C3AED',
-                    border: '1px solid #7C3AED',
-                  }}
-                >
-                  {/* Under Layer (Visible on hover) */}
-                  <span className="mask-btn-under text-white font-bold tracking-[0.2em] uppercase text-xs font-kanit">
-                    {isSubmitting ? 'Sending...' : 'Send'}
-                  </span>
-
-                  {/* Above Layer (Visible by default) */}
-                  <button
-                    type="submit"
+                <div className={`mt-8 mask-button-container ${isSubmitting ? 'disabled' : ''}`.trim()}>
+                  <span className="mas">{isSubmitting ? 'Sending...' : 'Send'}</span>
+                  <button 
+                    type="submit" 
                     disabled={isSubmitting}
-                    className="mask-btn-above text-[#7C3AED] font-bold tracking-[0.2em] uppercase text-xs font-kanit rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
-                    style={{
-                      background: '#FFFFFF',
-                    }}
                   >
                     {isSubmitting ? 'Sending...' : 'Send'}
                   </button>
