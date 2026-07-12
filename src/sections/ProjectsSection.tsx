@@ -153,7 +153,7 @@ const ProjectsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <ScrollStack
           useWindowScroll={true}
-          itemDistance={isMobile ? 220 : 60}
+          itemDistance={isMobile ? 120 : 60}
           itemScale={0.03}
           itemStackDistance={isMobile ? 12 : 25}
           stackPosition={isMobile ? '2%' : '6%'}
