@@ -62,4 +62,83 @@ html, body, #root {
   transform: translateY(-100%);
 }
 
+/* ==========================================
+   CSS MASK BUTTON HOVER ANIMATION (Codrops style)
+   ========================================== */
+@keyframes mask-in {
+  from {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+  to {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+}
+
+@keyframes mask-out {
+  from {
+    -webkit-mask-position: 100% 0;
+    mask-position: 100% 0;
+  }
+  to {
+    -webkit-mask-position: 0 0;
+    mask-position: 0 0;
+  }
+}
+
+.mask-btn-container {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+.mask-btn-under {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mask-btn-above {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  z-index: 2;
+  
+  /* Mask 3 sprite (nature-sprite with 70 steps) */
+  -webkit-mask: url("https://raw.githubusercontent.com/pizza3/asset/master/natureSmaller.png");
+  mask: url("https://raw.githubusercontent.com/pizza3/asset/master/natureSmaller.png");
+  -webkit-mask-size: 7100% 100%;
+  mask-size: 7100% 100%;
+  
+  -webkit-animation: mask-out 0.7s steps(70) forwards;
+  animation: mask-out 0.7s steps(70) forwards;
+}
+
+.mask-btn-container:hover .mask-btn-above {
+  -webkit-animation: mask-in 0.7s steps(70) forwards;
+  animation: mask-in 0.7s steps(70) forwards;
+}
+
 

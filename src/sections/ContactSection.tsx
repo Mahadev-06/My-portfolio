@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import FadeIn from '../components/FadeIn'
 import { motion } from 'framer-motion'
 
@@ -6,18 +6,6 @@ const ContactSection: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [succeeded, setSucceeded] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
-
-  const submitBtnRef = useRef<HTMLButtonElement>(null)
-  const submitCircleRef = useRef<HTMLDivElement>(null)
-
-  const handleSubmitMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!submitBtnRef.current || !submitCircleRef.current) return
-    const rect = submitBtnRef.current.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    submitCircleRef.current.style.left = `${x}px`
-    submitCircleRef.current.style.top = `${y}px`
-  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -168,22 +156,31 @@ const ContactSection: React.FC = () => {
                   </div>
                 )}
 
-                <button 
-                  ref={submitBtnRef}
-                  onMouseEnter={handleSubmitMouseEnter}
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="relative overflow-hidden mt-8 w-full rounded-full border border-[#7C3AED] text-[#7C3AED] hover:text-white font-bold tracking-[0.2em] uppercase py-4 text-xs transition-colors duration-500 shadow-sm hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed group isolate"
+                <div
+                  className="mask-btn-container rounded-full mt-8 w-full hover:scale-[1.02] hover:shadow-lg transition-transform duration-300"
+                  style={{
+                    height: '52px',
+                    background: '#7C3AED',
+                    border: '1px solid #7C3AED',
+                  }}
                 >
-                  <span className="relative z-10">
+                  {/* Under Layer (Visible on hover) */}
+                  <span className="mask-btn-under text-white font-bold tracking-[0.2em] uppercase text-xs font-kanit">
                     {isSubmitting ? 'Sending...' : 'Send'}
                   </span>
-                  {/* Dynamic Hover circle fill */}
-                  <div 
-                    ref={submitCircleRef}
-                    className="absolute pointer-events-none -translate-x-1/2 -translate-y-1/2 aspect-square w-0 opacity-0 transition-all duration-1000 ease-out z-0 bg-[#7C3AED] group-hover:w-[250%] group-hover:opacity-100 group-hover:transition-[width_1000ms_ease-out,_opacity_0s]"
-                  />
-                </button>
+
+                  {/* Above Layer (Visible by default) */}
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="mask-btn-above text-[#7C3AED] font-bold tracking-[0.2em] uppercase text-xs font-kanit rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
+                    style={{
+                      background: '#FFFFFF',
+                    }}
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send'}
+                  </button>
+                </div>
               </form>
             )}
           </FadeIn>
