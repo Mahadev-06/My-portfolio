@@ -190,4 +190,66 @@ html, body, #root {
   }
 }
 
+/* Gooey Button Hover Animation */
+.gooey-wrapper {
+  display: inline-block;
+  filter: url('#goo');
+  position: relative;
+}
+
+.gooey-button {
+  display: inline-block;
+  text-align: center;
+  background: #7C3AED; /* Brand purple */
+  color: #ffffff;      /* White text */
+  font-weight: 700;
+  padding: 16px 40px;
+  line-height: 1;
+  border-radius: 9999px; /* rounded-full */
+  position: relative;
+  min-width: 180px;
+  text-decoration: none;
+  font-family: 'Kanit', sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.gooey-button:before,
+.gooey-button:after {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  content: "";
+  display: inline-block;
+  background: #7C3AED; /* Must match background exactly */
+  border-radius: 50%;
+  transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+  transform: scale(0);
+  z-index: -1;
+}
+
+.gooey-button:before {
+  top: -35%;
+  left: 20%;
+}
+
+.gooey-button:after {
+  bottom: -35%;
+  right: 20%;
+}
+
+.gooey-button:hover:before,
+.gooey-button:hover:after {
+  transform: scale(1.4);
+}
+
+.gooey-button:active {
+  transform: scale(0.95);
+}
+
 
