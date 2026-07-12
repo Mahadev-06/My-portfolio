@@ -30,7 +30,7 @@ const HeroSection: React.FC = () => {
   }, { scope: sectionRef })
 
   return (
-    <section ref={sectionRef} className="h-screen flex flex-col relative" style={{ overflowX: 'clip' }}>
+    <section ref={sectionRef} id="home" className="h-screen flex flex-col relative" style={{ overflowX: 'clip' }}>
       {/* Navbar */}
       <FadeIn delay={0} y={-20} className="relative z-30 w-full">
         <nav className="flex justify-between px-6 md:px-12 pt-6 md:pt-8 max-w-[1400px] w-full mx-auto">
