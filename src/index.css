@@ -252,4 +252,35 @@ html, body, #root {
   transform: scale(0.95);
 }
 
+/* Floating Animations for 3D Elements */
+@keyframes gentle-float-1 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes gentle-float-2 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(-4deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.float-item-1 {
+  animation: gentle-float-1 6s ease-in-out infinite;
+}
+
+.float-item-2 {
+  animation: gentle-float-2 7s ease-in-out infinite;
+}
+
+.float-item-3 {
+  animation: gentle-float-1 5s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+.float-item-4 {
+  animation: gentle-float-2 8s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
 

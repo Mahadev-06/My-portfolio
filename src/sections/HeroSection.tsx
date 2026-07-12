@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import FadeIn from '../components/FadeIn'
 import TiltedCard from '../components/TiltedCard'
 import ContactButton from '../components/ContactButton'
+import Magnet from '../components/Magnet'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -29,7 +30,7 @@ const HeroSection: React.FC = () => {
   }, { scope: sectionRef })
 
   return (
-    <section ref={sectionRef} className="h-screen flex flex-col" style={{ overflowX: 'clip' }}>
+    <section ref={sectionRef} className="h-screen flex flex-col relative" style={{ overflowX: 'clip' }}>
       {/* Navbar */}
       <FadeIn delay={0} y={-20} className="relative z-30 w-full">
         <nav className="flex justify-between px-6 md:px-12 pt-6 md:pt-8 max-w-[1400px] w-full mx-auto">
@@ -85,6 +86,35 @@ const HeroSection: React.FC = () => {
             />
           </FadeIn>
         </div>
+
+        {/* 3D Decorative Floating Assets */}
+        <FadeIn
+          delay={0.8}
+          y={20}
+          className="absolute top-[18%] left-[6%] sm:left-[10%] md:left-[12%] w-[60px] sm:w-[110px] md:w-[180px] z-20 pointer-events-auto"
+        >
+          <Magnet padding={120} strength={8}>
+            <img
+              src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png"
+              alt="Moon 3D Asset"
+              className="w-full float-item-1 opacity-40 sm:opacity-100"
+            />
+          </Magnet>
+        </FadeIn>
+
+        <FadeIn
+          delay={0.9}
+          y={20}
+          className="absolute top-[22%] right-[6%] sm:right-[10%] md:right-[12%] w-[60px] sm:w-[110px] md:w-[180px] z-20 pointer-events-auto"
+        >
+          <Magnet padding={120} strength={8}>
+            <img
+              src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png"
+              alt="Lego 3D Asset"
+              className="w-full float-item-3 opacity-40 sm:opacity-100"
+            />
+          </Magnet>
+        </FadeIn>
 
         {/* Bottom bar - pointer-events-none allows cursor to hover the card underneath */}
         <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end gap-6 sm:gap-0 pb-8 sm:pb-12 md:pb-16 px-6 md:px-12 z-20 pointer-events-none transform-gpu will-change-transform" style={{ backfaceVisibility: 'hidden' }}>
