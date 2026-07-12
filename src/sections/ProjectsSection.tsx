@@ -22,6 +22,7 @@ const PROJECTS: Project[] = [
       '/premashraya2.png',
     ],
     col2Image: '/premashraya3.png',
+    liveUrl: 'https://premashraya.vercel.app/',
   },
   {
     number: '02',
