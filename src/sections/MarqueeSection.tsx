@@ -2,195 +2,46 @@ import React, { useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
-import {
-  SiReact,
-  SiNodedotjs,
-  SiPython,
-  SiOpenjdk,
-  SiC,
-  SiPostgresql,
-  SiHtml5,
-  SiCss,
-  SiJavascript,
-  SiGit,
-  SiGithub,
-  SiSupabase,
-  SiFirebase,
-  SiVercel,
-  SiSentry,
-  SiFramer,
-  SiDribbble,
-} from '@icons-pack/react-simple-icons'
 
 gsap.registerPlugin(ScrollTrigger)
 
 interface Skill {
   name: string
-  category: string
-  tagline: string
-  color: string
-  icon: React.ReactNode
 }
 
 const SKILLS: Skill[] = [
   // Row 1 Skills
-  {
-    name: 'React',
-    category: 'Frontend Library',
-    tagline: 'Building interactive and component-driven user interfaces.',
-    color: '#61DAFB',
-    icon: <SiReact size="100%" />,
-  },
-  {
-    name: 'Node JS',
-    category: 'Backend Runtime',
-    tagline: 'Scalable server-side applications and RESTful APIs.',
-    color: '#339933',
-    icon: <SiNodedotjs size="100%" />,
-  },
-  {
-    name: 'Python',
-    category: 'Programming Language',
-    tagline: 'Backend systems, scripting, AI/ML, and automation workflows.',
-    color: '#3776AB',
-    icon: <SiPython size="100%" />,
-  },
-  {
-    name: 'Java',
-    category: 'Programming Language',
-    tagline: 'Robust object-oriented programming for enterprise backends.',
-    color: '#F89820',
-    icon: <SiOpenjdk size="100%" />,
-  },
-  {
-    name: 'C',
-    category: 'Programming Language',
-    tagline: 'Low-level software development, systems, and structures.',
-    color: '#A8B9CC',
-    icon: <SiC size="100%" />,
-  },
-  {
-    name: 'SQL',
-    category: 'Database Querying',
-    tagline: 'Relational data structures, queries, and optimizations.',
-    color: '#00BCF2',
-    icon: <SiPostgresql size="100%" />,
-  },
-  {
-    name: 'HTML',
-    category: 'Web Structure',
-    tagline: 'Semantic elements and standard document structuring.',
-    color: '#E34F26',
-    icon: <SiHtml5 size="100%" />,
-  },
-  {
-    name: 'CSS',
-    category: 'Styling & Design',
-    tagline: 'Modern layout grids, flexboxes, styling, and transitions.',
-    color: '#1572B6',
-    icon: <SiCss size="100%" />,
-  },
-  {
-    name: 'JavaScript',
-    category: 'Web Logic',
-    tagline: 'Dynamic logic, event handling, and core web scripting.',
-    color: '#F7DF1E',
-    icon: <SiJavascript size="100%" />,
-  },
+  { name: 'React' },
+  { name: 'Node JS' },
+  { name: 'Python' },
+  { name: 'Java' },
+  { name: 'C' },
+  { name: 'SQL' },
+  { name: 'HTML' },
+  { name: 'CSS' },
+  { name: 'JavaScript' },
 
   // Row 2 Skills
-  {
-    name: 'Git',
-    category: 'Version Control',
-    tagline: 'Distributed revision control and branch workflows.',
-    color: '#F05032',
-    icon: <SiGit size="100%" />,
-  },
-  {
-    name: 'GitHub',
-    category: 'Collaboration Platforms',
-    tagline: 'Hosting developer repositories and coordinating team tasks.',
-    color: '#FFFFFF',
-    icon: <SiGithub size="100%" />,
-  },
-  {
-    name: 'Supabase',
-    category: 'Backend-as-a-Service',
-    tagline: 'Open-source Postgres database, instant APIs, and web sockets.',
-    color: '#3ECF8E',
-    icon: <SiSupabase size="100%" />,
-  },
-  {
-    name: 'Firebase',
-    category: 'Backend-as-a-Service',
-    tagline: 'Serverless databases, auth models, and quick web hosting.',
-    color: '#FFCA28',
-    icon: <SiFirebase size="100%" />,
-  },
-  {
-    name: 'Vercel',
-    category: 'Hosting & Deployment',
-    tagline: 'Optimized cloud deployment platform for frontend frameworks.',
-    color: '#FFFFFF',
-    icon: <SiVercel size="100%" />,
-  },
-  {
-    name: 'Sentry',
-    category: 'Monitoring Tools',
-    tagline: 'Real-time code debugging, error tracking, and performance monitoring.',
-    color: '#FB4226',
-    icon: <SiSentry size="100%" />,
-  },
-  {
-    name: 'Framer',
-    category: 'Animation Library',
-    tagline: 'Fluid 3D spring layouts and high-performance interactive motion.',
-    color: '#0055FF',
-    icon: <SiFramer size="100%" />,
-  },
-  {
-    name: 'Dribbble',
-    category: 'Design Inspiration',
-    tagline: 'Visualizing layout mockups, branding styles, and creative concepts.',
-    color: '#EA4C89',
-    icon: <SiDribbble size="100%" />,
-  },
+  { name: 'Git' },
+  { name: 'GitHub' },
+  { name: 'Supabase' },
+  { name: 'Firebase' },
+  { name: 'Vercel' },
+  { name: 'Sentry' },
+  { name: 'Framer' },
+  { name: 'Dribbble' },
 ]
 
-const SkillCard: React.FC<{ skill: Skill }> = ({ skill }) => {
-  return (
-    <div
-      className="w-[160px] h-[56px] sm:w-[240px] sm:h-[80px] rounded-xl sm:rounded-2xl flex items-center gap-2 sm:gap-4 px-3 py-2 sm:px-5 sm:py-4 flex-shrink-0 relative overflow-hidden transition-colors duration-300 border border-[#D7E2EA]/10 group hover:border-[#D7E2EA]/25 font-kanit"
-      style={{
-        background: '#101010',
-        transform: 'rotate(3deg)', // Counteract the track rotation
-      }}
-    >
-      {/* Decorative gradient glow that lights up on hover */}
-      <div
-        className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"
-        style={{
-          background: `radial-gradient(circle at 50% 50%, ${skill.color} 0%, transparent 60%)`,
-        }}
-      />
-
-      {/* Icon */}
-      <div
-        style={{ color: skill.color }}
-        className="transition-transform duration-500 group-hover:scale-110 flex-shrink-0 flex items-center justify-center z-10 w-8 h-8 sm:w-12 sm:h-12 [&>svg]:w-8 [&>svg]:h-8 sm:[&>svg]:w-12 sm:[&>svg]:h-12"
-      >
-        {skill.icon}
-      </div>
-
-      {/* Name */}
-      <div className="flex flex-col z-10">
-        <h3 className="text-xs sm:text-lg font-bold uppercase tracking-wider text-white font-kanit leading-none">
-          {skill.name}
-        </h3>
-      </div>
-    </div>
-  )
-}
+const StarIcon: React.FC = () => (
+  <svg viewBox="0 0 100 100" fill="none" className="w-6 h-6 sm:w-10 sm:h-10 text-black flex-shrink-0">
+    <path
+      d="M 50 10 L 53 38 L 80 25 L 59 44 L 90 50 L 59 56 L 80 75 L 53 62 L 50 90 L 47 62 L 20 75 L 41 56 L 10 50 L 41 44 L 20 25 L 47 38 Z"
+      fill="currentColor"
+    />
+    <circle cx="50" cy="50" r="10" fill="#FFFFFF" stroke="currentColor" strokeWidth="4" />
+    <circle cx="50" cy="50" r="4" fill="currentColor" />
+  </svg>
+)
 
 const MarqueeSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null)
@@ -212,45 +63,86 @@ const MarqueeSection: React.FC = () => {
       invalidateOnRefresh: true,
     }
 
-    gsap.fromTo(row1, { x: -1500 }, { x: -900, ease: 'none', force3D: true, scrollTrigger })
-    gsap.fromTo(row2, { x: -900 }, { x: -1500, ease: 'none', force3D: true, scrollTrigger })
+    gsap.fromTo(row1, { x: -1800 }, { x: -1000, ease: 'none', force3D: true, scrollTrigger })
+    gsap.fromTo(row2, { x: -1000 }, { x: -1800, ease: 'none', force3D: true, scrollTrigger })
   }, { scope: sectionRef })
 
   const row1Skills = SKILLS.slice(0, 9)
   const row2Skills = SKILLS.slice(9)
 
+  // Triple to ensure infinite seamless scrolling loop
   const tripled1 = [...row1Skills, ...row1Skills, ...row1Skills]
   const tripled2 = [...row2Skills, ...row2Skills, ...row2Skills]
 
   return (
     <section
       ref={sectionRef}
-      className="py-16 sm:py-32 overflow-hidden select-none"
+      className="py-24 sm:py-36 overflow-hidden select-none"
       style={{
         background: '#0C0C0C',
         transform: 'rotate(-3deg) scale(1.05)',
       }}
     >
       {/* Row 1 - moves RIGHT */}
-      <div
-        ref={row1Ref}
-        className="flex gap-5 mb-5"
-        style={{ transform: `translate3d(-1500px, 0px, 0px)`, willChange: 'transform' }}
-      >
-        {tripled1.map((skill, i) => (
-          <SkillCard key={`r1-${skill.name}-${i}`} skill={skill} />
-        ))}
+      <div className="relative mb-14 sm:mb-20 select-none">
+        {/* Background Purple Ribbon */}
+        <div
+          className="absolute bg-[#A855F7] h-14 sm:h-20 w-[150%] -left-[25%] top-[-8px] sm:top-[-12px]"
+          style={{ transform: 'translate3d(0, 0, 0)' }}
+        />
+        {/* Background Pink/Red Gradient Ribbon */}
+        <div
+          className="absolute bg-gradient-to-r from-pink-500 to-rose-500 h-14 sm:h-20 w-[150%] -left-[25%] top-[8px] sm:top-[12px]"
+          style={{ transform: 'translate3d(0, 0, 0)' }}
+        />
+
+        {/* Foreground White Scrolling Ribbon */}
+        <div
+          ref={row1Ref}
+          className="relative bg-white h-14 sm:h-20 flex items-center gap-12 sm:gap-20 overflow-hidden shadow-2xl py-2 w-[300%]"
+          style={{ transform: `translate3d(-1800px, 0px, 0px)`, willChange: 'transform' }}
+        >
+          {tripled1.map((skill, i) => (
+            <div
+              key={`r1-${skill.name}-${i}`}
+              className="flex items-center gap-4 sm:gap-6 text-black font-kanit font-black uppercase text-lg sm:text-3xl tracking-wider whitespace-nowrap flex-shrink-0"
+            >
+              <StarIcon />
+              <span>{skill.name}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Row 2 - moves LEFT */}
-      <div
-        ref={row2Ref}
-        className="flex gap-5"
-        style={{ transform: `translate3d(-900px, 0px, 0px)`, willChange: 'transform' }}
-      >
-        {tripled2.map((skill, i) => (
-          <SkillCard key={`r2-${skill.name}-${i}`} skill={skill} />
-        ))}
+      <div className="relative select-none">
+        {/* Background Purple Ribbon */}
+        <div
+          className="absolute bg-[#A855F7] h-14 sm:h-20 w-[150%] -left-[25%] top-[-8px] sm:top-[-12px]"
+          style={{ transform: 'translate3d(0, 0, 0)' }}
+        />
+        {/* Background Pink/Red Gradient Ribbon */}
+        <div
+          className="absolute bg-gradient-to-r from-pink-500 to-rose-500 h-14 sm:h-20 w-[150%] -left-[25%] top-[8px] sm:top-[12px]"
+          style={{ transform: 'translate3d(0, 0, 0)' }}
+        />
+
+        {/* Foreground White Scrolling Ribbon */}
+        <div
+          ref={row2Ref}
+          className="relative bg-white h-14 sm:h-20 flex items-center gap-12 sm:gap-20 overflow-hidden shadow-2xl py-2 w-[300%]"
+          style={{ transform: `translate3d(-1000px, 0px, 0px)`, willChange: 'transform' }}
+        >
+          {tripled2.map((skill, i) => (
+            <div
+              key={`r2-${skill.name}-${i}`}
+              className="flex items-center gap-4 sm:gap-6 text-black font-kanit font-black uppercase text-lg sm:text-3xl tracking-wider whitespace-nowrap flex-shrink-0"
+            >
+              <StarIcon />
+              <span>{skill.name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
