@@ -122,6 +122,17 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 }
 
 const ProjectsSection: React.FC = () => {
+  const [isMobile, setIsMobile] = React.useState(false)
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   return (
     <section
       id="projects"
@@ -138,21 +149,31 @@ const ProjectsSection: React.FC = () => {
       </FadeIn>
 
       <div className="max-w-7xl mx-auto">
-        <ScrollStack
-          useWindowScroll={true}
-          itemDistance={60}
-          itemScale={0.03}
-          itemStackDistance={25}
-          stackPosition="6%"
-          scaleEndPosition="2%"
-          baseScale={0.92}
-        >
-          {PROJECTS.map((project) => (
-            <ScrollStackItem key={project.number}>
-              <ProjectCard project={project} />
-            </ScrollStackItem>
-          ))}
-        </ScrollStack>
+        {isMobile ? (
+          <div className="flex flex-col gap-8">
+            {PROJECTS.map((project) => (
+              <FadeIn key={project.number} delay={0.1} y={30}>
+                <ProjectCard project={project} />
+              </FadeIn>
+            ))}
+          </div>
+        ) : (
+          <ScrollStack
+            useWindowScroll={true}
+            itemDistance={60}
+            itemScale={0.03}
+            itemStackDistance={25}
+            stackPosition="6%"
+            scaleEndPosition="2%"
+            baseScale={0.92}
+          >
+            {PROJECTS.map((project) => (
+              <ScrollStackItem key={project.number}>
+                <ProjectCard project={project} />
+              </ScrollStackItem>
+            ))}
+          </ScrollStack>
+        )}
       </div>
     </section>
   )
