@@ -1,7 +1,12 @@
 import React from 'react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
 import FadeIn from '../components/FadeIn'
 import LiveProjectButton from '../components/LiveProjectButton'
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface Project {
   number: string
@@ -122,9 +127,10 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 }
 
 const ProjectsSection: React.FC = () => {
+  const sectionRef = React.useRef<HTMLElement>(null)
   const [isMobile, setIsMobile] = React.useState(false)
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768)
     }
@@ -133,8 +139,32 @@ const ProjectsSection: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
+  useGSAP(() => {
+    if (!isMobile) return
+
+    const cards = gsap.utils.toArray('.mobile-project-card')
+    cards.forEach((card: any) => {
+      gsap.fromTo(
+        card,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      )
+    })
+  }, { dependencies: [isMobile], scope: sectionRef })
+
   return (
     <section
+      ref={sectionRef}
       id="projects"
       className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-10 px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32"
       style={{ background: '#0C0C0C' }}
@@ -152,9 +182,9 @@ const ProjectsSection: React.FC = () => {
         {isMobile ? (
           <div className="flex flex-col gap-8">
             {PROJECTS.map((project) => (
-              <FadeIn key={project.number} delay={0.1} y={30}>
+              <div key={project.number} className="mobile-project-card opacity-0">
                 <ProjectCard project={project} />
-              </FadeIn>
+              </div>
             ))}
           </div>
         ) : (
