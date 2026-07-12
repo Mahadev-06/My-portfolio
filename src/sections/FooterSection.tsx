@@ -63,8 +63,8 @@ const FooterSection: React.FC = () => {
             ))}
           </FadeIn>
           
-          <FadeIn delay={0.4} className="flex flex-col gap-3 sm:gap-4">
-            <h4 className="text-xs font-bold uppercase tracking-[0.15em] mb-2 text-gray-500">Navigation</h4>
+          <FadeIn delay={0.4} className="flex flex-col gap-4 md:gap-5">
+            <h4 className="text-xs font-bold uppercase tracking-[0.15em] mb-2 text-white">Navigation</h4>
             {[
               { label: 'Home', href: '#home' },
               { label: 'Work', href: '#projects' },
@@ -74,7 +74,7 @@ const FooterSection: React.FC = () => {
               <a 
                 key={link.label} 
                 href={link.href} 
-                className="text-white hover:text-[#7C3AED] transition-colors text-3xl sm:text-4xl font-bold tracking-tight leading-tight"
+                className="text-gray-300 hover:text-white transition-colors text-xs sm:text-sm font-medium"
               >
                 {link.label}
               </a>
