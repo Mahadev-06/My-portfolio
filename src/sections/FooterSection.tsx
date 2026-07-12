@@ -75,7 +75,7 @@ const FooterSection: React.FC = () => {
       </div>
 
       {/* Decorative Bottom Shapes */}
-      <div className="w-full flex justify-between items-end px-4 sm:px-6 md:px-8 pb-8 gap-2 sm:gap-4 overflow-hidden">
+      <div className="w-full flex justify-between items-end px-4 sm:px-8 pb-8 gap-1.5 sm:gap-4 overflow-hidden">
         <Shape delay={0.5} color="white">
           <svg viewBox="0 0 100 100" fill="currentColor" className="w-full h-full drop-shadow-xl">
             <rect x="25" y="0" width="50" height="100" rx="25" />
@@ -128,7 +128,7 @@ const FooterSection: React.FC = () => {
 }
 
 const Shape: React.FC<{ children: React.ReactNode; delay: number; color: string }> = ({ children, delay, color }) => (
-  <FadeIn delay={delay} y={40} className="shape w-[11vw] max-w-[140px] min-w-[30px] aspect-square flex-shrink-0" style={{ color }}>
+  <FadeIn delay={delay} y={40} className="shape w-[9.5vw] md:w-[11vw] max-w-[140px] min-w-[24px] aspect-square flex-shrink-0" style={{ color }}>
     {children}
   </FadeIn>
 )
