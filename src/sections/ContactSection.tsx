@@ -115,7 +115,7 @@ const ContactSection: React.FC = () => {
                     id="name"
                     name="name" 
                     placeholder="Full Name*" 
-                    className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
+                    className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-black text-sm focus:outline-none focus:border-black transition-colors" 
                   />
                 </div>
                 <div className="flex flex-col sm:flex-row gap-10">
@@ -126,7 +126,7 @@ const ContactSection: React.FC = () => {
                       id="email"
                       name="email" 
                       placeholder="Email*" 
-                      className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
+                      className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-black text-sm focus:outline-none focus:border-black transition-colors" 
                     />
                   </div>
                   <div className="relative w-full">
@@ -135,7 +135,7 @@ const ContactSection: React.FC = () => {
                       id="phone"
                       name="phone" 
                       placeholder="Phone" 
-                      className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
+                      className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-black text-sm focus:outline-none focus:border-black transition-colors" 
                     />
                   </div>
                 </div>
@@ -146,7 +146,7 @@ const ContactSection: React.FC = () => {
                     id="message"
                     name="message" 
                     placeholder="Message*" 
-                    className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-gray-400 text-sm focus:outline-none focus:border-black transition-colors" 
+                    className="w-full bg-transparent border-b-2 border-gray-300 pb-3 text-black placeholder-black text-sm focus:outline-none focus:border-black transition-colors" 
                   />
                 </div>
                 
