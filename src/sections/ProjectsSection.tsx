@@ -1,12 +1,7 @@
 import React from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
 import FadeIn from '../components/FadeIn'
 import LiveProjectButton from '../components/LiveProjectButton'
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface Project {
   number: string
@@ -139,29 +134,6 @@ const ProjectsSection: React.FC = () => {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  useGSAP(() => {
-    if (!isMobile) return
-
-    const cards = gsap.utils.toArray('.mobile-project-card')
-    cards.forEach((card: any) => {
-      gsap.fromTo(
-        card,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-        }
-      )
-    })
-  }, { dependencies: [isMobile], scope: sectionRef })
-
   return (
     <section
       ref={sectionRef}
@@ -179,31 +151,21 @@ const ProjectsSection: React.FC = () => {
       </FadeIn>
 
       <div className="max-w-7xl mx-auto">
-        {isMobile ? (
-          <div className="flex flex-col gap-8">
-            {PROJECTS.map((project) => (
-              <div key={project.number} className="mobile-project-card opacity-0">
-                <ProjectCard project={project} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <ScrollStack
-            useWindowScroll={true}
-            itemDistance={60}
-            itemScale={0.03}
-            itemStackDistance={25}
-            stackPosition="6%"
-            scaleEndPosition="2%"
-            baseScale={0.92}
-          >
-            {PROJECTS.map((project) => (
-              <ScrollStackItem key={project.number}>
-                <ProjectCard project={project} />
-              </ScrollStackItem>
-            ))}
-          </ScrollStack>
-        )}
+        <ScrollStack
+          useWindowScroll={true}
+          itemDistance={isMobile ? 220 : 60}
+          itemScale={0.03}
+          itemStackDistance={isMobile ? 12 : 25}
+          stackPosition={isMobile ? '2%' : '6%'}
+          scaleEndPosition="2%"
+          baseScale={isMobile ? 0.95 : 0.92}
+        >
+          {PROJECTS.map((project) => (
+            <ScrollStackItem key={project.number}>
+              <ProjectCard project={project} />
+            </ScrollStackItem>
+          ))}
+        </ScrollStack>
       </div>
     </section>
   )
