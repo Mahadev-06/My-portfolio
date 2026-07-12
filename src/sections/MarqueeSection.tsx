@@ -96,34 +96,25 @@ const MarqueeSection: React.FC = () => {
       <div className="relative mb-14 sm:mb-20 select-none w-full overflow-hidden py-4">
         <div
           ref={row1Ref}
-          className="relative h-14 sm:h-20 w-[300%]"
+          className="relative h-14 sm:h-20 w-[300%] bg-white shadow-2xl flex items-center gap-12 sm:gap-20 px-10 py-2 z-10"
           style={{ transform: `translate3d(-1800px, 0px, 0px)`, willChange: 'transform' }}
         >
-          {/* Background Purple Ribbon (Scrolling together to match width perfectly) */}
-          <div
-            className="absolute bg-[#A855F7] h-full w-full top-[-8px] sm:top-[-12px] left-0 z-0"
-            style={{ transform: 'translate3d(0, 0, 0)' }}
-          />
-          {/* Background Pink/Red Gradient Ribbon (Scrolling together to match width perfectly) */}
-          <div
-            className="absolute bg-gradient-to-r from-pink-500 to-rose-500 h-full w-full top-[8px] sm:top-[12px] left-0 z-0"
-            style={{ transform: 'translate3d(0, 0, 0)' }}
-          />
+          {/* Top Purple Ribbon Line */}
+          <div className="absolute top-0 left-0 right-0 h-[6px] sm:h-[10px] bg-[#A855F7] z-20" />
+          {/* Bottom Pink/Red Ribbon Line */}
+          <div className="absolute bottom-0 left-0 right-0 h-[6px] sm:h-[10px] bg-gradient-to-r from-pink-500 to-rose-500 z-20" />
 
-          {/* Foreground White Scrolling Ribbon */}
-          <div className="absolute inset-0 bg-white shadow-2xl flex items-center gap-12 sm:gap-20 z-10 px-10 py-2 w-full">
-            {tripled1.map((skill, i) => (
-              <div
-                key={`r1-${skill.name}-${i}`}
-                className="flex items-center gap-4 sm:gap-6 text-black font-kanit font-black uppercase text-lg sm:text-3xl tracking-wider whitespace-nowrap flex-shrink-0"
-              >
-                <span className="w-6 h-6 sm:w-10 sm:h-10 text-black flex-shrink-0 flex items-center justify-center">
-                  {skill.icon}
-                </span>
-                <span>{skill.name}</span>
-              </div>
-            ))}
-          </div>
+          {tripled1.map((skill, i) => (
+            <div
+              key={`r1-${skill.name}-${i}`}
+              className="flex items-center gap-4 sm:gap-6 text-black font-kanit font-black uppercase text-lg sm:text-3xl tracking-wider whitespace-nowrap flex-shrink-0 z-10"
+            >
+              <span className="w-6 h-6 sm:w-10 sm:h-10 text-black flex-shrink-0 flex items-center justify-center">
+                {skill.icon}
+              </span>
+              <span>{skill.name}</span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -131,34 +122,25 @@ const MarqueeSection: React.FC = () => {
       <div className="relative select-none w-full overflow-hidden py-4">
         <div
           ref={row2Ref}
-          className="relative h-14 sm:h-20 w-[300%]"
+          className="relative h-14 sm:h-20 w-[300%] bg-white shadow-2xl flex items-center gap-12 sm:gap-20 px-10 py-2 z-10"
           style={{ transform: `translate3d(-1000px, 0px, 0px)`, willChange: 'transform' }}
         >
-          {/* Background Purple Ribbon (Scrolling together to match width perfectly) */}
-          <div
-            className="absolute bg-[#A855F7] h-full w-full top-[-8px] sm:top-[-12px] left-0 z-0"
-            style={{ transform: 'translate3d(0, 0, 0)' }}
-          />
-          {/* Background Pink/Red Gradient Ribbon (Scrolling together to match width perfectly) */}
-          <div
-            className="absolute bg-gradient-to-r from-pink-500 to-rose-500 h-full w-full top-[8px] sm:top-[12px] left-0 z-0"
-            style={{ transform: 'translate3d(0, 0, 0)' }}
-          />
+          {/* Top Purple Ribbon Line */}
+          <div className="absolute top-0 left-0 right-0 h-[6px] sm:h-[10px] bg-[#A855F7] z-20" />
+          {/* Bottom Pink/Red Ribbon Line */}
+          <div className="absolute bottom-0 left-0 right-0 h-[6px] sm:h-[10px] bg-gradient-to-r from-pink-500 to-rose-500 z-20" />
 
-          {/* Foreground White Scrolling Ribbon */}
-          <div className="absolute inset-0 bg-white shadow-2xl flex items-center gap-12 sm:gap-20 z-10 px-10 py-2 w-full">
-            {tripled2.map((skill, i) => (
-              <div
-                key={`r2-${skill.name}-${i}`}
-                className="flex items-center gap-4 sm:gap-6 text-black font-kanit font-black uppercase text-lg sm:text-3xl tracking-wider whitespace-nowrap flex-shrink-0"
-              >
-                <span className="w-6 h-6 sm:w-10 sm:h-10 text-black flex-shrink-0 flex items-center justify-center">
-                  {skill.icon}
-                </span>
-                <span>{skill.name}</span>
-              </div>
-            ))}
-          </div>
+          {tripled2.map((skill, i) => (
+            <div
+              key={`r2-${skill.name}-${i}`}
+              className="flex items-center gap-4 sm:gap-6 text-black font-kanit font-black uppercase text-lg sm:text-3xl tracking-wider whitespace-nowrap flex-shrink-0 z-10"
+            >
+              <span className="w-6 h-6 sm:w-10 sm:h-10 text-black flex-shrink-0 flex items-center justify-center">
+                {skill.icon}
+              </span>
+              <span>{skill.name}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -47,7 +47,7 @@ const ScrollSync: React.FC = () => {
 
 function App() {
   return (
-    <ReactLenis root options={{ smoothWheel: true, duration: 1.2, syncTouch: true, touchMultiplier: 1.5 }}>
+    <ReactLenis root options={{ smoothWheel: true, duration: 1.2 }}>
       <ScrollSync />
       <div style={{ background: '#0C0C0C', overflowX: 'clip' }} className="font-kanit">
         <HeroSection />
