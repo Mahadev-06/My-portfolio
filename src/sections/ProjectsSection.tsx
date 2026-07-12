@@ -32,6 +32,7 @@ const PROJECTS: Project[] = [
       '/kinfolk2.png',
     ],
     col2Image: '/kinfolk3.png',
+    liveUrl: 'https://kinfolk-zjp4.vercel.app/',
   },
   {
     number: '03',
