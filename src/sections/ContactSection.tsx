@@ -125,7 +125,7 @@ const ContactSection: React.FC = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="flex flex-col gap-8 mt-8">
+              <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} action="javascript:void(0)" autoComplete="off" className="flex flex-col gap-8 mt-8">
                 {/* Your Name */}
                 <div className="flex flex-col gap-2 relative w-full">
                   <label className="text-xs font-bold uppercase tracking-wider text-black/60 pl-1">
