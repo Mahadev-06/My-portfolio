@@ -54,6 +54,12 @@ const ContactSection: React.FC = () => {
     }
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === 'Enter' && (e.target as HTMLElement).tagName !== 'TEXTAREA') {
+      e.preventDefault()
+    }
+  }
+
   return (
     <section id="contact" className="relative bg-[#F4F4F5] pt-28 pb-40 px-6 md:px-16 overflow-hidden z-20 rounded-t-[40px] -mt-10">
       
@@ -119,7 +125,7 @@ const ContactSection: React.FC = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-8 mt-8">
+              <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} className="flex flex-col gap-8 mt-8">
                 {/* Your Name */}
                 <div className="flex flex-col gap-2 relative w-full">
                   <label className="text-xs font-bold uppercase tracking-wider text-black/60 pl-1">
