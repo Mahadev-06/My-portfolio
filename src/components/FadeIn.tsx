@@ -13,6 +13,16 @@ interface FadeInProps {
   style?: React.CSSProperties
 }
 
+// Cache for motion components to avoid recreating them on every render
+const motionCache: Record<string, any> = {}
+
+const getMotionComponent = (as: string) => {
+  if (!motionCache[as]) {
+    motionCache[as] = motion.create(as as any)
+  }
+  return motionCache[as]
+}
+
 const FadeIn: React.FC<FadeInProps> = ({
   children,
   delay = 0,
@@ -23,7 +33,7 @@ const FadeIn: React.FC<FadeInProps> = ({
   className = '',
   style,
 }) => {
-  const MotionComponent = motion.create(as as any)
+  const MotionComponent = getMotionComponent(as)
 
   return (
     <MotionComponent
