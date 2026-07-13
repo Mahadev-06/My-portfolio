@@ -149,7 +149,7 @@ const ContactSection: React.FC = () => {
                     )}
                   </div>
                   {isValidName && (
-                    <span className="text-xs text-green-600 font-bold pl-1 validation-message">
+                    <span className="text-xs text-green-600 font-medium pl-1 validation-message">
                       Perfect, thank you
                     </span>
                   )}
@@ -179,7 +179,7 @@ const ContactSection: React.FC = () => {
                       )}
                     </div>
                     {isValidEmail && (
-                      <span className="text-xs text-green-600 font-bold pl-1 validation-message">
+                      <span className="text-xs text-green-600 font-medium pl-1 validation-message">
                         We'll reach out to you soon
                       </span>
                     )}
@@ -207,8 +207,8 @@ const ContactSection: React.FC = () => {
                       )}
                     </div>
                     {isValidPhone && (
-                      <span className="text-xs text-green-600 font-bold pl-1 validation-message">
-                        Perfect, thank you
+                      <span className="text-xs text-green-600 font-medium pl-1 validation-message">
+                        We'll reach out to you soon
                       </span>
                     )}
                   </div>
@@ -237,7 +237,7 @@ const ContactSection: React.FC = () => {
                     )}
                   </div>
                   {isValidMessage && (
-                    <span className="text-xs text-green-600 font-bold pl-1 validation-message">
+                    <span className="text-xs text-green-600 font-medium pl-1 validation-message">
                       Thank you for sharing
                     </span>
                   )}
