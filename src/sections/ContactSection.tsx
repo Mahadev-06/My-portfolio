@@ -7,6 +7,18 @@ const ContactSection: React.FC = () => {
   const [succeeded, setSucceeded] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
+  // Form State
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [message, setMessage] = useState('')
+
+  // Validation Flags
+  const isValidName = name.trim().length > 0
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const isValidPhone = phone.trim().length >= 8
+  const isValidMessage = message.trim().length > 0
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
@@ -73,7 +85,7 @@ const ContactSection: React.FC = () => {
               <stop offset="100%" stopColor="#92400E" />
             </linearGradient>
           </defs>
-          <path fill="url(#gold)" d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          <path fill="gold" d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
         </svg>
       </motion.div>
 
@@ -107,56 +119,131 @@ const ContactSection: React.FC = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-10 mt-8">
-                <div className="relative">
-                  <input 
-                    required
-                    type="text" 
-                    id="name"
-                    name="name" 
-                    placeholder="Full Name*" 
-                    className="w-full bg-transparent border-b-2 border-black/35 pb-3 text-black placeholder-black/70 text-sm focus:outline-none focus:border-black transition-colors" 
-                  />
-                </div>
-                <div className="flex flex-col sm:flex-row gap-10">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-8 mt-8">
+                {/* Your Name */}
+                <div className="flex flex-col gap-2 relative w-full">
+                  <label className="text-xs font-bold uppercase tracking-wider text-black/60 pl-1">
+                    Your Name
+                  </label>
                   <div className="relative w-full">
                     <input 
                       required
-                      type="email" 
-                      id="email"
-                      name="email" 
-                      placeholder="Email*" 
-                      className="w-full bg-transparent border-b-2 border-black/35 pb-3 text-black placeholder-black/70 text-sm focus:outline-none focus:border-black transition-colors" 
+                      type="text" 
+                      id="name"
+                      name="name" 
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Full Name*" 
+                      className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-sm focus:outline-none transition-all ${isValidName ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
                     />
+                    {isValidName && (
+                      <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
                   </div>
-                  <div className="relative w-full">
-                    <input 
-                      type="tel" 
-                      id="phone"
-                      name="phone" 
-                      placeholder="Phone" 
-                      className="w-full bg-transparent border-b-2 border-black/35 pb-3 text-black placeholder-black/70 text-sm focus:outline-none focus:border-black transition-colors" 
-                    />
+                  {isValidName && (
+                    <span className="text-xs text-green-600 font-bold pl-1 validation-message">
+                      Perfect, thank you
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-8">
+                  {/* Email */}
+                  <div className="flex flex-col gap-2 relative w-full">
+                    <label className="text-xs font-bold uppercase tracking-wider text-black/60 pl-1">
+                      Email Address
+                    </label>
+                    <div className="relative w-full">
+                      <input 
+                        required
+                        type="email" 
+                        id="email"
+                        name="email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Email*" 
+                        className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-sm focus:outline-none transition-all ${isValidEmail ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
+                      />
+                      {isValidEmail && (
+                        <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                    {isValidEmail && (
+                      <span className="text-xs text-green-600 font-bold pl-1 validation-message">
+                        We'll reach out to you soon
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex flex-col gap-2 relative w-full">
+                    <label className="text-xs font-bold uppercase tracking-wider text-black/60 pl-1">
+                      Phone Number
+                    </label>
+                    <div className="relative w-full">
+                      <input 
+                        type="tel" 
+                        id="phone"
+                        name="phone" 
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="Phone (Optional)" 
+                        className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-sm focus:outline-none transition-all ${isValidPhone ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
+                      />
+                      {isValidPhone && (
+                        <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                    {isValidPhone && (
+                      <span className="text-xs text-green-600 font-bold pl-1 validation-message">
+                        Perfect, thank you
+                      </span>
+                    )}
                   </div>
                 </div>
-                <div className="relative">
-                  <input 
-                    required
-                    type="text" 
-                    id="message"
-                    name="message" 
-                    placeholder="Message*" 
-                    className="w-full bg-transparent border-b-2 border-black/35 pb-3 text-black placeholder-black/70 text-sm focus:outline-none focus:border-black transition-colors" 
-                  />
+
+                {/* Message */}
+                <div className="flex flex-col gap-2 relative w-full">
+                  <label className="text-xs font-bold uppercase tracking-wider text-black/60 pl-1">
+                    Tell us about your project
+                  </label>
+                  <div className="relative w-full">
+                    <textarea 
+                      required
+                      id="message"
+                      name="message" 
+                      rows={4}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Message*" 
+                      className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-sm focus:outline-none transition-all resize-none ${isValidMessage ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
+                    />
+                    {isValidMessage && (
+                      <svg className="absolute right-4 top-6 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </div>
+                  {isValidMessage && (
+                    <span className="text-xs text-green-600 font-bold pl-1 validation-message">
+                      Thank you for sharing
+                    </span>
+                  )}
                 </div>
                 
                 {errorMessage && (
-                  <div className="text-red-500 text-sm -mt-6">
+                  <div className="text-red-500 text-sm -mt-4">
                     {errorMessage}
                   </div>
                 )}
 
-                <div className={`mt-8 mask-button-container ${isSubmitting ? 'disabled' : ''}`.trim()}>
+                <div className={`mt-4 mask-button-container ${isSubmitting ? 'disabled' : ''}`.trim()}>
                   <span className="mas">{isSubmitting ? 'Sending...' : 'Send'}</span>
                   <button 
                     type="submit" 
