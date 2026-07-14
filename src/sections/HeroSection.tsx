@@ -59,7 +59,7 @@ const HeroSection: React.FC = () => {
         </FadeIn>
 
         {/* Portrait - centered with flex to avoid Framer Motion transform override */}
-        <div ref={cardContainerRef} className="absolute inset-x-0 bottom-[12%] sm:bottom-0 top-[20%] sm:top-auto h-[62%] sm:h-auto flex justify-center items-center sm:items-center sm:pb-12 z-10 pointer-events-none">
+        <div ref={cardContainerRef} className="absolute inset-x-0 bottom-[12%] sm:bottom-0 top-[20%] sm:top-auto h-[62%] sm:h-auto flex justify-center items-center sm:items-center sm:pb-12 z-0 pointer-events-none">
           <FadeIn
             delay={0.6}
             y={30}
@@ -91,7 +91,7 @@ const HeroSection: React.FC = () => {
         <FadeIn
           delay={0.8}
           y={20}
-          className="hidden sm:absolute top-[36%] sm:top-[38%] md:top-[40%] left-[6%] sm:left-[10%] md:left-[12%] w-[60px] sm:w-[110px] md:w-[180px] z-20 pointer-events-auto"
+          className="absolute top-[24%] sm:top-[38%] md:top-[40%] left-[2%] sm:left-[10%] md:left-[12%] w-[55px] sm:w-[110px] md:w-[180px] z-30 pointer-events-auto"
         >
           <Magnet padding={120} strength={8}>
             <img
@@ -105,7 +105,7 @@ const HeroSection: React.FC = () => {
         <FadeIn
           delay={0.9}
           y={20}
-          className="hidden sm:absolute top-[40%] sm:top-[42%] md:top-[44%] right-[6%] sm:right-[10%] md:right-[12%] w-[60px] sm:w-[110px] md:w-[180px] z-20 pointer-events-auto"
+          className="absolute top-[58%] sm:top-[42%] md:top-[44%] right-[2%] sm:right-[10%] md:right-[12%] w-[55px] sm:w-[110px] md:w-[180px] z-30 pointer-events-auto"
         >
           <Magnet padding={120} strength={8}>
             <img
