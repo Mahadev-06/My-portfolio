@@ -71,6 +71,7 @@ const AboutSection: React.FC = () => {
         <div className="flex flex-col items-center gap-6 sm:gap-14 md:gap-16 w-full">
           <TextReveal
             text="About me"
+            className="hero-heading"
             style={{ fontSize: 'clamp(2.5rem, 12vw, 160px)' }}
           />
 

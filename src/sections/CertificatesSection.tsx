@@ -123,7 +123,7 @@ const CertificatesSection: React.FC = () => {
     >
       <TextReveal
         text="Certificates"
-        className="mb-16 sm:mb-20 md:mb-28 w-full"
+        className="hero-heading mb-16 sm:mb-20 md:mb-28 w-full"
         style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
       />
 

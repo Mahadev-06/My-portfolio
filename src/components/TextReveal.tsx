@@ -48,10 +48,12 @@ const TextReveal: React.FC<TextRevealProps> = ({ text, className = '', style }) 
   // Split text into words, and words into characters
   const words = text.split(' ')
 
+  const isGradient = className.includes('hero-heading')
+
   return (
     <h2
       ref={containerRef}
-      className={`hero-heading font-black uppercase text-center leading-none tracking-tight select-none ${className}`}
+      className={`font-black uppercase text-center leading-none tracking-tight select-none ${className}`}
       style={{
         ...style,
         perspective: '1000px',
@@ -74,6 +76,10 @@ const TextReveal: React.FC<TextRevealProps> = ({ text, className = '', style }) 
                 transformStyle: 'preserve-3d',
                 willChange: 'transform, opacity',
                 display: 'inline-block',
+                background: isGradient ? 'linear-gradient(180deg, #646973 0%, #BBCCD7 100%)' : 'none',
+                WebkitBackgroundClip: isGradient ? 'text' : 'initial',
+                backgroundClip: isGradient ? 'text' : 'initial',
+                WebkitTextFillColor: isGradient ? 'transparent' : 'initial',
               }}
             >
               {char}
