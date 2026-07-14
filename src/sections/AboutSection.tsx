@@ -9,32 +9,53 @@ import { useGSAP } from '@gsap/react'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const DECORATIVE_IMAGES = [
+const DECORATIVE_SVGS = [
   {
-    src: 'https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png',
-    alt: 'Moon icon',
-    className: 'w-[50px] sm:w-[120px] md:w-[210px] absolute top-[8%] left-[2%] sm:left-[2%] md:left-[4%] opacity-80 sm:opacity-100 z-0',
+    // Wavy capsule shape (Color: #8A2BE2 / Purple)
+    svg: (
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-[0_10px_20px_rgba(138,43,226,0.25)]">
+        <rect x="25" y="0" width="50" height="100" rx="25" fill="#8A2BE2" />
+        <rect x="0" y="25" width="100" height="50" rx="25" fill="#8A2BE2" />
+      </svg>
+    ),
+    className: 'w-[40px] sm:w-[120px] md:w-[180px] absolute top-[8%] left-[2%] sm:left-[2%] md:left-[4%] opacity-80 sm:opacity-100 z-0',
     fadeProps: { delay: 0.1, x: -80, y: 0, duration: 0.9 },
     floatClass: 'float-item-1',
   },
   {
-    src: 'https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/p59_1.4659672e.png',
-    alt: '3D object',
-    className: 'w-[45px] sm:w-[100px] md:w-[180px] absolute bottom-[8%] left-[4%] sm:left-[6%] md:left-[10%] opacity-80 sm:opacity-100 z-0',
+    // Crescent slice / Arc shape (Color: #FF10A0 / Pink)
+    svg: (
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-[0_10px_20px_rgba(255,16,160,0.25)]">
+        <path d="M100 50 A 50 50 0 1 0 50 100 L 50 50 Z" fill="#FF10A0" />
+      </svg>
+    ),
+    className: 'w-[35px] sm:w-[100px] md:w-[150px] absolute bottom-[8%] left-[4%] sm:left-[6%] md:left-[10%] opacity-80 sm:opacity-100 z-0',
     fadeProps: { delay: 0.25, x: -80, y: 0, duration: 0.9 },
     floatClass: 'float-item-2',
   },
   {
-    src: 'https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png',
-    alt: 'Lego icon',
-    className: 'w-[50px] sm:w-[120px] md:w-[210px] absolute top-[8%] right-[2%] sm:right-[2%] md:right-[4%] opacity-80 sm:opacity-100 z-0',
+    // Dual crescent moons (Color: #F59E0B / Amber)
+    svg: (
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-[0_10px_20px_rgba(245,158,11,0.25)]">
+        <path d="M45 0 A 45 45 0 0 0 45 100 Z" fill="#F59E0B" />
+        <path d="M55 0 A 45 45 0 0 1 55 100 Z" fill="#F59E0B" />
+      </svg>
+    ),
+    className: 'w-[40px] sm:w-[120px] md:w-[180px] absolute top-[8%] right-[2%] sm:right-[2%] md:right-[4%] opacity-80 sm:opacity-100 z-0',
     fadeProps: { delay: 0.15, x: 80, y: 0, duration: 0.9 },
     floatClass: 'float-item-3',
   },
   {
-    src: 'https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/Group_134-1.2e04f3ce.png',
-    alt: '3D group',
-    className: 'w-[55px] sm:w-[130px] md:w-[220px] absolute bottom-[8%] right-[4%] sm:right-[6%] md:right-[10%] opacity-80 sm:opacity-100 z-0',
+    // Four circles grid (Color: #FFFFFF / White)
+    svg: (
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-[0_10px_20px_rgba(255,255,255,0.12)]">
+        <circle cx="27" cy="27" r="23" fill="white" />
+        <circle cx="73" cy="27" r="23" fill="white" />
+        <circle cx="27" cy="73" r="23" fill="white" />
+        <circle cx="73" cy="73" r="23" fill="white" />
+      </svg>
+    ),
+    className: 'w-[45px] sm:w-[130px] md:w-[190px] absolute bottom-[8%] right-[4%] sm:right-[6%] md:right-[10%] opacity-80 sm:opacity-100 z-0',
     fadeProps: { delay: 0.3, x: 80, y: 0, duration: 0.9 },
     floatClass: 'float-item-4',
   },
@@ -44,24 +65,27 @@ const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
+    const isMobile = window.innerWidth < 768
     ScrollTrigger.create({
       trigger: sectionRef.current,
       start: 'top top',
       end: '+=100%',
-      pin: true,
+      pin: !isMobile,
       scrub: true,
-      pinSpacing: true,
+      pinSpacing: !isMobile,
       invalidateOnRefresh: true,
     })
   }, { scope: sectionRef })
 
   return (
-    <section ref={sectionRef} id="about" className="relative h-screen flex items-center justify-center px-5 sm:px-8 md:px-10 py-12 bg-[#0C0C0C] overflow-hidden">
-      {/* Decorative images */}
-      {DECORATIVE_IMAGES.map((img, i) => (
-        <FadeIn key={i} {...img.fadeProps} className={img.className}>
+    <section ref={sectionRef} id="about" className="relative min-h-screen md:h-screen flex items-center justify-center px-5 sm:px-8 md:px-10 py-12 bg-[#0C0C0C] overflow-hidden">
+      {/* Decorative SVGs */}
+      {DECORATIVE_SVGS.map((item, i) => (
+        <FadeIn key={i} {...item.fadeProps} className={item.className}>
           <Magnet padding={120} strength={8}>
-            <img src={img.src} alt={img.alt} className={`w-full ${img.floatClass}`} />
+            <div className={`w-full h-full ${item.floatClass}`}>
+              {item.svg}
+            </div>
           </Magnet>
         </FadeIn>
       ))}

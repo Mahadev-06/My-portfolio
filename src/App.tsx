@@ -30,16 +30,8 @@ const ScrollSync: React.FC = () => {
 
     lenis.on('scroll', handleScroll)
 
-    // Sync GSAP animation loop with Lenis
-    const syncTicker = (time: number) => {
-      lenis.raf(time * 1000)
-    }
-    gsap.ticker.add(syncTicker)
-    gsap.ticker.lagSmoothing(0)
-
     return () => {
       lenis.off('scroll', handleScroll)
-      gsap.ticker.remove(syncTicker)
     }
   }, [lenis])
 
