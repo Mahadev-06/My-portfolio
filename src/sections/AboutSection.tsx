@@ -65,20 +65,19 @@ const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
-    const isMobile = window.innerWidth < 768
     ScrollTrigger.create({
       trigger: sectionRef.current,
       start: 'top top',
       end: '+=100%',
-      pin: !isMobile,
+      pin: true,
       scrub: true,
-      pinSpacing: !isMobile,
+      pinSpacing: true,
       invalidateOnRefresh: true,
     })
   }, { scope: sectionRef })
 
   return (
-    <section ref={sectionRef} id="about" className="relative min-h-screen md:h-screen flex items-center justify-center px-5 sm:px-8 md:px-10 py-12 bg-[#0C0C0C] overflow-hidden">
+    <section ref={sectionRef} id="about" className="relative h-screen flex items-center justify-center px-5 sm:px-8 md:px-10 py-12 bg-[#0C0C0C] overflow-hidden">
       {/* Decorative SVGs */}
       {DECORATIVE_SVGS.map((item, i) => (
         <FadeIn key={i} {...item.fadeProps} className={item.className}>

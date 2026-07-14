@@ -60,7 +60,7 @@ const HeroSection: React.FC = () => {
         </FadeIn>
 
         {/* Portrait - centered with flex to avoid Framer Motion transform override */}
-        <div ref={cardContainerRef} className="absolute inset-x-0 bottom-[20%] sm:bottom-0 top-[18%] sm:top-auto h-[55%] sm:h-auto flex justify-center items-center sm:items-center sm:pb-12 z-0 pointer-events-none">
+        <div ref={cardContainerRef} className="absolute inset-x-0 bottom-[12%] sm:bottom-0 top-[20%] sm:top-auto h-[62%] sm:h-auto flex justify-center items-center sm:items-center sm:pb-12 z-0 pointer-events-none">
           <FadeIn
             delay={0.6}
             y={30}
@@ -95,12 +95,11 @@ const HeroSection: React.FC = () => {
           className="absolute top-[24%] sm:top-[38%] md:top-[40%] left-[2%] sm:left-[10%] md:left-[12%] w-[55px] sm:w-[110px] md:w-[180px] z-30 pointer-events-auto"
         >
           <Magnet padding={120} strength={8}>
-            <div className="w-full float-item-1 opacity-40 sm:opacity-100">
-              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-[0_10px_20px_rgba(138,43,226,0.25)]">
-                <rect x="25" y="0" width="50" height="100" rx="25" fill="#8A2BE2" />
-                <rect x="0" y="25" width="100" height="50" rx="25" fill="#8A2BE2" />
-              </svg>
-            </div>
+            <img
+              src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png"
+              alt="Moon 3D Asset"
+              className="w-full float-item-1 opacity-40 sm:opacity-100"
+            />
           </Magnet>
         </FadeIn>
 
@@ -110,11 +109,11 @@ const HeroSection: React.FC = () => {
           className="absolute top-[58%] sm:top-[42%] md:top-[44%] right-[2%] sm:right-[10%] md:right-[12%] w-[55px] sm:w-[110px] md:w-[180px] z-30 pointer-events-auto"
         >
           <Magnet padding={120} strength={8}>
-            <div className="w-full float-item-3 opacity-40 sm:opacity-100">
-              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-[0_10px_20px_rgba(255,16,160,0.25)]">
-                <path d="M100 50 A 50 50 0 1 0 50 100 L 50 50 Z" fill="#FF10A0" />
-              </svg>
-            </div>
+            <img
+              src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png"
+              alt="Lego 3D Asset"
+              className="w-full float-item-3 opacity-40 sm:opacity-100"
+            />
           </Magnet>
         </FadeIn>
 
