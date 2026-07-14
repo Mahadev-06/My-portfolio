@@ -27,8 +27,8 @@ const FooterSection: React.FC = () => {
   }, { scope: container })
 
   return (
-    <footer ref={container} className="bg-[#0A0A0A] text-white pt-24 overflow-hidden relative z-30" style={{ borderTopLeftRadius: '40px', borderTopRightRadius: '40px', marginTop: '-40px' }}>
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pb-24 flex flex-col md:flex-row justify-between items-start gap-12">
+    <footer ref={container} className="bg-[#0A0A0A] text-white pt-12 md:pt-24 overflow-hidden relative z-30" style={{ borderTopLeftRadius: '40px', borderTopRightRadius: '40px', marginTop: '-40px' }}>
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pb-12 md:pb-24 flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12">
         
         {/* Left Side: MAHADEV PATRO */}
         <div className="w-full md:w-1/2">

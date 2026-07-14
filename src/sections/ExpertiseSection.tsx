@@ -38,7 +38,7 @@ const ExpertiseSection: React.FC = () => {
   return (
     <section
       id="services"
-      className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32"
+      className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-6 sm:px-8 md:px-10 py-12 sm:py-24 md:py-32"
       style={{ background: '#FFFFFF' }}
     >
       <h2
@@ -52,7 +52,7 @@ const ExpertiseSection: React.FC = () => {
         {EXPERTISE.map((item, i) => (
           <FadeIn key={item.number} delay={i * 0.1} y={30}>
             <div
-              className="flex items-start gap-6 sm:gap-8 md:gap-12 py-8 sm:py-10 md:py-12"
+              className="flex flex-col sm:flex-row items-start gap-4 sm:gap-8 md:gap-12 py-6 sm:py-10 md:py-12"
               style={{
                 borderBottom: i < EXPERTISE.length - 1 ? '1px solid rgba(12, 12, 12, 0.15)' : 'none',
                 borderTop: i === 0 ? '1px solid rgba(12, 12, 12, 0.15)' : 'none',

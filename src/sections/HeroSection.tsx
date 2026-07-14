@@ -91,7 +91,7 @@ const HeroSection: React.FC = () => {
         <FadeIn
           delay={0.8}
           y={20}
-          className="absolute top-[36%] sm:top-[38%] md:top-[40%] left-[6%] sm:left-[10%] md:left-[12%] w-[60px] sm:w-[110px] md:w-[180px] z-20 pointer-events-auto"
+          className="hidden sm:absolute top-[36%] sm:top-[38%] md:top-[40%] left-[6%] sm:left-[10%] md:left-[12%] w-[60px] sm:w-[110px] md:w-[180px] z-20 pointer-events-auto"
         >
           <Magnet padding={120} strength={8}>
             <img
@@ -105,7 +105,7 @@ const HeroSection: React.FC = () => {
         <FadeIn
           delay={0.9}
           y={20}
-          className="absolute top-[40%] sm:top-[42%] md:top-[44%] right-[6%] sm:right-[10%] md:right-[12%] w-[60px] sm:w-[110px] md:w-[180px] z-20 pointer-events-auto"
+          className="hidden sm:absolute top-[40%] sm:top-[42%] md:top-[44%] right-[6%] sm:right-[10%] md:right-[12%] w-[60px] sm:w-[110px] md:w-[180px] z-20 pointer-events-auto"
         >
           <Magnet padding={120} strength={8}>
             <img

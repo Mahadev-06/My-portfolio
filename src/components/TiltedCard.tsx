@@ -56,6 +56,7 @@ export default function TiltedCard({
   const [lastY, setLastY] = useState(0);
 
   function handleMouse(e: React.MouseEvent<HTMLElement>) {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
     if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
@@ -77,11 +78,13 @@ export default function TiltedCard({
   }
 
   function handleMouseEnter() {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
     scale.set(scaleOnHover);
     opacity.set(1);
   }
 
   function handleMouseLeave() {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
     opacity.set(0);
     scale.set(1);
     rotateX.set(0);

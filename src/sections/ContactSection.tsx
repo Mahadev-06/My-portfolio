@@ -61,7 +61,7 @@ const ContactSection: React.FC = () => {
   }
 
   return (
-    <section id="contact" className="relative bg-[#F4F4F5] pt-28 pb-40 px-6 md:px-16 overflow-hidden z-20 rounded-t-[40px] -mt-10">
+    <section id="contact" className="relative bg-[#F4F4F5] pt-16 pb-24 px-6 md:pt-28 md:pb-40 md:px-16 overflow-hidden z-20 rounded-t-[40px] -mt-10">
       
       {/* 3D Balloon CSS Art Placeholder - Left edge */}
       <motion.div 
