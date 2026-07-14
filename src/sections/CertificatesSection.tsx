@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import FadeIn from '../components/FadeIn'
@@ -8,7 +8,6 @@ interface Certificate {
   number: string
   title: string
   issuer: string
-  year: string
   image: string
 }
 
@@ -17,48 +16,43 @@ const CERTIFICATES: Certificate[] = [
     number: '01',
     title: 'Claude Code in Action',
     issuer: 'Anthropic',
-    year: '2026',
     image: '/certificates/claude_code_in_action.jpg'
   },
   {
     number: '02',
     title: 'Cyber Job Simulation',
     issuer: 'Deloitte',
-    year: '2026',
     image: '/certificates/deloitte_cyber_simulation.jpg'
   },
   {
     number: '03',
     title: 'Claude Code 101',
     issuer: 'Anthropic',
-    year: '2026',
     image: '/certificates/claude_code_101.jpg'
   },
   {
     number: '04',
     title: 'Claude 101',
     issuer: 'Anthropic',
-    year: '2026',
     image: '/certificates/claude_101.jpg'
   },
   {
     number: '05',
     title: 'DevOps Speed Unlocked',
     issuer: 'GUVI | HCL',
-    year: '2025',
     image: '/certificates/devops_speed_unlocked.jpg'
   },
   {
     number: '06',
     title: 'Generative AI Mastermind',
     issuer: 'Outskill',
-    year: '2026',
     image: '/certificates/generative_ai_mastermind.jpg'
   }
 ]
 
 const CertificatesSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null)
+  const [selectedCert, setSelectedCert] = useState<Certificate | null>(null)
 
   useGSAP(() => {
     // Disable follow effect on mobile/touch screens to prevent HMR and touch scrolling jank
@@ -140,14 +134,16 @@ const CertificatesSection: React.FC = () => {
         <ul className="certificates-list" role="list">
           {CERTIFICATES.map((cert) => (
             <li key={cert.number}>
-              <div className="cert-container">
+              <div 
+                className="cert-container"
+                onClick={() => setSelectedCert(cert)}
+              >
                 <div className="cert-left">
                   <span className="cert-number">{cert.number}</span>
                   <h3 className="cert-title">{cert.title}</h3>
                 </div>
                 <div className="cert-right">
                   <span className="cert-issuer">{cert.issuer}</span>
-                  <span className="cert-year">{cert.year}</span>
                 </div>
                 <img 
                   className="swipeimage" 
@@ -159,6 +155,22 @@ const CertificatesSection: React.FC = () => {
           ))}
         </ul>
       </div>
+
+      {/* Modal Preview for Mobile & Desktop Click */}
+      {selectedCert && (
+        <div 
+          className="cert-modal-overlay"
+          onClick={() => setSelectedCert(null)}
+        >
+          <div className="cert-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="cert-modal-close" onClick={() => setSelectedCert(null)}>
+              &times;
+            </button>
+            <img src={selectedCert.image} alt={selectedCert.title} className="cert-modal-image" />
+            <p className="cert-modal-title">{selectedCert.title}</p>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
