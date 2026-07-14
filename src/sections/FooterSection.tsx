@@ -88,70 +88,11 @@ const FooterSection: React.FC = () => {
         })
       })
     })
-    // Scroll-triggered SVG path morphing
-    const PATH_DOWN = 'M0-0.3C0-0.3,464,156,1139,156S2278-0.3,2278-0.3V683H0V-0.3z'
-    const PATH_CENTER = 'M0-0.3C0-0.3,464,0,1139,0s1139-0.3,1139-0.3V683H0V-0.3z'
-
-    ScrollTrigger.create({
-      trigger: container.current,
-      start: 'top bottom',
-      toggleActions: 'play pause resume reverse',
-      onEnter: (self) => {
-        const velocity = self.getVelocity()
-        const variation = Math.min(Math.max(velocity / 10000, -0.5), 0.5)
-
-        gsap.fromTo('#bouncy-path', 
-          {
-            attr: { d: PATH_DOWN }
-          }, 
-          {
-            duration: 2, 
-            attr: { d: PATH_CENTER }, 
-            ease: `elastic.out(${1 + variation}, ${1 - variation})`, 
-            overwrite: 'auto'
-          }
-        )
-      }
-    })
   }, { scope: container })
 
   return (
-    <footer 
-      ref={container} 
-      className="text-white pt-32 pb-12 overflow-hidden relative z-30 min-h-[480px] bg-transparent" 
-      style={{ marginTop: '-40px' }}
-    >
-      {/* Absolute Bouncy SVG Background & Noise texture overlay */}
-      <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none overflow-hidden">
-        <svg 
-          preserveAspectRatio="none" 
-          id="footer-img" 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 2278 683"
-          className="w-full h-full block overflow-visible"
-        >
-          <defs>
-            <linearGradient id="grad-1" x1="0" y1="0" x2="2278" y2="683" gradientUnits="userSpaceOnUse">
-              <stop offset="0.2" stopColor="#fec5fb"></stop>
-              <stop offset="0.8" stopColor="#00bae2"></stop>
-            </linearGradient>
-          </defs>
-          <path 
-            id="bouncy-path" 
-            fill="url(#grad-1)" 
-            d="M0-0.3C0-0.3,464,156,1139,156S2278-0.3,2278-0.3V683H0V-0.3z"
-          />
-        </svg>
-        <div 
-          className="absolute inset-0 mix-blend-color-dodge opacity-[0.12] pointer-events-none" 
-          style={{ 
-            backgroundImage: 'url("https://assets.codepen.io/16327/noise.png")',
-            backgroundSize: '150px 150px'
-          }}
-        />
-      </div>
-
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pb-12 md:pb-24 flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12 relative z-10">
+    <footer ref={container} className="bg-[#0A0A0A] text-white pt-12 md:pt-24 overflow-hidden relative z-30" style={{ borderTopLeftRadius: '40px', borderTopRightRadius: '40px', marginTop: '-40px' }}>
+      <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-16 pb-12 md:pb-24 flex flex-col md:flex-row justify-between items-start gap-8 md:gap-12">
         
         {/* Left Side: MAHADEV PATRO */}
         <div className="w-full md:w-1/2">
