@@ -10,20 +10,59 @@ const FooterSection: React.FC = () => {
   const container = useRef<HTMLElement>(null)
 
   useGSAP(() => {
-    const mm = gsap.matchMedia()
-    mm.add("(min-width: 768px)", () => {
-      const shapes = gsap.utils.toArray('.shape')
-      shapes.forEach((shape: any) => {
-        // pin shape when it reaches the center of the viewport, for 300px
-        ScrollTrigger.create({
-          trigger: shape,
-          pin: true,
-          start: "center center",
-          end: "+=300"
+    const shapes = gsap.utils.toArray('.shape')
+    
+    // Staggered scroll-linked rotation and scaling entry
+    gsap.fromTo(shapes, 
+      {
+        y: 80,
+        rotation: (i) => i % 2 === 0 ? -120 : 120,
+        scale: 0.65,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        rotation: 0,
+        scale: 1,
+        opacity: 1,
+        ease: 'power1.out',
+        stagger: {
+          each: 0.08,
+          from: 'start'
+        },
+        scrollTrigger: {
+          trigger: '.shape-container',
+          start: 'top 95%',
+          end: 'bottom 85%',
+          scrub: 1.5,
+          invalidateOnRefresh: true,
+        }
+      }
+    )
+
+    // Interactive elastic hover animations
+    shapes.forEach((shape: any) => {
+      shape.addEventListener('mouseenter', () => {
+        gsap.to(shape, {
+          scale: 1.15,
+          rotation: (_: number, target: any) => {
+            // Get current rotation and add 45deg
+            const current = gsap.getProperty(target, 'rotation') as number
+            return current + 45
+          },
+          duration: 0.6,
+          ease: 'elastic.out(1, 0.4)'
+        })
+      })
+      shape.addEventListener('mouseleave', () => {
+        gsap.to(shape, {
+          scale: 1,
+          rotation: 0,
+          duration: 0.6,
+          ease: 'elastic.out(1, 0.4)'
         })
       })
     })
-    return () => mm.revert()
   }, { scope: container })
 
   return (
@@ -84,7 +123,7 @@ const FooterSection: React.FC = () => {
       </div>
 
       {/* Decorative Bottom Shapes */}
-      <div className="w-full flex justify-between items-end px-4 sm:px-8 pb-8 gap-1.5 sm:gap-4 overflow-hidden">
+      <div className="w-full flex justify-between items-end px-4 sm:px-8 pb-8 gap-1.5 sm:gap-4 overflow-hidden shape-container">
         <Shape delay={0.5} color="white">
           <svg viewBox="0 0 100 100" fill="currentColor" className="w-full h-full drop-shadow-xl">
             <rect x="25" y="0" width="50" height="100" rx="25" />
