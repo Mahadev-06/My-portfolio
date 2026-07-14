@@ -1,5 +1,6 @@
 import React from 'react'
 import FadeIn from '../components/FadeIn'
+import TextReveal from '../components/TextReveal'
 
 const EXPERTISE = [
   {
@@ -41,12 +42,11 @@ const ExpertiseSection: React.FC = () => {
       className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-6 sm:px-8 md:px-10 py-12 sm:py-24 md:py-32"
       style={{ background: '#FFFFFF' }}
     >
-      <h2
-        className="font-black uppercase text-center text-[#0C0C0C] mb-16 sm:mb-20 md:mb-28"
+      <TextReveal
+        text="Expertise"
+        className="text-[#0C0C0C] mb-16 sm:mb-20 md:mb-28 w-full"
         style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
-      >
-        Expertise
-      </h2>
+      />
 
       <div className="max-w-5xl mx-auto">
         {EXPERTISE.map((item, i) => (

@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import FadeIn from '../components/FadeIn'
 import AnimatedText from '../components/AnimatedText'
 import Magnet from '../components/Magnet'
+import TextReveal from '../components/TextReveal'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -68,14 +69,10 @@ const AboutSection: React.FC = () => {
       {/* Center content */}
       <div className="flex flex-col items-center max-w-[900px] w-full z-10">
         <div className="flex flex-col items-center gap-6 sm:gap-14 md:gap-16 w-full">
-          <FadeIn delay={0} y={40}>
-            <h2
-              className="hero-heading font-black uppercase leading-none tracking-tight text-center"
-              style={{ fontSize: 'clamp(2.5rem, 12vw, 160px)' }}
-            >
-              About me
-            </h2>
-          </FadeIn>
+          <TextReveal
+            text="About me"
+            style={{ fontSize: 'clamp(2.5rem, 12vw, 160px)' }}
+          />
 
           <AnimatedText
             text="I build modern, scalable web applications that combine clean design with robust functionality. Passionate about full-stack development, I leverage modern technologies and AI-assisted workflows to transform ideas into impactful digital products while continuously learning Python, Artificial Intelligence, and Machine Learning."

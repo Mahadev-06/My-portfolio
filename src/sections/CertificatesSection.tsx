@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
-import FadeIn from '../components/FadeIn'
+import TextReveal from '../components/TextReveal'
 import './CertificatesSection.css'
 
 interface Certificate {
@@ -121,14 +121,11 @@ const CertificatesSection: React.FC = () => {
       id="certificates" 
       className="certificates-section rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative px-6 sm:px-12 md:px-16 py-16 sm:py-24 md:py-32"
     >
-      <FadeIn delay={0} y={40}>
-        <h2
-          className="hero-heading font-black uppercase text-center leading-none tracking-tight mb-16 sm:mb-20 md:mb-28 w-full"
-          style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
-        >
-          Certificates
-        </h2>
-      </FadeIn>
+      <TextReveal
+        text="Certificates"
+        className="mb-16 sm:mb-20 md:mb-28 w-full"
+        style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+      />
 
       <div className="max-w-6xl mx-auto">
         <ul className="certificates-list" role="list">
