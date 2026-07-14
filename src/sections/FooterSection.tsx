@@ -11,9 +11,20 @@ const FooterSection: React.FC = () => {
 
   useGSAP(() => {
     const shapes = gsap.utils.toArray('.shape')
-    
-    // Staggered scroll-linked translation entry for the outer containers
-    gsap.fromTo(shapes, 
+    const inners = gsap.utils.toArray('.shape-inner')
+
+    // Create a timeline that triggers when the footer comes into view
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.shape-container',
+        start: 'top 95%',
+        toggleActions: 'play none none reverse',
+        invalidateOnRefresh: true,
+      }
+    })
+
+    // Staggered translation entry for the outer containers
+    tl.fromTo(shapes, 
       {
         y: 80,
         opacity: 0,
@@ -21,46 +32,28 @@ const FooterSection: React.FC = () => {
       {
         y: 0,
         opacity: 1,
-        ease: 'power1.out',
-        stagger: {
-          each: 0.08,
-          from: 'start'
-        },
-        scrollTrigger: {
-          trigger: '.shape-container',
-          start: 'top 95%',
-          end: 'bottom 85%',
-          scrub: 1.5,
-          invalidateOnRefresh: true,
-        }
+        duration: 0.8,
+        ease: 'back.out(1.2)',
+        stagger: 0.05,
       }
     )
 
-    // Scroll-linked jelly morph deformation on the inner elements
-    const inners = gsap.utils.toArray('.shape-inner')
-    gsap.fromTo(inners,
+    // Jelly morph deformation on the inner elements in sync
+    tl.fromTo(inners,
       {
-        scaleX: 1.3,
-        scaleY: 0.5,
-        rotation: (i) => i % 2 === 0 ? -90 : 90,
+        scaleX: 1.5,
+        scaleY: 0.3,
+        rotation: (i) => i % 2 === 0 ? -120 : 120,
       },
       {
         scaleX: 1,
         scaleY: 1,
         rotation: 0,
-        ease: 'power1.out',
-        stagger: {
-          each: 0.08,
-          from: 'start'
-        },
-        scrollTrigger: {
-          trigger: '.shape-container',
-          start: 'top 95%',
-          end: 'bottom 85%',
-          scrub: 1.5,
-          invalidateOnRefresh: true,
-        }
-      }
+        duration: 0.8,
+        ease: 'elastic.out(1, 0.6)',
+        stagger: 0.05,
+      },
+      '<0.1' // Start shortly after translation begins
     )
 
     // Interactive organic jelly wobble animations on hover
@@ -69,8 +62,8 @@ const FooterSection: React.FC = () => {
       if (!inner) return
 
       shape.addEventListener('mouseenter', () => {
-        const tl = gsap.timeline()
-        tl.to(inner, { scaleX: 1.25, scaleY: 0.75, rotation: 15, duration: 0.15, ease: 'power1.out' })
+        const hoverTl = gsap.timeline()
+        hoverTl.to(inner, { scaleX: 1.25, scaleY: 0.75, rotation: 15, duration: 0.15, ease: 'power1.out' })
           .to(inner, { scaleX: 0.8, scaleY: 1.2, rotation: -10, duration: 0.15, ease: 'power1.inOut' })
           .to(inner, { scaleX: 1.1, scaleY: 0.9, rotation: 5, duration: 0.15, ease: 'power1.inOut' })
           .to(inner, { scaleX: 0.95, scaleY: 1.05, rotation: -2, duration: 0.15, ease: 'power1.inOut' })
@@ -200,12 +193,12 @@ const FooterSection: React.FC = () => {
   )
 }
 
-const Shape: React.FC<{ children: React.ReactNode; delay: number; color: string }> = ({ children, delay, color }) => (
-  <FadeIn delay={delay} y={40} className="shape w-[9.5vw] md:w-[11vw] max-w-[140px] min-w-[24px] aspect-square flex-shrink-0" style={{ color }}>
+const Shape: React.FC<{ children: React.ReactNode; delay: number; color: string }> = ({ children, color }) => (
+  <div className="shape w-[9.5vw] md:w-[11vw] max-w-[140px] min-w-[24px] aspect-square flex-shrink-0" style={{ color, opacity: 0 }}>
     <div className="shape-inner w-full h-full transform-gpu origin-center">
       {children}
     </div>
-  </FadeIn>
+  </div>
 )
 
 export default FooterSection
