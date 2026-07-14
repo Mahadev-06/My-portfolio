@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import FadeIn from '../components/FadeIn'
+
 import AnimatedText from '../components/AnimatedText'
 import Magnet from '../components/Magnet'
 import TextReveal from '../components/TextReveal'
@@ -18,8 +18,7 @@ const DECORATIVE_SVGS = [
         <rect x="0" y="25" width="100" height="50" rx="25" fill="#8A2BE2" />
       </svg>
     ),
-    className: 'w-[40px] h-[40px] sm:w-[120px] sm:h-[120px] md:w-[180px] md:h-[180px] absolute top-[8%] left-[2%] sm:left-[2%] md:left-[4%] opacity-80 sm:opacity-100 z-0',
-    fadeProps: { delay: 0.1, x: -80, y: 0, duration: 0.9 },
+    className: 'w-[40px] h-[40px] sm:w-[120px] sm:h-[120px] md:w-[180px] md:h-[180px] absolute top-[8%] left-[2%] sm:left-[2%] md:left-[4%] z-0 origin-center',
     floatClass: 'float-item-1',
   },
   {
@@ -29,8 +28,7 @@ const DECORATIVE_SVGS = [
         <path d="M100 50 A 50 50 0 1 0 50 100 L 50 50 Z" fill="#FF10A0" />
       </svg>
     ),
-    className: 'w-[35px] h-[35px] sm:w-[100px] sm:h-[100px] md:w-[150px] md:h-[150px] absolute bottom-[8%] left-[4%] sm:left-[6%] md:left-[10%] opacity-80 sm:opacity-100 z-0',
-    fadeProps: { delay: 0.25, x: -80, y: 0, duration: 0.9 },
+    className: 'w-[35px] h-[35px] sm:w-[100px] sm:h-[100px] md:w-[150px] md:h-[150px] absolute bottom-[8%] left-[4%] sm:left-[6%] md:left-[10%] z-0 origin-center',
     floatClass: 'float-item-2',
   },
   {
@@ -41,8 +39,7 @@ const DECORATIVE_SVGS = [
         <path d="M55 0 A 45 45 0 0 1 55 100 Z" fill="#F59E0B" />
       </svg>
     ),
-    className: 'w-[40px] h-[40px] sm:w-[120px] sm:h-[120px] md:w-[180px] md:h-[180px] absolute top-[8%] right-[2%] sm:right-[2%] md:right-[4%] opacity-80 sm:opacity-100 z-0',
-    fadeProps: { delay: 0.15, x: 80, y: 0, duration: 0.9 },
+    className: 'w-[40px] h-[40px] sm:w-[120px] sm:h-[120px] md:w-[180px] md:h-[180px] absolute top-[8%] right-[2%] sm:right-[2%] md:right-[4%] z-0 origin-center',
     floatClass: 'float-item-3',
   },
   {
@@ -55,8 +52,7 @@ const DECORATIVE_SVGS = [
         <circle cx="73" cy="73" r="23" fill="white" />
       </svg>
     ),
-    className: 'w-[45px] h-[45px] sm:w-[130px] sm:h-[130px] md:w-[190px] md:h-[190px] absolute bottom-[8%] right-[4%] sm:right-[6%] md:right-[10%] opacity-80 sm:opacity-100 z-0',
-    fadeProps: { delay: 0.3, x: 80, y: 0, duration: 0.9 },
+    className: 'w-[45px] h-[45px] sm:w-[130px] sm:h-[130px] md:w-[190px] md:h-[190px] absolute bottom-[8%] right-[4%] sm:right-[6%] md:right-[10%] z-0 origin-center',
     floatClass: 'float-item-4',
   },
 ]
@@ -65,6 +61,7 @@ const AboutSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
+    // Pin section
     ScrollTrigger.create({
       trigger: sectionRef.current,
       start: 'top top',
@@ -74,19 +71,40 @@ const AboutSection: React.FC = () => {
       pinSpacing: true,
       invalidateOnRefresh: true,
     })
+
+    // Animate the SVGs on scroll entry using GSAP
+    gsap.fromTo('.about-shape',
+      { opacity: 0, scale: 0, rotate: -30 },
+      {
+        opacity: () => {
+          const isMobile = window.innerWidth < 640
+          return isMobile ? 0.8 : 1.0
+        },
+        scale: 1,
+        rotate: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'back.out(1.5)',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse',
+        }
+      }
+    )
   }, { scope: sectionRef })
 
   return (
     <section ref={sectionRef} id="about" className="relative h-screen flex items-center justify-center px-5 sm:px-8 md:px-10 py-12 bg-[#0C0C0C] overflow-hidden">
       {/* Decorative SVGs */}
       {DECORATIVE_SVGS.map((item, i) => (
-        <FadeIn key={i} {...item.fadeProps} className={item.className}>
+        <div key={i} className={`about-shape ${item.className}`} style={{ opacity: 0 }}>
           <Magnet padding={120} strength={8}>
             <div className={`w-full h-full ${item.floatClass}`}>
               {item.svg}
             </div>
           </Magnet>
-        </FadeIn>
+        </div>
       ))}
 
       {/* Center content */}
