@@ -12,18 +12,14 @@ const FooterSection: React.FC = () => {
   useGSAP(() => {
     const shapes = gsap.utils.toArray('.shape')
     
-    // Staggered scroll-linked rotation and scaling entry
+    // Staggered scroll-linked translation entry for the outer containers
     gsap.fromTo(shapes, 
       {
         y: 80,
-        rotation: (i) => i % 2 === 0 ? -120 : 120,
-        scale: 0.65,
         opacity: 0,
       },
       {
         y: 0,
-        rotation: 0,
-        scale: 1,
         opacity: 1,
         ease: 'power1.out',
         stagger: {
@@ -40,26 +36,55 @@ const FooterSection: React.FC = () => {
       }
     )
 
-    // Interactive elastic hover animations
+    // Scroll-linked jelly morph deformation on the inner elements
+    const inners = gsap.utils.toArray('.shape-inner')
+    gsap.fromTo(inners,
+      {
+        scaleX: 1.3,
+        scaleY: 0.5,
+        rotation: (i) => i % 2 === 0 ? -90 : 90,
+      },
+      {
+        scaleX: 1,
+        scaleY: 1,
+        rotation: 0,
+        ease: 'power1.out',
+        stagger: {
+          each: 0.08,
+          from: 'start'
+        },
+        scrollTrigger: {
+          trigger: '.shape-container',
+          start: 'top 95%',
+          end: 'bottom 85%',
+          scrub: 1.5,
+          invalidateOnRefresh: true,
+        }
+      }
+    )
+
+    // Interactive organic jelly wobble animations on hover
     shapes.forEach((shape: any) => {
+      const inner = shape.querySelector('.shape-inner')
+      if (!inner) return
+
       shape.addEventListener('mouseenter', () => {
-        gsap.to(shape, {
-          scale: 1.15,
-          rotation: (_: number, target: any) => {
-            // Get current rotation and add 45deg
-            const current = gsap.getProperty(target, 'rotation') as number
-            return current + 45
-          },
-          duration: 0.6,
-          ease: 'elastic.out(1, 0.4)'
-        })
+        const tl = gsap.timeline()
+        tl.to(inner, { scaleX: 1.25, scaleY: 0.75, rotation: 15, duration: 0.15, ease: 'power1.out' })
+          .to(inner, { scaleX: 0.8, scaleY: 1.2, rotation: -10, duration: 0.15, ease: 'power1.inOut' })
+          .to(inner, { scaleX: 1.1, scaleY: 0.9, rotation: 5, duration: 0.15, ease: 'power1.inOut' })
+          .to(inner, { scaleX: 0.95, scaleY: 1.05, rotation: -2, duration: 0.15, ease: 'power1.inOut' })
+          .to(inner, { scaleX: 1, scaleY: 1, rotation: 0, duration: 0.2, ease: 'power1.out' })
       })
+
       shape.addEventListener('mouseleave', () => {
-        gsap.to(shape, {
-          scale: 1,
+        gsap.to(inner, {
+          scaleX: 1,
+          scaleY: 1,
           rotation: 0,
-          duration: 0.6,
-          ease: 'elastic.out(1, 0.4)'
+          duration: 0.4,
+          ease: 'power2.out',
+          overwrite: 'auto'
         })
       })
     })
@@ -177,7 +202,9 @@ const FooterSection: React.FC = () => {
 
 const Shape: React.FC<{ children: React.ReactNode; delay: number; color: string }> = ({ children, delay, color }) => (
   <FadeIn delay={delay} y={40} className="shape w-[9.5vw] md:w-[11vw] max-w-[140px] min-w-[24px] aspect-square flex-shrink-0" style={{ color }}>
-    {children}
+    <div className="shape-inner w-full h-full transform-gpu origin-center">
+      {children}
+    </div>
   </FadeIn>
 )
 
