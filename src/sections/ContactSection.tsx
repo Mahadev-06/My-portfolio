@@ -16,8 +16,8 @@ const ContactSection: React.FC = () => {
 
   // Validation Flags
   const isValidName = name.trim().length > 0
-  const isValidEmail = email.trim().length > 0
-  const isValidPhone = phone.trim().length > 0
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const isValidPhone = phone.trim().length >= 6
   const isValidMessage = message.trim().length > 0
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -171,7 +171,7 @@ const ContactSection: React.FC = () => {
                         id="email"
                         name="email" 
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value.replace(/[^a-zA-Z0-9@._\-+]/g, ''))}
                         placeholder="Email*" 
                         className={`w-full bg-white/90 sm:bg-white/50 sm:backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all ${isValidEmail ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
                       />
@@ -199,7 +199,7 @@ const ContactSection: React.FC = () => {
                         id="phone"
                         name="phone" 
                         value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
+                        onChange={(e) => setPhone(e.target.value.replace(/[^0-9+\-\s()]/g, ''))}
                         placeholder="Phone (Optional)" 
                         className={`w-full bg-white/90 sm:bg-white/50 sm:backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all ${isValidPhone ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
                       />
