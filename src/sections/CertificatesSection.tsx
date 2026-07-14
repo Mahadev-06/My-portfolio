@@ -77,13 +77,23 @@ const CertificatesSection: React.FC = () => {
       let firstEnter = true
 
       const align = (e: MouseEvent) => {
+        const imgWidth = image.offsetWidth || 320
+        const imgHeight = image.offsetHeight || 240
+        const minX = imgWidth / 2 + 15
+        const maxX = window.innerWidth - imgWidth / 2 - 15
+        const minY = imgHeight / 2 + 15
+        const maxY = window.innerHeight - imgHeight / 2 - 15
+
+        const clampedX = Math.max(minX, Math.min(maxX, e.clientX))
+        const clampedY = Math.max(minY, Math.min(maxY, e.clientY))
+
         if (firstEnter) {
-          setX(e.clientX, e.clientX)
-          setY(e.clientY, e.clientY)
+          setX(clampedX, clampedX)
+          setY(clampedY, clampedY)
           firstEnter = false
         } else {
-          setX(e.clientX)
-          setY(e.clientY)
+          setX(clampedX)
+          setY(clampedY)
         }
       }
 
