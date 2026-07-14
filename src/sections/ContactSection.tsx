@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import FadeIn from '../components/FadeIn'
 import { motion } from 'framer-motion'
+import TextReveal from '../components/TextReveal'
 
 const ContactSection: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -100,9 +101,11 @@ const ContactSection: React.FC = () => {
         {/* Left Side */}
         <div className="w-full md:w-1/2 flex flex-col items-start pt-8 md:pl-16">
           <FadeIn delay={0.1}>
-            <h2 className="text-black font-black text-6xl sm:text-7xl md:text-[6.5rem] leading-[0.85] tracking-normal uppercase mb-8">
-              Let's<br/>Get In<br/>Touch
-            </h2>
+            <div className="text-black font-black text-6xl sm:text-7xl md:text-[6.5rem] leading-[0.85] tracking-normal uppercase mb-8">
+              <TextReveal text="Let's" className="text-left text-black" style={{ fontSize: 'inherit', lineHeight: 'inherit' }} />
+              <TextReveal text="Get In" className="text-left text-black" style={{ fontSize: 'inherit', lineHeight: 'inherit' }} />
+              <TextReveal text="Touch" className="text-left text-black" style={{ fontSize: 'inherit', lineHeight: 'inherit' }} />
+            </div>
             <a href="mailto:patromahadev544@gmail.com" className="text-black text-xl md:text-2xl font-bold underline decoration-4 underline-offset-8 decoration-black hover:text-[#8A2BE2] hover:decoration-[#8A2BE2] transition-colors">
               patromahadev544@gmail.com
             </a>

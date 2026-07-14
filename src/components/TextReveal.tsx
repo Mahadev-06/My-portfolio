@@ -50,11 +50,13 @@ const TextReveal: React.FC<TextRevealProps> = ({ text, className = '', style }) 
 
   const isGradient = className.includes('hero-heading')
   const parentClassName = className.replace('hero-heading', '').trim()
+  const hasAlignment = className.includes('text-left') || className.includes('text-right') || className.includes('text-center')
+  const alignmentClass = hasAlignment ? '' : 'text-center'
 
   return (
     <h2
       ref={containerRef}
-      className={`font-black uppercase text-center leading-none tracking-tight select-none ${parentClassName}`}
+      className={`font-black uppercase leading-none tracking-tight select-none ${alignmentClass} ${parentClassName}`}
       style={{
         ...style,
         perspective: '1000px',
