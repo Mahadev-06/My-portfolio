@@ -138,19 +138,27 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     isUpdatingRef.current = true;
 
     const { scrollTop, containerHeight } = getScrollData();
-    const stackPositionPx = parsePercentage(stackPosition, containerHeight);
-    const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
+    const stackPositionPx = parsePercentage(stackPosition, containerHeight)
+    const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight)
 
-    const endElementTop = endElementOffsetRef.current;
+    const endElementTop = endElementOffsetRef.current
+    const isMobile = window.innerWidth < 768 || window.matchMedia('(pointer: coarse)').matches
 
     cardsRef.current.forEach((card, i) => {
-      if (!card) return;
+      if (!card) return
 
-      const cardTop = cardOffsetsRef.current[i] ?? getElementOffset(card);
-      const triggerStart = cardTop - stackPositionPx - itemStackDistance * i;
-      const triggerEnd = cardTop - scaleEndPositionPx;
-      const pinStart = cardTop - stackPositionPx - itemStackDistance * i;
-      const pinEnd = endElementTop - containerHeight / 2;
+      if (isMobile) {
+        // Let the browser handle standard, hardware-accelerated scrolling on mobile/touch screens
+        card.style.transform = 'translate3d(0, 0, 0)'
+        card.style.filter = 'none'
+        return
+      }
+
+      const cardTop = cardOffsetsRef.current[i] ?? getElementOffset(card)
+      const triggerStart = cardTop - stackPositionPx - itemStackDistance * i
+      const triggerEnd = cardTop - scaleEndPositionPx
+      const pinStart = cardTop - stackPositionPx - itemStackDistance * i
+      const pinEnd = endElementTop - containerHeight / 2
 
       const scaleProgress = calculateProgress(scrollTop, triggerStart, triggerEnd);
       const targetScale = baseScale + i * itemScale;

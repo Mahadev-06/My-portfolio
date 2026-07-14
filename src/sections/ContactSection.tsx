@@ -62,15 +62,15 @@ const ContactSection: React.FC = () => {
   }
 
   return (
-    <section id="contact" className="relative bg-[#F4F4F5] pt-16 pb-24 px-6 md:pt-28 md:pb-40 md:px-16 overflow-hidden z-20 rounded-t-[40px] -mt-10">
+    <section id="contact" className="relative bg-[#F4F4F5] pt-16 pb-24 px-6 md:pt-28 md:pb-40 md:px-16 overflow-hidden z-20 rounded-t-[40px] -mt-10 transform-gpu">
       
       {/* 3D Balloon CSS Art Placeholder - Left edge */}
       <motion.div 
         animate={{ y: [0, 20, 0] }} 
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[-5%] md:left-[2%] top-[35%] md:top-[30%] z-0 scale-[0.55] md:scale-100 origin-left pointer-events-none opacity-60 md:opacity-100"
+        className="absolute left-[-5%] md:left-[2%] top-[35%] md:top-[30%] z-0 scale-[0.55] md:scale-100 origin-left pointer-events-none opacity-60 md:opacity-100 will-change-transform transform-gpu"
       >
-        <div className="relative w-[150px] h-[250px] drop-shadow-2xl">
+        <div className="relative w-[150px] h-[250px] filter drop-shadow-[0_15px_15px_rgba(138,43,226,0.15)]">
           <div className="absolute top-10 left-10 w-20 h-32 bg-[#8A2BE2] rounded-[100px] shadow-inner rotate-45" style={{ background: 'radial-gradient(circle at 30% 30%, #E9D5FF, #9333EA, #4C1D95)' }}></div>
           <div className="absolute top-24 left-0 w-24 h-40 bg-[#8A2BE2] rounded-[100px] shadow-inner -rotate-12" style={{ background: 'radial-gradient(circle at 30% 30%, #E9D5FF, #9333EA, #4C1D95)' }}></div>
           <div className="absolute top-20 left-20 w-16 h-28 bg-[#8A2BE2] rounded-[100px] shadow-inner rotate-45" style={{ background: 'radial-gradient(circle at 30% 30%, #E9D5FF, #9333EA, #4C1D95)' }}></div>
@@ -82,9 +82,9 @@ const ContactSection: React.FC = () => {
       <motion.div 
         animate={{ y: [0, -15, 0], rotate: [12, 16, 12] }} 
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute right-[-5%] md:right-[-2%] top-[8%] md:top-[10%] z-0 scale-[0.5] md:scale-100 origin-right pointer-events-none opacity-60 md:opacity-100"
+        className="absolute right-[-5%] md:right-[-2%] top-[8%] md:top-[10%] z-0 scale-[0.5] md:scale-100 origin-right pointer-events-none opacity-60 md:opacity-100 will-change-transform transform-gpu"
       >
-        <svg viewBox="0 0 24 24" className="w-[150px] h-[150px] md:w-[220px] md:h-[220px] drop-shadow-2xl opacity-90">
+        <svg viewBox="0 0 24 24" className="w-[150px] h-[150px] md:w-[220px] md:h-[220px] filter drop-shadow-[0_15px_15px_rgba(245,158,11,0.15)] opacity-90">
           <defs>
             <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FEF08A" />
@@ -92,7 +92,7 @@ const ContactSection: React.FC = () => {
               <stop offset="100%" stopColor="#92400E" />
             </linearGradient>
           </defs>
-          <path fill="gold" d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          <path fill="url(#gold)" d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
         </svg>
       </motion.div>
 
@@ -143,7 +143,7 @@ const ContactSection: React.FC = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Full Name*" 
-                      className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all ${isValidName ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
+                      className={`w-full bg-white/90 sm:bg-white/50 sm:backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all ${isValidName ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
                     />
                     {isValidName && (
                       <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -173,7 +173,7 @@ const ContactSection: React.FC = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email*" 
-                        className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all ${isValidEmail ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
+                        className={`w-full bg-white/90 sm:bg-white/50 sm:backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all ${isValidEmail ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
                       />
                       {isValidEmail && (
                         <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -201,7 +201,7 @@ const ContactSection: React.FC = () => {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="Phone (Optional)" 
-                        className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all ${isValidPhone ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
+                        className={`w-full bg-white/90 sm:bg-white/50 sm:backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all ${isValidPhone ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
                       />
                       {isValidPhone && (
                         <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -231,7 +231,7 @@ const ContactSection: React.FC = () => {
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Message*" 
-                      className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all resize-none ${isValidMessage ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
+                      className={`w-full bg-white/90 sm:bg-white/50 sm:backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all resize-none ${isValidMessage ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
                     />
                     {isValidMessage && (
                       <svg className="absolute right-4 top-6 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">

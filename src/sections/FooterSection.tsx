@@ -12,75 +12,95 @@ const FooterSection: React.FC = () => {
   useGSAP(() => {
     const shapes = gsap.utils.toArray('.shape')
     const inners = gsap.utils.toArray('.shape-inner')
+    const isMobile = window.innerWidth < 768
 
     // Create a timeline that triggers when the footer comes into view
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.shape-container',
-        start: 'top 95%',
+        start: 'top 98%',
         toggleActions: 'play none none reverse',
         invalidateOnRefresh: true,
       }
     })
 
-    // Staggered translation entry for the outer containers
-    tl.fromTo(shapes, 
-      {
-        y: 80,
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: 'back.out(1.2)',
-        stagger: 0.05,
-      }
-    )
+    if (isMobile) {
+      // Clean, hardware-accelerated fade & slide-up on mobile to maintain 60fps scrolling
+      tl.fromTo(shapes,
+        {
+          y: 35,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
+          ease: 'power2.out',
+          stagger: 0.04,
+        }
+      )
+    } else {
+      // Staggered translation entry for the outer containers (desktop)
+      tl.fromTo(shapes, 
+        {
+          y: 80,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'back.out(1.2)',
+          stagger: 0.05,
+        }
+      )
 
-    // Jelly morph deformation on the inner elements in sync
-    tl.fromTo(inners,
-      {
-        scaleX: 1.5,
-        scaleY: 0.3,
-        rotation: (i) => i % 2 === 0 ? -120 : 120,
-      },
-      {
-        scaleX: 1,
-        scaleY: 1,
-        rotation: 0,
-        duration: 0.8,
-        ease: 'elastic.out(1, 0.6)',
-        stagger: 0.05,
-      },
-      '<0.1' // Start shortly after translation begins
-    )
-
-    // Interactive organic jelly wobble animations on hover
-    shapes.forEach((shape: any) => {
-      const inner = shape.querySelector('.shape-inner')
-      if (!inner) return
-
-      shape.addEventListener('mouseenter', () => {
-        const hoverTl = gsap.timeline()
-        hoverTl.to(inner, { scaleX: 1.25, scaleY: 0.75, rotation: 15, duration: 0.15, ease: 'power1.out' })
-          .to(inner, { scaleX: 0.8, scaleY: 1.2, rotation: -10, duration: 0.15, ease: 'power1.inOut' })
-          .to(inner, { scaleX: 1.1, scaleY: 0.9, rotation: 5, duration: 0.15, ease: 'power1.inOut' })
-          .to(inner, { scaleX: 0.95, scaleY: 1.05, rotation: -2, duration: 0.15, ease: 'power1.inOut' })
-          .to(inner, { scaleX: 1, scaleY: 1, rotation: 0, duration: 0.2, ease: 'power1.out' })
-      })
-
-      shape.addEventListener('mouseleave', () => {
-        gsap.to(inner, {
+      // Jelly morph deformation on the inner elements in sync (desktop)
+      tl.fromTo(inners,
+        {
+          scaleX: 1.5,
+          scaleY: 0.3,
+          rotation: (i) => i % 2 === 0 ? -120 : 120,
+        },
+        {
           scaleX: 1,
           scaleY: 1,
           rotation: 0,
-          duration: 0.4,
-          ease: 'power2.out',
-          overwrite: 'auto'
+          duration: 0.8,
+          ease: 'elastic.out(1, 0.6)',
+          stagger: 0.05,
+        },
+        '<0.1' // Start shortly after translation begins
+      )
+    }
+
+    // Only enable hover jelly wobbles on desktop to prevent ghost-tap state issues on touch screens
+    if (!isMobile) {
+      shapes.forEach((shape: any) => {
+        const inner = shape.querySelector('.shape-inner')
+        if (!inner) return
+
+        shape.addEventListener('mouseenter', () => {
+          const hoverTl = gsap.timeline()
+          hoverTl.to(inner, { scaleX: 1.25, scaleY: 0.75, rotation: 15, duration: 0.15, ease: 'power1.out' })
+            .to(inner, { scaleX: 0.8, scaleY: 1.2, rotation: -10, duration: 0.15, ease: 'power1.inOut' })
+            .to(inner, { scaleX: 1.1, scaleY: 0.9, rotation: 5, duration: 0.15, ease: 'power1.inOut' })
+            .to(inner, { scaleX: 0.95, scaleY: 1.05, rotation: -2, duration: 0.15, ease: 'power1.inOut' })
+            .to(inner, { scaleX: 1, scaleY: 1, rotation: 0, duration: 0.2, ease: 'power1.out' })
+        })
+
+        shape.addEventListener('mouseleave', () => {
+          gsap.to(inner, {
+            scaleX: 1,
+            scaleY: 1,
+            rotation: 0,
+            duration: 0.4,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          })
         })
       })
-    })
+    }
   }, { scope: container })
 
   return (
