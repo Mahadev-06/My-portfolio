@@ -49,11 +49,12 @@ const TextReveal: React.FC<TextRevealProps> = ({ text, className = '', style }) 
   const words = text.split(' ')
 
   const isGradient = className.includes('hero-heading')
+  const parentClassName = className.replace('hero-heading', '').trim()
 
   return (
     <h2
       ref={containerRef}
-      className={`font-black uppercase text-center leading-none tracking-tight select-none ${className}`}
+      className={`font-black uppercase text-center leading-none tracking-tight select-none ${parentClassName}`}
       style={{
         ...style,
         perspective: '1000px',

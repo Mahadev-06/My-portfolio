@@ -1,7 +1,7 @@
 import React from 'react'
-import FadeIn from '../components/FadeIn'
 import LiveProjectButton from '../components/LiveProjectButton'
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
+import TextReveal from '../components/TextReveal'
 
 interface Project {
   number: string
@@ -143,14 +143,11 @@ const ProjectsSection: React.FC = () => {
       className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-10 px-6 sm:px-8 md:px-10 py-12 sm:py-24 md:py-32"
       style={{ background: '#0C0C0C' }}
     >
-      <FadeIn delay={0} y={40}>
-        <h2
-          className="hero-heading font-black uppercase text-center leading-none tracking-tight mb-16 sm:mb-20 md:mb-28"
-          style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
-        >
-          Projects
-        </h2>
-      </FadeIn>
+      <TextReveal
+        text="Projects"
+        className="hero-heading mb-16 sm:mb-20 md:mb-28 w-full"
+        style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+      />
 
       <div className="max-w-7xl mx-auto">
         <ScrollStack
