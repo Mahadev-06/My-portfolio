@@ -1,0 +1,115 @@
+.certificates-section {
+  background: #ffffff;
+  color: #0c0c0c;
+  position: relative;
+  z-index: 20;
+  overflow: hidden;
+}
+
+.certificates-list {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cert-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(12, 12, 12, 0.15);
+  width: 100%;
+  padding: 2.2rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+/* Divider on top of the first item to frame the list */
+.certificates-list li:first-child .cert-container {
+  border-top: 1px solid rgba(12, 12, 12, 0.15);
+}
+
+.cert-container:hover {
+  background-color: rgba(12, 12, 12, 0.02);
+}
+
+.cert-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.cert-number {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 700;
+  color: rgba(12, 12, 12, 0.4);
+}
+
+.cert-title {
+  font-size: clamp(1.2rem, 3.2vw, 2.4rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #0c0c0c;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.cert-right {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: clamp(0.75rem, 1.6vw, 1.05rem);
+}
+
+.cert-issuer {
+  color: #0c0c0c;
+}
+
+.cert-year {
+  color: rgba(12, 12, 12, 0.5);
+}
+
+.cert-container img.swipeimage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: clamp(240px, 28vw, 360px);
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(12, 12, 12, 0.1);
+  will-change: transform;
+}
+
+/* Mobile responsive styling overrides */
+@media (max-width: 640px) {
+  .cert-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 1.6rem 1rem;
+  }
+  
+  .cert-left {
+    gap: 1rem;
+  }
+
+  .cert-right {
+    padding-left: 2rem;
+    gap: 1.5rem;
+  }
+  
+  /* Disable swipe image follow on mobile/touch screens to avoid UX issues and lag */
+  .cert-container img.swipeimage {
+    display: none !important;
+  }
+}

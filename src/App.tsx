@@ -4,6 +4,7 @@ import MarqueeSection from './sections/MarqueeSection'
 import AboutSection from './sections/AboutSection'
 import ExpertiseSection from './sections/ExpertiseSection'
 import ProjectsSection from './sections/ProjectsSection'
+import CertificatesSection from './sections/CertificatesSection'
 import ContactSection from './sections/ContactSection'
 import FooterSection from './sections/FooterSection'
 import { ReactLenis, useLenis } from 'lenis/react'
@@ -55,6 +56,7 @@ function App() {
         <AboutSection />
         <ExpertiseSection />
         <ProjectsSection />
+        <CertificatesSection />
         <ContactSection />
         <FooterSection />
       </div>
