@@ -104,7 +104,7 @@ html, body, #root {
   transition: color 0.3s ease;
 }
 
-.mask-button-container button {
+.mask-button-container .visual-button {
   position: relative;
   width: 101%;
   height: 100%;
@@ -116,8 +116,11 @@ html, body, #root {
   font-size: 14px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  cursor: pointer;
   z-index: 2;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   /* Mask settings using nature-sprite.png (23 frames, so 2300% width) */
   -webkit-mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
@@ -129,9 +132,25 @@ html, body, #root {
   animation: mask-play-out 0.7s steps(22) forwards;
 }
 
-.mask-button-container:hover button {
+.mask-button-container:hover .visual-button {
   -webkit-animation: mask-play-in 0.7s steps(22) forwards;
   animation: mask-play-in 0.7s steps(22) forwards;
+}
+
+/* Invisible submit button capturing clicks reliably on iOS WebKit */
+.mask-button-container .real-submit-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 10;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* Disabled state */
@@ -145,8 +164,13 @@ html, body, #root {
   color: #9CA3AF;
 }
 
-.mask-button-container.disabled button {
+.mask-button-container.disabled .visual-button {
   background: #9CA3AF;
+  pointer-events: none;
+}
+
+.mask-button-container.disabled .real-submit-button {
+  cursor: not-allowed;
   pointer-events: none;
 }
 

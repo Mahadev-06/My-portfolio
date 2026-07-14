@@ -140,7 +140,7 @@ const ContactSection: React.FC = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Full Name*" 
-                      className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-sm focus:outline-none transition-all ${isValidName ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
+                      className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all ${isValidName ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
                     />
                     {isValidName && (
                       <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -170,7 +170,7 @@ const ContactSection: React.FC = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email*" 
-                        className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-sm focus:outline-none transition-all ${isValidEmail ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
+                        className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all ${isValidEmail ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
                       />
                       {isValidEmail && (
                         <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -198,7 +198,7 @@ const ContactSection: React.FC = () => {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="Phone (Optional)" 
-                        className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-sm focus:outline-none transition-all ${isValidPhone ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
+                        className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all ${isValidPhone ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
                       />
                       {isValidPhone && (
                         <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -228,7 +228,7 @@ const ContactSection: React.FC = () => {
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="Message*" 
-                      className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-sm focus:outline-none transition-all resize-none ${isValidMessage ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
+                      className={`w-full bg-white/50 backdrop-blur-sm border rounded-2xl py-4 pl-5 pr-12 text-black placeholder-black/40 text-base focus:outline-none transition-all resize-none ${isValidMessage ? 'border-green-500 focus:border-green-500 bg-green-500/[0.02]' : 'border-black/15 focus:border-black'}`} 
                     />
                     {isValidMessage && (
                       <svg className="absolute right-4 top-6 w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
@@ -251,9 +251,11 @@ const ContactSection: React.FC = () => {
 
                 <div className={`mt-4 mask-button-container ${isSubmitting ? 'disabled' : ''}`.trim()}>
                   <span className="mas">{isSubmitting ? 'Sending...' : 'Send'}</span>
+                  <div className="visual-button">{isSubmitting ? 'Sending...' : 'Send'}</div>
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
+                    className="real-submit-button"
                   >
                     {isSubmitting ? 'Sending...' : 'Send'}
                   </button>
