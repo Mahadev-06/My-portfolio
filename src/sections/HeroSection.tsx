@@ -3,6 +3,7 @@ import FadeIn from '../components/FadeIn'
 import TiltedCard from '../components/TiltedCard'
 import ContactButton from '../components/ContactButton'
 import Magnet from '../components/Magnet'
+import LineReveal from '../components/LineReveal'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -119,14 +120,11 @@ const HeroSection: React.FC = () => {
         {/* Bottom bar - pointer-events-none allows cursor to hover the card underneath */}
         <div className="flex flex-col sm:flex-row justify-between items-center sm:items-end gap-6 sm:gap-0 pb-8 sm:pb-12 md:pb-16 px-6 md:px-12 z-20 pointer-events-none transform-gpu will-change-transform" style={{ backfaceVisibility: 'hidden' }}>
           <FadeIn delay={0.35} y={20} className="pointer-events-auto transform-gpu will-change-transform text-center sm:text-left">
-            <p
+            <LineReveal
+              text="A FULL-STACK DEVELOPER BUILDING MODERN WEB APPLICATIONS WITH AI ✨"
               className="text-[#D7E2EA] font-medium uppercase tracking-wide leading-relaxed max-w-[280px]"
               style={{ fontSize: 'clamp(0.7rem, 1.2vw, 0.9rem)', backfaceVisibility: 'hidden' }}
-            >
-              A FULL-STACK DEVELOPER<br/>
-              BUILDING MODERN WEB<br/>
-              APPLICATIONS WITH AI ✨
-            </p>
+            />
           </FadeIn>
           <FadeIn delay={0.5} y={20} className="pointer-events-auto transform-gpu will-change-transform">
             <div style={{ backfaceVisibility: 'hidden' }}>

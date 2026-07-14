@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import FadeIn from '../components/FadeIn'
-import AnimatedText from '../components/AnimatedText'
+import LineReveal from '../components/LineReveal'
 import Magnet from '../components/Magnet'
 import TextReveal from '../components/TextReveal'
 import { gsap } from 'gsap'
@@ -75,7 +75,7 @@ const AboutSection: React.FC = () => {
             style={{ fontSize: 'clamp(2.5rem, 12vw, 160px)' }}
           />
 
-          <AnimatedText
+          <LineReveal
             text="I build modern, scalable web applications that combine clean design with robust functionality. Passionate about full-stack development, I leverage modern technologies and AI-assisted workflows to transform ideas into impactful digital products while continuously learning Python, Artificial Intelligence, and Machine Learning."
             className="text-[#D7E2EA] font-medium text-center leading-relaxed w-full max-w-[340px] sm:max-w-none px-4 sm:px-0"
             style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.8rem)', lineHeight: 1.4 }}

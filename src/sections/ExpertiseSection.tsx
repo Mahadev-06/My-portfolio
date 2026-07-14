@@ -1,6 +1,7 @@
 import React from 'react'
 import FadeIn from '../components/FadeIn'
 import TextReveal from '../components/TextReveal'
+import LineReveal from '../components/LineReveal'
 
 const EXPERTISE = [
   {
@@ -71,15 +72,14 @@ const ExpertiseSection: React.FC = () => {
                 >
                   {item.name}
                 </h3>
-                <p
+                <LineReveal
+                  text={item.description}
                   className="font-light leading-relaxed max-w-2xl text-[#0C0C0C]"
                   style={{
                     fontSize: 'clamp(0.85rem, 1.6vw, 1.25rem)',
                     opacity: 0.6,
                   }}
-                >
-                  {item.description}
-                </p>
+                />
               </div>
             </div>
           </FadeIn>
