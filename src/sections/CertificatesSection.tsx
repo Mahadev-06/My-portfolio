@@ -101,7 +101,7 @@ const CertificatesSection: React.FC = () => {
     <section 
       ref={containerRef}
       id="certificates" 
-      className="certificates-section rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-20 px-6 sm:px-12 md:px-16 py-16 sm:py-24 md:py-32"
+      className="certificates-section rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative px-6 sm:px-12 md:px-16 py-16 sm:py-24 md:py-32"
     >
       <FadeIn delay={0} y={40}>
         <h2

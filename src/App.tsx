@@ -55,8 +55,8 @@ function App() {
         <MarqueeSection />
         <AboutSection />
         <ExpertiseSection />
-        <ProjectsSection />
         <CertificatesSection />
+        <ProjectsSection />
         <ContactSection />
         <FooterSection />
       </div>

@@ -2,8 +2,7 @@
   background: #ffffff;
   color: #0c0c0c;
   position: relative;
-  z-index: 20;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .certificates-list {
