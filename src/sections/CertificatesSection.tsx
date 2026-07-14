@@ -40,6 +40,20 @@ const CERTIFICATES: Certificate[] = [
     issuer: 'Anthropic',
     year: '2026',
     image: '/certificates/claude_101.jpg'
+  },
+  {
+    number: '05',
+    title: 'DevOps Speed Unlocked',
+    issuer: 'GUVI | HCL',
+    year: '2025',
+    image: '/certificates/devops_speed_unlocked.jpg'
+  },
+  {
+    number: '06',
+    title: 'Generative AI Mastermind',
+    issuer: 'Outskill',
+    year: '2026',
+    image: '/certificates/generative_ai_mastermind.jpg'
   }
 ]
 
