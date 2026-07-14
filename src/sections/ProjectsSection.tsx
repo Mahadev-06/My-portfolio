@@ -18,10 +18,10 @@ const PROJECTS: Project[] = [
     category: 'Client',
     name: 'Premashraya',
     col1Images: [
-      '/premashraya1.png',
-      '/premashraya2.png',
+      '/premashraya1.webp',
+      '/premashraya2.webp',
     ],
-    col2Image: '/premashraya3.png',
+    col2Image: '/premashraya3.webp',
     liveUrl: 'https://premashraya.vercel.app/',
   },
   {
@@ -29,10 +29,10 @@ const PROJECTS: Project[] = [
     category: 'Personal',
     name: 'Kinfolk',
     col1Images: [
-      '/kinfolk1.png',
-      '/kinfolk2.png',
+      '/kinfolk1.webp',
+      '/kinfolk2.webp',
     ],
-    col2Image: '/kinfolk3.png',
+    col2Image: '/kinfolk3.webp',
     liveUrl: 'https://kinfolk-zjp4.vercel.app/',
   },
   {
@@ -40,10 +40,10 @@ const PROJECTS: Project[] = [
     category: 'Personal',
     name: 'Online Wardrobe',
     col1Images: [
-      '/wardrobe1.png',
-      '/wardrobe2.png',
+      '/wardrobe1.webp',
+      '/wardrobe2.webp',
     ],
-    col2Image: '/wardrobe3.png',
+    col2Image: '/wardrobe3.webp',
   },
 ]
 
@@ -101,12 +101,14 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             alt={`${project.name} preview 1`}
             className="w-full rounded-[30px] sm:rounded-[40px] md:rounded-[45px] object-cover"
             style={{ height: 'clamp(100px, 12vw, 170px)' }}
+            loading="lazy"
           />
           <img
             src={project.col1Images[1]}
             alt={`${project.name} preview 2`}
             className="w-full rounded-[30px] sm:rounded-[40px] md:rounded-[45px] object-cover"
             style={{ height: 'clamp(130px, 18vw, 250px)' }}
+            loading="lazy"
           />
         </div>
         {/* Right column - 60% */}
@@ -116,6 +118,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             alt={`${project.name} main preview`}
             className="w-full rounded-[30px] sm:rounded-[40px] md:rounded-[45px] object-cover"
             style={{ height: '100%', minHeight: '100%', objectFit: 'cover' }}
+            loading="lazy"
           />
         </div>
       </div>

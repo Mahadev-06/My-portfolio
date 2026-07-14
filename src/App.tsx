@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, lazy, Suspense } from 'react'
 import HeroSection from './sections/HeroSection'
 import MarqueeSection from './sections/MarqueeSection'
-import AboutSection from './sections/AboutSection'
-import ExpertiseSection from './sections/ExpertiseSection'
-import ProjectsSection from './sections/ProjectsSection'
-import CertificatesSection from './sections/CertificatesSection'
-import ContactSection from './sections/ContactSection'
-import FooterSection from './sections/FooterSection'
 import { ReactLenis, useLenis } from 'lenis/react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+// Lazy-load below-the-fold sections to reduce initial JS bundle
+const AboutSection = lazy(() => import('./sections/AboutSection'))
+const ExpertiseSection = lazy(() => import('./sections/ExpertiseSection'))
+const CertificatesSection = lazy(() => import('./sections/CertificatesSection'))
+const ProjectsSection = lazy(() => import('./sections/ProjectsSection'))
+const ContactSection = lazy(() => import('./sections/ContactSection'))
+const FooterSection = lazy(() => import('./sections/FooterSection'))
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -53,12 +55,14 @@ function App() {
       <div style={{ background: '#0C0C0C', overflowX: 'clip' }} className="font-kanit">
         <HeroSection />
         <MarqueeSection />
-        <AboutSection />
-        <ExpertiseSection />
-        <CertificatesSection />
-        <ProjectsSection />
-        <ContactSection />
-        <FooterSection />
+        <Suspense fallback={null}>
+          <AboutSection />
+          <ExpertiseSection />
+          <CertificatesSection />
+          <ProjectsSection />
+          <ContactSection />
+          <FooterSection />
+        </Suspense>
       </div>
     </ReactLenis>
   )

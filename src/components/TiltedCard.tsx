@@ -122,6 +122,9 @@ export default function TiltedCard({
           src={imageSrc}
           alt={altText}
           className="tilted-card-img"
+          loading="eager"
+          // @ts-expect-error fetchpriority is valid HTML but not in React types yet
+          fetchpriority="high"
           style={{
             width: imageWidth,
             height: imageHeight

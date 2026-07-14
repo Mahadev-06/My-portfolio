@@ -96,9 +96,10 @@ const HeroSection: React.FC = () => {
         >
           <Magnet padding={120} strength={8}>
             <img
-              src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/moon_icon.11395d36.png"
+              src="/assets/moon_icon.png"
               alt="Moon 3D Asset"
               className="w-full float-item-1 opacity-40 sm:opacity-100"
+              loading="lazy"
             />
           </Magnet>
         </FadeIn>
@@ -110,9 +111,10 @@ const HeroSection: React.FC = () => {
         >
           <Magnet padding={120} strength={8}>
             <img
-              src="https://shrug-person-78902957.figma.site/_components/v2/ebb2b8f25d8e24d5f0a5ca8af4c950de81aa2fd7/lego_icon-1.703bb594.png"
+              src="/assets/lego_icon.png"
               alt="Lego 3D Asset"
               className="w-full float-item-3 opacity-40 sm:opacity-100"
+              loading="lazy"
             />
           </Magnet>
         </FadeIn>

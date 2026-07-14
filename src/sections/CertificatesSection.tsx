@@ -145,7 +145,8 @@ const CertificatesSection: React.FC = () => {
                 <img 
                   className="swipeimage" 
                   src={cert.image} 
-                  alt={cert.title} 
+                  alt={cert.title}
+                  loading="lazy"
                 />
               </div>
             </li>
@@ -163,7 +164,7 @@ const CertificatesSection: React.FC = () => {
             <button className="cert-modal-close" onClick={() => setSelectedCert(null)}>
               &times;
             </button>
-            <img src={selectedCert.image} alt={selectedCert.title} className="cert-modal-image" />
+            <img src={selectedCert.image} alt={selectedCert.title} className="cert-modal-image" loading="lazy" />
             <p className="cert-modal-title">{selectedCert.title}</p>
           </div>
         </div>
