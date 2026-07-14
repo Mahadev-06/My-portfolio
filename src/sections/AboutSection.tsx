@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import FadeIn from '../components/FadeIn'
 import AnimatedText from '../components/AnimatedText'
-import ContactButton from '../components/ContactButton'
 import Magnet from '../components/Magnet'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -83,12 +82,6 @@ const AboutSection: React.FC = () => {
             className="text-[#D7E2EA] font-medium text-center leading-relaxed w-full"
             style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.8rem)', lineHeight: 1.4 }}
           />
-        </div>
-
-        <div className="mt-8 sm:mt-20 md:mt-24">
-          <FadeIn delay={0.2} y={20}>
-            <ContactButton />
-          </FadeIn>
         </div>
       </div>
     </section>

@@ -15,8 +15,8 @@ const ContactSection: React.FC = () => {
 
   // Validation Flags
   const isValidName = name.trim().length > 0
-  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-  const isValidPhone = phone.trim().length >= 8
+  const isValidEmail = email.trim().length > 0
+  const isValidPhone = phone.trim().length > 0
   const isValidMessage = message.trim().length > 0
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
