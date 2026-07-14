@@ -18,7 +18,7 @@ const DECORATIVE_SVGS = [
         <rect x="0" y="25" width="100" height="50" rx="25" fill="#8A2BE2" />
       </svg>
     ),
-    className: 'w-[40px] sm:w-[120px] md:w-[180px] absolute top-[8%] left-[2%] sm:left-[2%] md:left-[4%] opacity-80 sm:opacity-100 z-0',
+    className: 'w-[40px] h-[40px] sm:w-[120px] sm:h-[120px] md:w-[180px] md:h-[180px] absolute top-[8%] left-[2%] sm:left-[2%] md:left-[4%] opacity-80 sm:opacity-100 z-0',
     fadeProps: { delay: 0.1, x: -80, y: 0, duration: 0.9 },
     floatClass: 'float-item-1',
   },
@@ -29,7 +29,7 @@ const DECORATIVE_SVGS = [
         <path d="M100 50 A 50 50 0 1 0 50 100 L 50 50 Z" fill="#FF10A0" />
       </svg>
     ),
-    className: 'w-[35px] sm:w-[100px] md:w-[150px] absolute bottom-[8%] left-[4%] sm:left-[6%] md:left-[10%] opacity-80 sm:opacity-100 z-0',
+    className: 'w-[35px] h-[35px] sm:w-[100px] sm:h-[100px] md:w-[150px] md:h-[150px] absolute bottom-[8%] left-[4%] sm:left-[6%] md:left-[10%] opacity-80 sm:opacity-100 z-0',
     fadeProps: { delay: 0.25, x: -80, y: 0, duration: 0.9 },
     floatClass: 'float-item-2',
   },
@@ -41,7 +41,7 @@ const DECORATIVE_SVGS = [
         <path d="M55 0 A 45 45 0 0 1 55 100 Z" fill="#F59E0B" />
       </svg>
     ),
-    className: 'w-[40px] sm:w-[120px] md:w-[180px] absolute top-[8%] right-[2%] sm:right-[2%] md:right-[4%] opacity-80 sm:opacity-100 z-0',
+    className: 'w-[40px] h-[40px] sm:w-[120px] sm:h-[120px] md:w-[180px] md:h-[180px] absolute top-[8%] right-[2%] sm:right-[2%] md:right-[4%] opacity-80 sm:opacity-100 z-0',
     fadeProps: { delay: 0.15, x: 80, y: 0, duration: 0.9 },
     floatClass: 'float-item-3',
   },
@@ -55,7 +55,7 @@ const DECORATIVE_SVGS = [
         <circle cx="73" cy="73" r="23" fill="white" />
       </svg>
     ),
-    className: 'w-[45px] sm:w-[130px] md:w-[190px] absolute bottom-[8%] right-[4%] sm:right-[6%] md:right-[10%] opacity-80 sm:opacity-100 z-0',
+    className: 'w-[45px] h-[45px] sm:w-[130px] sm:h-[130px] md:w-[190px] md:h-[190px] absolute bottom-[8%] right-[4%] sm:right-[6%] md:right-[10%] opacity-80 sm:opacity-100 z-0',
     fadeProps: { delay: 0.3, x: 80, y: 0, duration: 0.9 },
     floatClass: 'float-item-4',
   },
