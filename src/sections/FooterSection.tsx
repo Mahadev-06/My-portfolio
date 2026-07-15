@@ -74,8 +74,9 @@ const FooterSection: React.FC = () => {
       )
     }
 
-    // Only enable hover jelly wobbles on desktop to prevent ghost-tap state issues on touch screens
+    // Only enable hover animations on desktop to prevent ghost-tap state issues on touch screens
     if (!isMobile) {
+      // Jelly shape wobbles
       shapes.forEach((shape: any) => {
         const inner = shape.querySelector('.shape-inner')
         if (!inner) return
@@ -98,6 +99,53 @@ const FooterSection: React.FC = () => {
             ease: 'power2.out',
             overwrite: 'auto'
           })
+        })
+      })
+
+      // Social links hover follow effect
+      const socialLinks = gsap.utils.toArray('.social-link')
+      socialLinks.forEach((el: any) => {
+        const icon = el.querySelector('.social-hover-icon')
+        if (!icon) return
+
+        gsap.set(icon, { xPercent: -50, yPercent: -50 })
+
+        const setX = gsap.quickTo(icon, 'x', { duration: 0.3, ease: 'power3.out' })
+        const setY = gsap.quickTo(icon, 'y', { duration: 0.3, ease: 'power3.out' })
+        let firstEnter = true
+
+        const align = (e: MouseEvent) => {
+          if (firstEnter) {
+            setX(e.clientX, e.clientX)
+            setY(e.clientY, e.clientY)
+            firstEnter = false
+          } else {
+            setX(e.clientX)
+            setY(e.clientY)
+          }
+        }
+
+        const startFollow = () => document.addEventListener('mousemove', align)
+        const stopFollow = () => document.removeEventListener('mousemove', align)
+
+        const fade = gsap.to(icon, {
+          autoAlpha: 1,
+          scale: 1,
+          duration: 0.25,
+          ease: 'back.out(1.5)',
+          paused: true,
+          onReverseComplete: stopFollow
+        })
+
+        el.addEventListener('mouseenter', (e: MouseEvent) => {
+          firstEnter = true
+          fade.play()
+          startFollow()
+          align(e)
+        })
+
+        el.addEventListener('mouseleave', () => {
+          fade.reverse()
         })
       })
     }
@@ -124,18 +172,52 @@ const FooterSection: React.FC = () => {
           <FadeIn delay={0.3} className="flex flex-col gap-4 md:gap-5">
             <h4 className="text-xs font-bold uppercase tracking-[0.15em] mb-2 text-white">Social</h4>
             {[
-              { label: 'Instagram', url: 'https://instagram.com/__.mahadev.__6' },
-              { label: 'GitHub', url: 'https://github.com/Mahadev-06' },
-              { label: 'LinkedIn', url: 'https://www.linkedin.com/in/mahadev-patro-a76267377?utm_source=share_via&utm_content=profile&utm_medium=member_android' }
+              { 
+                label: 'Instagram', 
+                url: 'https://instagram.com/__.mahadev.__6',
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-white">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                )
+              },
+              { 
+                label: 'GitHub', 
+                url: 'https://github.com/Mahadev-06',
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-white">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                )
+              },
+              { 
+                label: 'LinkedIn', 
+                url: 'https://www.linkedin.com/in/mahadev-patro-a76267377?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+                icon: (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-white">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                )
+              }
             ].map(social => (
               <a 
                 key={social.label} 
                 href={social.url} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-gray-300 hover:text-white transition-colors text-xs sm:text-sm font-medium"
+                className="text-gray-300 hover:text-white transition-colors text-xs sm:text-sm font-medium social-link relative"
               >
                 {social.label}
+                <span 
+                  className="social-hover-icon hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg fixed pointer-events-none opacity-0 invisible z-[9999]"
+                  style={{ transform: 'scale(0.8)' }}
+                >
+                  {social.icon}
+                </span>
               </a>
             ))}
           </FadeIn>
