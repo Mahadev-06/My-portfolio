@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import FadeIn from '../components/FadeIn'
 import { motion } from 'framer-motion'
 import TextReveal from '../components/TextReveal'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const ContactSection: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [succeeded, setSucceeded] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -61,14 +67,69 @@ const ContactSection: React.FC = () => {
     }
   }
 
+  // GSAP ScrollTrigger parallax on decorative elements + section scale reveal
+  useGSAP(() => {
+    if (!sectionRef.current) return
+    const isMobile = window.innerWidth < 768
+
+    // Parallax on left decorative element (balloon)
+    gsap.fromTo('.contact-deco-left', 
+      { y: isMobile ? 30 : 60 },
+      {
+        y: isMobile ? -30 : -60,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      }
+    )
+
+    // Parallax on right decorative element (thunderbolt)
+    gsap.fromTo('.contact-deco-right',
+      { y: isMobile ? -20 : -40 },
+      {
+        y: isMobile ? 20 : 40,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      }
+    )
+
+    // Section-level scale reveal
+    gsap.fromTo(sectionRef.current,
+      { scale: 0.96, opacity: 0.85 },
+      {
+        scale: 1,
+        opacity: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top bottom',
+          end: 'top 60%',
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      }
+    )
+  }, { scope: sectionRef })
+
   return (
-    <section id="contact" className="relative bg-[#F4F4F5] pt-16 pb-24 px-6 md:pt-28 md:pb-40 md:px-16 overflow-hidden z-20 rounded-t-[40px] -mt-10 transform-gpu">
+    <section ref={sectionRef} id="contact" className="relative bg-[#F4F4F5] pt-16 pb-24 px-6 md:pt-28 md:pb-40 md:px-16 overflow-hidden z-20 rounded-t-[40px] -mt-10 transform-gpu">
       
       {/* 3D Balloon CSS Art Placeholder - Left edge */}
       <motion.div 
         animate={{ y: [0, 20, 0] }} 
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[-5%] md:left-[2%] top-[35%] md:top-[30%] z-0 scale-[0.55] md:scale-100 origin-left pointer-events-none opacity-60 md:opacity-100 will-change-transform transform-gpu"
+        className="contact-deco-left absolute left-[-5%] md:left-[2%] top-[35%] md:top-[30%] z-0 scale-[0.55] md:scale-100 origin-left pointer-events-none opacity-60 md:opacity-100 will-change-transform transform-gpu"
       >
         <div className="relative w-[150px] h-[250px] filter drop-shadow-[0_15px_15px_rgba(138,43,226,0.15)]">
           <div className="absolute top-10 left-10 w-20 h-32 bg-[#8A2BE2] rounded-[100px] shadow-inner rotate-45" style={{ background: 'radial-gradient(circle at 30% 30%, #E9D5FF, #9333EA, #4C1D95)' }}></div>
@@ -82,7 +143,7 @@ const ContactSection: React.FC = () => {
       <motion.div 
         animate={{ y: [0, -15, 0], rotate: [12, 16, 12] }} 
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute right-[-5%] md:right-[-2%] top-[8%] md:top-[10%] z-0 scale-[0.5] md:scale-100 origin-right pointer-events-none opacity-60 md:opacity-100 will-change-transform transform-gpu"
+        className="contact-deco-right absolute right-[-5%] md:right-[-2%] top-[8%] md:top-[10%] z-0 scale-[0.5] md:scale-100 origin-right pointer-events-none opacity-60 md:opacity-100 will-change-transform transform-gpu"
       >
         <svg viewBox="0 0 24 24" className="w-[150px] h-[150px] md:w-[220px] md:h-[220px] filter drop-shadow-[0_15px_15px_rgba(245,158,11,0.15)] opacity-90">
           <defs>

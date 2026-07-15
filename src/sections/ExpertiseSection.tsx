@@ -1,7 +1,11 @@
-import React from 'react'
-import FadeIn from '../components/FadeIn'
+import React, { useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
 import TextReveal from '../components/TextReveal'
 import LineReveal from '../components/LineReveal'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const EXPERTISE = [
   {
@@ -37,8 +41,56 @@ const EXPERTISE = [
 ]
 
 const ExpertiseSection: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useGSAP(
+    () => {
+      const isMobile = window.innerWidth < 768
+
+      // Section-level scale reveal (scrubbed)
+      gsap.fromTo(
+        sectionRef.current,
+        { scale: 0.96, opacity: 0.85 },
+        {
+          scale: 1,
+          opacity: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'top 60%',
+            scrub: true,
+            invalidateOnRefresh: true,
+          },
+        }
+      )
+
+      // Staggered expertise items reveal
+      const items = gsap.utils.toArray<HTMLElement>('.expertise-item')
+      gsap.fromTo(
+        items,
+        { y: isMobile ? 35 : 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: isMobile ? 0.5 : 0.8,
+          stagger: 0.12,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.expertise-container',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+            invalidateOnRefresh: true,
+          },
+        }
+      )
+    },
+    { scope: sectionRef }
+  )
+
   return (
     <section
+      ref={sectionRef}
       id="services"
       className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-6 sm:px-8 md:px-10 py-12 sm:py-24 md:py-32"
       style={{ background: '#FFFFFF' }}
@@ -49,9 +101,9 @@ const ExpertiseSection: React.FC = () => {
         style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
       />
 
-      <div className="max-w-5xl mx-auto">
+      <div className="expertise-container max-w-5xl mx-auto">
         {EXPERTISE.map((item, i) => (
-          <FadeIn key={item.number} delay={i * 0.1} y={30}>
+          <div key={item.number} className="expertise-item" style={{ opacity: 0 }}>
             <div
               className="flex flex-col sm:flex-row items-start gap-4 sm:gap-8 md:gap-12 py-6 sm:py-10 md:py-12"
               style={{
@@ -82,7 +134,7 @@ const ExpertiseSection: React.FC = () => {
                 />
               </div>
             </div>
-          </FadeIn>
+          </div>
         ))}
       </div>
     </section>

@@ -1,5 +1,5 @@
 .certificates-section {
-  background: #ffffff;
+  background: #F1F5F9;
   color: #0c0c0c;
   position: relative;
   overflow: visible;
@@ -30,7 +30,7 @@
 }
 
 .cert-container:hover {
-  background-color: rgba(12, 12, 12, 0.02);
+  background-color: rgba(12, 12, 12, 0.04);
 }
 
 .cert-left {
