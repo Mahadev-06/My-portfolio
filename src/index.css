@@ -326,4 +326,25 @@ html, body, #root, button, input, select, textarea, a {
   }
 }
 
+/* Footer Social Link Hover Cursor Follow Icon */
+.social-hover-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  will-change: transform;
+  transform: scale(0);
+  opacity: 0;
+  visibility: hidden;
+}
+
 
