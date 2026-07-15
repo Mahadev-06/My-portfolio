@@ -95,8 +95,8 @@ const AboutSection: React.FC = () => {
 
           <AnimatedText
             text="I build modern, scalable web applications that combine clean design with robust functionality. Passionate about full-stack development, I leverage modern technologies and AI-assisted workflows to transform ideas into impactful digital products while continuously learning Python, Artificial Intelligence, and Machine Learning."
-            className="text-[#D7E2EA] font-medium text-center leading-relaxed w-full max-w-[340px] sm:max-w-none px-4 sm:px-0"
-            style={{ fontSize: 'clamp(0.9rem, 2.2vw, 1.8rem)', lineHeight: 1.4 }}
+            className="text-[#D7E2EA] font-medium text-center leading-relaxed w-full max-w-[340px] sm:max-w-[760px] px-4 sm:px-0"
+            style={{ fontSize: 'clamp(0.85rem, 1.7vw, 1.35rem)', lineHeight: 1.5 }}
           />
         </div>
       </div>
