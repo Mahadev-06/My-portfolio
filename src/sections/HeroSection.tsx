@@ -69,7 +69,7 @@ const HeroSection: React.FC = () => {
             <TiltedCard
               imageSrc="/me.jpg"
               altText="Mahadev patro - Full-Stack Developer"
-              captionText="Mahadev patro - GNX"
+              captionText="mahadev patro"
               containerHeight="clamp(280px, 36vw, 420px)"
               containerWidth="clamp(280px, 36vw, 420px)"
               imageHeight="clamp(280px, 36vw, 420px)"
@@ -81,7 +81,7 @@ const HeroSection: React.FC = () => {
               displayOverlayContent={true}
               overlayContent={
                 <p className="tilted-card-demo-text">
-                  Mahadev patro - GNX
+                  mahadev patro
                 </p>
               }
             />
