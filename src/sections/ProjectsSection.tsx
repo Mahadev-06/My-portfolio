@@ -28,19 +28,17 @@ const PROJECTS: Project[] = [
     ],
     col2Image: '/premashraya3.webp',
     liveUrl: 'https://premashraya.vercel.app/',
-    overview: 'A platform built for a real estate client to streamline property discovery and management.',
-    problem: 'Traditional property websites often lack intuitive filtering and modern user experiences.',
-    solution: 'Designed a responsive platform featuring advanced filters, modern UI, and scalable architecture.',
+    overview: 'Premashraya is a modern, highly performant, and premium web application built for the Premashraya Charitable Trust—a free cancer patient shelter based in Bhubaneswar and Cuttack, Odisha, India. The platform is designed to connect patients and their families with the shelter\'s services, facilitate direct donations, and make it seamless to inquire about stays.',
+    problem: 'Cancer treatment (especially chemotherapy and radiation) requires patients to stay near major treatment centers in cities like Bhubaneswar and Cuttack for weeks or months. This introduces severe financial strain for accommodations and food, lack of sanitized lodging options for patients with compromised immune systems, logistical navigation stress, and emotional exhaustion on caregivers.',
+    solution: 'The Premashraya Care Web App addresses these problems by providing clean digital access to amenities (rooms, floor plans, sanitization rules), clear visibility into hospital guidance teams, frictionless donation options (Razorpay and copyable UPI details), bilingual translations (English and Odia), and light-speed mobile performance.',
     features: [
-      'Property listings',
-      'Vastu filter',
-      'Budget filter',
-      'Search',
-      'Contact forms',
-      'Admin dashboard',
-      'Mobile responsive'
+      'Bilingual Interface (English & Odia): Toggle languages instantly via a context-driven state manager without page reloads.',
+      'Premium User Experience: Smooth, non-invasive inertia scrolling globally integrated via Lenis and dynamic micro-interactions powered by Framer Motion.',
+      'Interactive Donation Center: Impact-linked giving options, secure UPI copy chip, copyable Bank Account details (Axis Bank Ltd), and Razorpay checkout support.',
+      'SEO & Performance Optimization: High-performance media loading using custom image optimization, responsive sizes, and structured metadata schema markup (LD-JSON).',
+      'Bilingual Contact Form: Fully integrated with Formspree, featuring client-side character filtering to prevent invalid phone numbers or names dynamically.'
     ],
-    tech: ['React', 'Supabase', 'GSAP', 'Tailwind', 'Vercel']
+    tech: ['Next.js 16', 'React 19', 'Tailwind CSS v4', 'Framer Motion v12', 'Lenis', 'Lucide React', 'Formspree', 'React Context API']
   },
   {
     number: '02',
