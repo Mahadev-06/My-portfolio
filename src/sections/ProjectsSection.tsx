@@ -1,4 +1,5 @@
 import React from 'react'
+import { createPortal } from 'react-dom'
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
 import TextReveal from '../components/TextReveal'
 
@@ -223,8 +224,11 @@ const ProjectsSection: React.FC = () => {
       </div>
 
       {/* Premium Detailed Overlay Modal */}
-      {activeProject && (
-        <div className="fixed inset-0 z-[100000] bg-[#0C0C0C] overflow-y-auto px-6 py-8 sm:py-16 flex flex-col items-center animate-fadeIn select-none">
+      {activeProject && typeof document !== 'undefined' && createPortal(
+        <div
+          data-lenis-prevent
+          className="fixed inset-0 z-[999999] bg-[#0C0C0C] overflow-y-auto px-6 py-8 sm:py-16 flex flex-col items-center animate-fadeIn"
+        >
           <div className="max-w-4xl w-full flex flex-col gap-6 sm:gap-10">
             {/* Header Navigation */}
             <div className="flex justify-between items-center border-b border-gray-800 pb-4">
@@ -340,7 +344,8 @@ const ProjectsSection: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   )
