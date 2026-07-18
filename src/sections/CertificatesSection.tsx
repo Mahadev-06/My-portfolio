@@ -59,6 +59,7 @@ const CertificatesSection: React.FC = () => {
     if (window.matchMedia('(max-width: 640px)').matches) return
 
     const containers = gsap.utils.toArray('.cert-container')
+    const cleanups: (() => void)[] = []
 
     containers.forEach((el: any) => {
       const image = el.querySelector('img.swipeimage')
@@ -102,17 +103,30 @@ const CertificatesSection: React.FC = () => {
         onReverseComplete: stopFollow
       })
 
-      el.addEventListener('mouseenter', (e: MouseEvent) => {
+      const onMouseEnter = (e: MouseEvent) => {
         firstEnter = true
         fade.play()
         startFollow()
         align(e)
-      })
+      }
 
-      el.addEventListener('mouseleave', () => {
+      const onMouseLeave = () => {
         fade.reverse()
+      }
+
+      el.addEventListener('mouseenter', onMouseEnter)
+      el.addEventListener('mouseleave', onMouseLeave)
+
+      cleanups.push(() => {
+        el.removeEventListener('mouseenter', onMouseEnter)
+        el.removeEventListener('mouseleave', onMouseLeave)
+        document.removeEventListener('mousemove', align)
       })
     })
+
+    return () => {
+      cleanups.forEach((cleanup) => cleanup())
+    }
   }, { scope: containerRef })
 
   return (

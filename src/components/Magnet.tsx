@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback } from 'react'
+import React, { useRef, useCallback } from 'react'
 
 interface MagnetProps {
   children: React.ReactNode
@@ -10,7 +10,7 @@ interface MagnetProps {
   style?: React.CSSProperties
 }
 
-const Magnet: React.FC<MagnetProps> = ({
+const MagnetComponent: React.FC<MagnetProps> = ({
   children,
   padding = 100,
   strength = 3,
@@ -20,13 +20,12 @@ const Magnet: React.FC<MagnetProps> = ({
   style,
 }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const [transform, setTransform] = useState('translate3d(0, 0, 0)')
-  const [transition, setTransition] = useState(inactiveTransition)
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
-      if (!ref.current) return
-      const rect = ref.current.getBoundingClientRect()
+      const el = ref.current
+      if (!el) return
+      const rect = el.getBoundingClientRect()
       const centerX = rect.left + rect.width / 2
       const centerY = rect.top + rect.height / 2
       const distX = e.clientX - centerX
@@ -35,19 +34,21 @@ const Magnet: React.FC<MagnetProps> = ({
       const maxDist = Math.max(rect.width, rect.height) / 2 + padding
 
       if (distance < maxDist) {
-        setTransform(`translate3d(${distX / strength}px, ${distY / strength}px, 0)`)
-        setTransition(activeTransition)
+        el.style.transform = `translate3d(${distX / strength}px, ${distY / strength}px, 0)`
+        el.style.transition = activeTransition
       } else {
-        setTransform('translate3d(0, 0, 0)')
-        setTransition(inactiveTransition)
+        el.style.transform = 'translate3d(0, 0, 0)'
+        el.style.transition = inactiveTransition
       }
     },
     [padding, strength, activeTransition, inactiveTransition]
   )
 
   const handleMouseLeave = useCallback(() => {
-    setTransform('translate3d(0, 0, 0)')
-    setTransition(inactiveTransition)
+    const el = ref.current
+    if (!el) return
+    el.style.transform = 'translate3d(0, 0, 0)'
+    el.style.transition = inactiveTransition
   }, [inactiveTransition])
 
   return (
@@ -58,8 +59,6 @@ const Magnet: React.FC<MagnetProps> = ({
       className={className}
       style={{
         ...style,
-        transform,
-        transition,
         willChange: 'transform',
       }}
     >
@@ -68,4 +67,5 @@ const Magnet: React.FC<MagnetProps> = ({
   )
 }
 
+const Magnet = React.memo(MagnetComponent)
 export default Magnet

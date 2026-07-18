@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState, useMemo } from 'react'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -11,12 +11,12 @@ interface LineRevealProps {
   style?: React.CSSProperties
 }
 
-const LineReveal: React.FC<LineRevealProps> = ({ text, className = '', style }) => {
+const LineRevealComponent: React.FC<LineRevealProps> = ({ text, className = '', style }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [lines, setLines] = useState<string[][]>([])
 
   // Initial render: split text into words so we can measure their offsets
-  const words = text.split(' ')
+  const words = useMemo(() => text.split(' '), [text])
 
   useEffect(() => {
     const computeLines = () => {
@@ -50,9 +50,18 @@ const LineReveal: React.FC<LineRevealProps> = ({ text, className = '', style }) 
     // Run computation
     computeLines()
 
-    // Recompute on window resize to handle responsiveness
-    window.addEventListener('resize', computeLines)
-    return () => window.removeEventListener('resize', computeLines)
+    // Recompute on window resize to handle responsiveness (debounced)
+    let resizeTimer: ReturnType<typeof setTimeout>
+    const handleResize = () => {
+      clearTimeout(resizeTimer)
+      resizeTimer = setTimeout(computeLines, 100)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      clearTimeout(resizeTimer)
+    }
   }, [text])
 
   useGSAP(() => {
@@ -127,4 +136,5 @@ const LineReveal: React.FC<LineRevealProps> = ({ text, className = '', style }) 
   )
 }
 
+const LineReveal = React.memo(LineRevealComponent)
 export default LineReveal

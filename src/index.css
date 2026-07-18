@@ -126,8 +126,8 @@ html, body, #root, button, input, select, textarea, a {
   justify-content: center;
   
   /* Mask settings using nature-sprite.png (23 frames, so 2300% width) */
-  -webkit-mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
-  mask: url("https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/nature-sprite.png");
+  -webkit-mask: url("/assets/nature-sprite.png");
+  mask: url("/assets/nature-sprite.png");
   -webkit-mask-size: 2300% 100%;
   mask-size: 2300% 100%;
   

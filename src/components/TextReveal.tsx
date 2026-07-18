@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useMemo } from 'react'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -11,7 +11,7 @@ interface TextRevealProps {
   style?: React.CSSProperties
 }
 
-const TextReveal: React.FC<TextRevealProps> = ({ text, className = '', style }) => {
+const TextRevealComponent: React.FC<TextRevealProps> = ({ text, className = '', style }) => {
   const containerRef = useRef<HTMLHeadingElement>(null)
 
   useGSAP(() => {
@@ -46,12 +46,12 @@ const TextReveal: React.FC<TextRevealProps> = ({ text, className = '', style }) 
   }, { scope: containerRef })
 
   // Split text into words, and words into characters
-  const words = text.split(' ')
+  const words = useMemo(() => text.split(' '), [text])
 
-  const isGradient = className.includes('hero-heading')
-  const parentClassName = className.replace('hero-heading', '').trim()
-  const hasAlignment = className.includes('text-left') || className.includes('text-right') || className.includes('text-center')
-  const alignmentClass = hasAlignment ? '' : 'text-center'
+  const isGradient = useMemo(() => className.includes('hero-heading'), [className])
+  const parentClassName = useMemo(() => className.replace('hero-heading', '').trim(), [className])
+  const hasAlignment = useMemo(() => className.includes('text-left') || className.includes('text-right') || className.includes('text-center'), [className])
+  const alignmentClass = useMemo(() => hasAlignment ? '' : 'text-center', [hasAlignment])
 
   return (
     <h2
@@ -100,4 +100,5 @@ const TextReveal: React.FC<TextRevealProps> = ({ text, className = '', style }) 
   )
 }
 
+const TextReveal = React.memo(TextRevealComponent)
 export default TextReveal

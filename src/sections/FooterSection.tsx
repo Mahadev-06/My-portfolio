@@ -74,22 +74,24 @@ const FooterSection: React.FC = () => {
       )
     }
 
+    const cleanups: (() => void)[] = []
+
     // Only enable hover jelly wobbles on desktop to prevent ghost-tap state issues on touch screens
     if (!isMobile) {
       shapes.forEach((shape: any) => {
         const inner = shape.querySelector('.shape-inner')
         if (!inner) return
 
-        shape.addEventListener('mouseenter', () => {
+        const onMouseEnter = () => {
           const hoverTl = gsap.timeline()
           hoverTl.to(inner, { scaleX: 1.25, scaleY: 0.75, rotation: 15, duration: 0.15, ease: 'power1.out' })
             .to(inner, { scaleX: 0.8, scaleY: 1.2, rotation: -10, duration: 0.15, ease: 'power1.inOut' })
             .to(inner, { scaleX: 1.1, scaleY: 0.9, rotation: 5, duration: 0.15, ease: 'power1.inOut' })
             .to(inner, { scaleX: 0.95, scaleY: 1.05, rotation: -2, duration: 0.15, ease: 'power1.inOut' })
             .to(inner, { scaleX: 1, scaleY: 1, rotation: 0, duration: 0.2, ease: 'power1.out' })
-        })
+        }
 
-        shape.addEventListener('mouseleave', () => {
+        const onMouseLeave = () => {
           gsap.to(inner, {
             scaleX: 1,
             scaleY: 1,
@@ -98,6 +100,14 @@ const FooterSection: React.FC = () => {
             ease: 'power2.out',
             overwrite: 'auto'
           })
+        }
+
+        shape.addEventListener('mouseenter', onMouseEnter)
+        shape.addEventListener('mouseleave', onMouseLeave)
+
+        cleanups.push(() => {
+          shape.removeEventListener('mouseenter', onMouseEnter)
+          shape.removeEventListener('mouseleave', onMouseLeave)
         })
       })
     }
@@ -148,17 +158,30 @@ const FooterSection: React.FC = () => {
           onReverseComplete: stopFollow
         })
 
-        el.addEventListener('mouseenter', (e: MouseEvent) => {
+        const onMouseEnterLink = (e: MouseEvent) => {
           firstEnter = true
           animation.play()
           startFollow()
           align(e)
-        })
+        }
 
-        el.addEventListener('mouseleave', () => {
+        const onMouseLeaveLink = () => {
           animation.reverse()
+        }
+
+        el.addEventListener('mouseenter', onMouseEnterLink)
+        el.addEventListener('mouseleave', onMouseLeaveLink)
+
+        cleanups.push(() => {
+          el.removeEventListener('mouseenter', onMouseEnterLink)
+          el.removeEventListener('mouseleave', onMouseLeaveLink)
+          document.removeEventListener('mousemove', align)
         })
       })
+    }
+
+    return () => {
+      cleanups.forEach((cleanup) => cleanup())
     }
   }, { scope: container })
 

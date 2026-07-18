@@ -21,10 +21,10 @@ const ContactSection: React.FC = () => {
   const [message, setMessage] = useState('')
 
   // Validation Flags
-  const isValidName = name.trim().length > 0
-  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-  const isValidPhone = phone.trim().length >= 6
-  const isValidMessage = message.trim().length > 0
+  const isValidName = React.useMemo(() => name.trim().length > 0, [name])
+  const isValidEmail = React.useMemo(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email), [email])
+  const isValidPhone = React.useMemo(() => phone.trim().length >= 6, [phone])
+  const isValidMessage = React.useMemo(() => message.trim().length > 0, [message])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -110,7 +110,8 @@ const ContactSection: React.FC = () => {
       
       {/* 3D Balloon CSS Art Placeholder - Left edge */}
       <motion.div 
-        animate={{ y: [0, 20, 0] }} 
+        whileInView={{ y: [0, 20, 0] }} 
+        viewport={{ once: false, amount: 0.1 }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         className="contact-deco-left absolute left-[-5%] md:left-[2%] top-[35%] md:top-[30%] z-0 scale-[0.55] md:scale-100 origin-left pointer-events-none opacity-60 md:opacity-100 will-change-transform transform-gpu"
       >
@@ -124,7 +125,8 @@ const ContactSection: React.FC = () => {
 
       {/* 3D Thunderbolt SVG Placeholder - Right edge */}
       <motion.div 
-        animate={{ y: [0, -15, 0], rotate: [12, 16, 12] }} 
+        whileInView={{ y: [0, -15, 0], rotate: [12, 16, 12] }} 
+        viewport={{ once: false, amount: 0.1 }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         className="contact-deco-right absolute right-[-5%] md:right-[-2%] top-[8%] md:top-[10%] z-0 scale-[0.5] md:scale-100 origin-right pointer-events-none opacity-60 md:opacity-100 will-change-transform transform-gpu"
       >
@@ -160,7 +162,7 @@ const ContactSection: React.FC = () => {
         <div className="w-full md:w-[45%]">
           <FadeIn delay={0.3} className="w-full bg-transparent">
             {succeeded ? (
-              <div className="mt-8 p-8 rounded-3xl border border-[#7C3AED]/20 bg-white/50 backdrop-blur-md flex flex-col items-center justify-center text-center gap-4 shadow-lg min-h-[320px]">
+              <div className="mt-8 p-8 rounded-3xl border border-[#7C3AED]/20 bg-white/95 sm:bg-white/50 sm:backdrop-blur-md flex flex-col items-center justify-center text-center gap-4 shadow-lg min-h-[320px]">
                 <div className="w-16 h-16 rounded-full bg-[#7C3AED]/15 flex items-center justify-center text-3xl">
                   ✨
                 </div>

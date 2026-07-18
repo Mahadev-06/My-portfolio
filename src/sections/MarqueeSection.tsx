@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useMemo } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -76,12 +76,12 @@ const MarqueeSection: React.FC = () => {
     gsap.fromTo(row2, { x: -1000 }, { x: -1800, ease: 'none', force3D: true, scrollTrigger })
   }, { scope: sectionRef })
 
-  const row1Skills = SKILLS.slice(0, 9)
-  const row2Skills = SKILLS.slice(9)
+  const row1Skills = useMemo(() => SKILLS.slice(0, 9), [])
+  const row2Skills = useMemo(() => SKILLS.slice(9), [])
 
   // Triple to ensure infinite seamless scrolling loop
-  const tripled1 = [...row1Skills, ...row1Skills, ...row1Skills]
-  const tripled2 = [...row2Skills, ...row2Skills, ...row2Skills]
+  const tripled1 = useMemo(() => [...row1Skills, ...row1Skills, ...row1Skills], [row1Skills])
+  const tripled2 = useMemo(() => [...row2Skills, ...row2Skills, ...row2Skills], [row2Skills])
 
   return (
     <section

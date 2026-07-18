@@ -49,8 +49,13 @@ const ScrollSync: React.FC = () => {
 }
 
 function App() {
+  const prefersReduced = React.useMemo(() => {
+    if (typeof window === 'undefined') return false
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  }, [])
+
   return (
-    <ReactLenis root options={{ smoothWheel: true, duration: 1.2 }}>
+    <ReactLenis root options={{ smoothWheel: !prefersReduced, duration: prefersReduced ? 0.001 : 1.2 }}>
       <ScrollSync />
       <div style={{ background: '#0C0C0C', overflowX: 'clip' }} className="font-kanit">
         <HeroSection />

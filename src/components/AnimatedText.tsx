@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useMemo } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -11,7 +11,7 @@ interface AnimatedTextProps {
   style?: React.CSSProperties
 }
 
-const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '', style }) => {
+const AnimatedTextComponent: React.FC<AnimatedTextProps> = ({ text, className = '', style }) => {
   const containerRef = useRef<HTMLParagraphElement>(null)
 
   useGSAP(() => {
@@ -35,7 +35,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '', style
     }
   }, { scope: containerRef })
 
-  const words = text.split(' ')
+  const words = useMemo(() => text.split(' '), [text])
 
   return (
     <p ref={containerRef} className={`text-center ${className}`} style={style}>
@@ -56,4 +56,5 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '', style
   )
 }
 
+const AnimatedText = React.memo(AnimatedTextComponent)
 export default AnimatedText

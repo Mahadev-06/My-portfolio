@@ -11,25 +11,25 @@ gsap.registerPlugin(ScrollTrigger)
 
 const DECORATIVE_IMAGES = [
   {
-    src: '/assets/moon_icon.png',
+    src: '/assets/moon_icon.webp',
     alt: 'Moon icon',
     className: 'w-[50px] h-[50px] sm:w-[120px] sm:h-[120px] md:w-[210px] md:h-[210px] absolute top-[8%] left-[2%] sm:left-[2%] md:left-[4%] z-0 origin-center',
     floatClass: 'float-item-1',
   },
   {
-    src: '/assets/p59_1.png',
+    src: '/assets/p59_1.webp',
     alt: '3D object',
     className: 'w-[45px] h-[45px] sm:w-[100px] sm:h-[100px] md:w-[180px] md:h-[180px] absolute bottom-[8%] left-[4%] sm:left-[6%] md:left-[10%] z-0 origin-center',
     floatClass: 'float-item-2',
   },
   {
-    src: '/assets/lego_icon.png',
+    src: '/assets/lego_icon.webp',
     alt: 'Lego icon',
     className: 'w-[50px] h-[50px] sm:w-[120px] sm:h-[120px] md:w-[210px] md:h-[210px] absolute top-[8%] right-[2%] sm:right-[2%] md:right-[4%] z-0 origin-center',
     floatClass: 'float-item-3',
   },
   {
-    src: '/assets/group_134.png',
+    src: '/assets/group_134.webp',
     alt: '3D group',
     className: 'w-[55px] h-[55px] sm:w-[130px] sm:h-[130px] md:w-[220px] md:h-[220px] absolute bottom-[8%] right-[4%] sm:right-[6%] md:right-[10%] z-0 origin-center',
     floatClass: 'float-item-4',

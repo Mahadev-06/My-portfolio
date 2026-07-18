@@ -111,6 +111,13 @@
   .cert-container img.swipeimage {
     display: none !important;
   }
+
+  /* Disable expensive backdrop-filter on mobile to avoid performance issues */
+  .cert-modal-overlay {
+    background: rgba(12, 12, 12, 0.95);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
 }
 
 /* Modal Preview Styles */
