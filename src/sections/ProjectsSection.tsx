@@ -253,171 +253,174 @@ const ProjectsSection: React.FC = () => {
       </div>
 
       {/* Premium Detailed Overlay Modal utilizing Framer Motion React Portal */}
-      <AnimatePresence>
-        {activeProject && typeof document !== 'undefined' && createPortal(
-          <motion.div
-            data-lenis-prevent
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.28, ease: 'easeInOut' }}
-            className="fixed inset-0 z-[999999] bg-[#0C0C0C] overflow-y-auto px-6 py-8 sm:py-16 flex flex-col items-center"
-          >
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {activeProject && (
             <motion.div
-              initial={{ scale: 0.96, y: 24, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.96, y: 24, opacity: 0 }}
-              transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-4xl w-full flex flex-col gap-6 sm:gap-10"
+              data-lenis-prevent
+              key={activeProject.number}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.28, ease: 'easeInOut' }}
+              className="fixed inset-0 z-[999999] bg-[#0C0C0C] overflow-y-auto px-6 py-8 sm:py-16 flex flex-col items-center"
             >
-              {/* Header Navigation */}
-              <div className="flex justify-between items-center border-b border-gray-800 pb-4">
-                <button
-                  onClick={() => setActiveProject(null)}
-                  className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-[#D7E2EA] hover:text-white flex items-center gap-2 transition cursor-pointer active:scale-95"
-                >
-                  &larr; Back to Projects
-                </button>
-                <span className="text-gray-500 font-bold uppercase tracking-widest text-[10px] sm:text-xs">
-                  {activeProject.category}
-                </span>
-              </div>
-
-              {/* Banner Image */}
-              <div className="w-full overflow-hidden rounded-[20px] sm:rounded-[32px] border border-gray-800 aspect-[16/9] shadow-2xl">
-                <img
-                  src={activeProject.col2Image}
-                  alt={activeProject.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Title & Category Info */}
-              <div className="flex flex-col gap-1 sm:gap-2">
-                <h2 className="hero-heading font-black uppercase text-3xl sm:text-6xl md:text-7xl leading-none tracking-tight text-left">
-                  {activeProject.name}
-                </h2>
-              </div>
-
-              {/* Grid Specifications */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-left">
-                {/* Content Areas */}
-                <div className="md:col-span-2 flex flex-col gap-8 sm:gap-10">
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
-                      Overview
-                    </h3>
-                    <p className="text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4">
-                      {activeProject.overview}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
-                      Problem
-                    </h3>
-                    <p className="text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4">
-                      {activeProject.problem}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
-                      Solution
-                    </h3>
-                    <p className="text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4">
-                      {activeProject.solution}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
-                      Features
-                    </h3>
-                    <ul className="list-inside list-disc text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4 flex flex-col gap-1.5 sm:gap-2">
-                      {activeProject.features.map((feat, index) => (
-                        <li key={index} className="pl-1">
-                          <span className="text-[#D7E2EA] font-medium">{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              <motion.div
+                initial={{ scale: 0.96, y: 24, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                exit={{ scale: 0.96, y: 24, opacity: 0 }}
+                transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                className="max-w-4xl w-full flex flex-col gap-6 sm:gap-10"
+              >
+                {/* Header Navigation */}
+                <div className="flex justify-between items-center border-b border-gray-800 pb-4">
+                  <button
+                    onClick={() => setActiveProject(null)}
+                    className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-[#D7E2EA] hover:text-white flex items-center gap-2 transition cursor-pointer active:scale-95"
+                  >
+                    &larr; Back to Projects
+                  </button>
+                  <span className="text-gray-500 font-bold uppercase tracking-widest text-[10px] sm:text-xs">
+                    {activeProject.category}
+                  </span>
                 </div>
 
-                {/* Sidebar Info (Tech Stack, Live Visit Button) */}
-                <div className="flex flex-col gap-6 sm:gap-8 border-t md:border-t-0 md:border-l border-gray-800 pt-6 md:pt-0 md:pl-8">
-                  <div className="flex flex-col gap-3">
-                    <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base pl-1">
-                      Tech Stack
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {activeProject.tech.map((t, index) => (
-                        <span
-                          key={index}
-                          className="border border-gray-800 bg-[#121212] text-[#D7E2EA] text-[10px] sm:text-xs font-semibold px-3 py-1.5 rounded-full"
-                        >
-                          {t}
-                        </span>
-                      ))}
+                {/* Banner Image */}
+                <div className="w-full overflow-hidden rounded-[20px] sm:rounded-[32px] border border-gray-800 aspect-[16/9] shadow-2xl">
+                  <img
+                    src={activeProject.col2Image}
+                    alt={activeProject.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Title & Category Info */}
+                <div className="flex flex-col gap-1 sm:gap-2">
+                  <h2 className="hero-heading font-black uppercase text-3xl sm:text-6xl md:text-7xl leading-none tracking-tight text-left">
+                    {activeProject.name}
+                  </h2>
+                </div>
+
+                {/* Grid Specifications */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 text-left">
+                  {/* Content Areas */}
+                  <div className="md:col-span-2 flex flex-col gap-8 sm:gap-10">
+                    <div className="flex flex-col gap-2">
+                      <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
+                        Overview
+                      </h3>
+                      <p className="text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4">
+                        {activeProject.overview}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
+                        Problem
+                      </h3>
+                      <p className="text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4">
+                        {activeProject.problem}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
+                        Solution
+                      </h3>
+                      <p className="text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4">
+                        {activeProject.solution}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
+                        Features
+                      </h3>
+                      <ul className="list-inside list-disc text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4 flex flex-col gap-1.5 sm:gap-2">
+                        {activeProject.features.map((feat, index) => (
+                          <li key={index} className="pl-1">
+                            <span className="text-[#D7E2EA] font-medium">{feat}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
 
-                  <div className="mt-4 sm:mt-8 flex flex-col gap-4">
-                    {activeProject.liveUrl ? (
-                      <a
-                        href={activeProject.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full text-center rounded-full bg-gradient-to-r from-[#D7E2EA] to-white text-black hover:opacity-90 font-bold uppercase tracking-widest py-3 sm:py-3.5 text-[10px] sm:text-xs transition duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.06)] cursor-pointer active:scale-95 transition-transform"
-                      >
-                        Visit Website &rarr;
-                      </a>
-                    ) : (
-                      <button
-                        disabled
-                        className="w-full text-center rounded-full border-2 border-gray-800 text-gray-600 font-bold uppercase tracking-widest py-3 sm:py-3.5 text-[10px] sm:text-xs cursor-not-allowed"
-                      >
-                        Website Coming Soon
-                      </button>
-                    )}
+                  {/* Sidebar Info (Tech Stack, Live Visit Button) */}
+                  <div className="flex flex-col gap-6 sm:gap-8 border-t md:border-t-0 md:border-l border-gray-800 pt-6 md:pt-0 md:pl-8">
+                    <div className="flex flex-col gap-3">
+                      <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base pl-1">
+                        Tech Stack
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {activeProject.tech.map((t, index) => (
+                          <span
+                            key={index}
+                            className="border border-gray-800 bg-[#121212] text-[#D7E2EA] text-[10px] sm:text-xs font-semibold px-3 py-1.5 rounded-full"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mt-4 sm:mt-8 flex flex-col gap-4">
+                      {activeProject.liveUrl ? (
+                        <a
+                          href={activeProject.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full text-center rounded-full bg-gradient-to-r from-[#D7E2EA] to-white text-black hover:opacity-90 font-bold uppercase tracking-widest py-3 sm:py-3.5 text-[10px] sm:text-xs transition duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.06)] cursor-pointer active:scale-95 transition-transform"
+                        >
+                          Visit Website &rarr;
+                        </a>
+                      ) : (
+                        <button
+                          disabled
+                          className="w-full text-center rounded-full border-2 border-gray-800 text-gray-600 font-bold uppercase tracking-widest py-3 sm:py-3.5 text-[10px] sm:text-xs cursor-not-allowed"
+                        >
+                          Website Coming Soon
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Glowing CTA Section inside Modal */}
-              <div className="mt-6 sm:mt-12 p-6 sm:p-10 rounded-[24px] sm:rounded-[36px] border-2 border-[#D7E2EA] bg-gradient-to-br from-[#121212] to-[#161616] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden shadow-2xl">
-                {/* Accent Background Glow */}
-                <div className="absolute top-0 right-0 w-44 h-44 bg-white/5 rounded-full filter blur-3xl pointer-events-none" />
-                
-                <div className="flex flex-col gap-2 max-w-xl text-left relative z-10">
-                  <h3 className="text-white font-black uppercase text-xl sm:text-2xl tracking-wider">
-                    Like this website?
-                  </h3>
-                  <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
-                    {activeProject.ctaText}
-                  </p>
+                {/* Glowing CTA Section inside Modal */}
+                <div className="mt-6 sm:mt-12 p-6 sm:p-10 rounded-[24px] sm:rounded-[36px] border-2 border-[#D7E2EA] bg-gradient-to-br from-[#121212] to-[#161616] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden shadow-2xl">
+                  {/* Accent Background Glow */}
+                  <div className="absolute top-0 right-0 w-44 h-44 bg-white/5 rounded-full filter blur-3xl pointer-events-none" />
+                  
+                  <div className="flex flex-col gap-2 max-w-xl text-left relative z-10">
+                    <h3 className="text-white font-black uppercase text-xl sm:text-2xl tracking-wider">
+                      Like this website?
+                    </h3>
+                    <p className="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                      {activeProject.ctaText}
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setActiveProject(null)
+                      // Scroll to contact form smoothly
+                      setTimeout(() => {
+                        const contactSec = document.getElementById('contact')
+                        if (contactSec) {
+                          contactSec.scrollIntoView({ behavior: 'smooth' })
+                        }
+                      }, 350)
+                    }}
+                    className="rounded-full bg-white text-black font-bold uppercase tracking-widest px-8 py-4 text-xs transition duration-300 hover:bg-[#D7E2EA] cursor-pointer whitespace-nowrap active:scale-95 transition-transform relative z-10 shadow-lg"
+                  >
+                    Contact Me
+                  </button>
                 </div>
-                <button
-                  onClick={() => {
-                    setActiveProject(null)
-                    // Scroll to contact form smoothly
-                    setTimeout(() => {
-                      const contactSec = document.getElementById('contact')
-                      if (contactSec) {
-                        contactSec.scrollIntoView({ behavior: 'smooth' })
-                      }
-                    }, 350)
-                  }}
-                  className="rounded-full bg-white text-black font-bold uppercase tracking-widest px-8 py-4 text-xs transition duration-300 hover:bg-[#D7E2EA] cursor-pointer whitespace-nowrap active:scale-95 transition-transform relative z-10 shadow-lg"
-                >
-                  Contact Me
-                </button>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>,
-          document.body
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   )
 }
