@@ -1,5 +1,4 @@
 import React from 'react'
-import LiveProjectButton from '../components/LiveProjectButton'
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
 import TextReveal from '../components/TextReveal'
 
@@ -10,6 +9,11 @@ interface Project {
   col1Images: [string, string]
   col2Image: string
   liveUrl?: string
+  overview: string
+  problem: string
+  solution: string
+  features: string[]
+  tech: string[]
 }
 
 const PROJECTS: Project[] = [
@@ -23,6 +27,19 @@ const PROJECTS: Project[] = [
     ],
     col2Image: '/premashraya3.webp',
     liveUrl: 'https://premashraya.vercel.app/',
+    overview: 'A platform built for a real estate client to streamline property discovery and management.',
+    problem: 'Traditional property websites often lack intuitive filtering and modern user experiences.',
+    solution: 'Designed a responsive platform featuring advanced filters, modern UI, and scalable architecture.',
+    features: [
+      'Property listings',
+      'Vastu filter',
+      'Budget filter',
+      'Search',
+      'Contact forms',
+      'Admin dashboard',
+      'Mobile responsive'
+    ],
+    tech: ['React', 'Supabase', 'GSAP', 'Tailwind', 'Vercel']
   },
   {
     number: '02',
@@ -34,6 +51,17 @@ const PROJECTS: Project[] = [
     ],
     col2Image: '/kinfolk3.webp',
     liveUrl: 'https://kinfolk-zjp4.vercel.app/',
+    overview: 'A design-focused personal exploration site inspired by modern editorial structures.',
+    problem: 'Standard web galleries feel rigid and fail to represent the editorial storytelling of modern layouts.',
+    solution: 'Built a highly interactive editorial interface with fluid scroll animations, typographic emphasis, and modern aesthetic choices.',
+    features: [
+      'Editorial layouts',
+      'Dynamic animations',
+      'Responsive design',
+      'Typographic hierarchy',
+      'Custom hover states'
+    ],
+    tech: ['React', 'GSAP', 'Tailwind', 'Vercel']
   },
   {
     number: '03',
@@ -44,13 +72,25 @@ const PROJECTS: Project[] = [
       '/wardrobe2.webp',
     ],
     col2Image: '/wardrobe3.webp',
+    overview: 'A personal wardrobe organizer application to catalog clothing items and plan outfits.',
+    problem: 'Tracking personal clothing items and coordinating outfits is usually disorganized and manual.',
+    solution: 'Developed a clean layout dashboard allowing clothing categorization, outfit builder logic, and wardrobe overview.',
+    features: [
+      'Clothing catalog',
+      'Outfit planner',
+      'Categorized filters',
+      'Modern dashboard',
+      'Responsive design'
+    ],
+    tech: ['React', 'Tailwind', 'Vercel']
   },
 ]
 
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+const ProjectCard: React.FC<{ project: Project; onViewClick: () => void }> = ({ project, onViewClick }) => {
   return (
     <div
-      className="rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] p-4 sm:p-5 md:p-6"
+      onClick={onViewClick}
+      className="rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] p-4 sm:p-5 md:p-6 cursor-pointer hover:border-white/40 transition-colors duration-300 group"
       style={{
         background: '#0C0C0C',
       }}
@@ -79,16 +119,15 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           </div>
         </div>
         <div className="flex-shrink-0 pt-1 sm:pt-2">
-          {project.liveUrl ? (
-            <LiveProjectButton href={project.liveUrl} />
-          ) : (
-            <button
-              disabled
-              className="rounded-full border-2 border-gray-700 text-gray-600 font-semibold uppercase tracking-widest px-5 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 text-[10px] sm:text-xs md:text-sm cursor-not-allowed"
-            >
-              Soon
-            </button>
-          )}
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              onViewClick()
+            }}
+            className="rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] font-semibold uppercase tracking-widest px-5 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 text-[10px] sm:text-xs md:text-sm hover:bg-[#D7E2EA]/10 transition-colors duration-200 cursor-pointer inline-flex items-center"
+          >
+            View Details
+          </button>
         </div>
       </div>
 
@@ -116,7 +155,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           <img
             src={project.col2Image}
             alt={`${project.name} main preview`}
-            className="w-full rounded-[30px] sm:rounded-[40px] md:rounded-[45px] object-cover"
+            className="w-full rounded-[30px] sm:rounded-[40px] md:rounded-[45px] object-cover border border-transparent group-hover:border-white/10 transition-colors duration-300"
             style={{ height: '100%', minHeight: '100%', objectFit: 'cover' }}
             loading="lazy"
           />
@@ -129,6 +168,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 const ProjectsSection: React.FC = () => {
   const sectionRef = React.useRef<HTMLElement>(null)
   const [isMobile, setIsMobile] = React.useState(false)
+  const [activeProject, setActiveProject] = React.useState<Project | null>(null)
 
   React.useLayoutEffect(() => {
     const checkMobile = () => {
@@ -138,6 +178,18 @@ const ProjectsSection: React.FC = () => {
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
+
+  // Lock body scroll when project overlay is active
+  React.useEffect(() => {
+    if (activeProject) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [activeProject])
 
   return (
     <section
@@ -164,11 +216,132 @@ const ProjectsSection: React.FC = () => {
         >
           {PROJECTS.map((project) => (
             <ScrollStackItem key={project.number}>
-              <ProjectCard project={project} />
+              <ProjectCard project={project} onViewClick={() => setActiveProject(project)} />
             </ScrollStackItem>
           ))}
         </ScrollStack>
       </div>
+
+      {/* Premium Detailed Overlay Modal */}
+      {activeProject && (
+        <div className="fixed inset-0 z-[100000] bg-[#0C0C0C] overflow-y-auto px-6 py-8 sm:py-16 flex flex-col items-center animate-fadeIn select-none">
+          <div className="max-w-4xl w-full flex flex-col gap-6 sm:gap-10">
+            {/* Header Navigation */}
+            <div className="flex justify-between items-center border-b border-gray-800 pb-4">
+              <button
+                onClick={() => setActiveProject(null)}
+                className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-[#D7E2EA] hover:text-white flex items-center gap-2 transition cursor-pointer"
+              >
+                &larr; Back to Projects
+              </button>
+              <span className="text-gray-500 font-bold uppercase tracking-widest text-[10px] sm:text-xs">
+                {activeProject.category}
+              </span>
+            </div>
+
+            {/* Banner Image */}
+            <div className="w-full overflow-hidden rounded-[20px] sm:rounded-[32px] border border-gray-800 aspect-[16/9] shadow-2xl">
+              <img
+                src={activeProject.col2Image}
+                alt={activeProject.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Title & Category Info */}
+            <div className="flex flex-col gap-1 sm:gap-2">
+              <h2 className="hero-heading font-black uppercase text-3xl sm:text-6xl md:text-7xl leading-none tracking-tight">
+                {activeProject.name}
+              </h2>
+            </div>
+
+            {/* Grid Specifications */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
+              {/* Content Areas (Overview, Problem, Solution, Features) */}
+              <div className="md:col-span-2 flex flex-col gap-8 sm:gap-10">
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
+                    Overview
+                  </h3>
+                  <p className="text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4">
+                    {activeProject.overview}
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
+                    Problem
+                  </h3>
+                  <p className="text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4">
+                    {activeProject.problem}
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
+                    Solution
+                  </h3>
+                  <p className="text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4">
+                    {activeProject.solution}
+                  </p>
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base border-l-2 border-[#D7E2EA] pl-3">
+                    Features
+                  </h3>
+                  <ul className="list-inside list-disc text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed pl-4 flex flex-col gap-1.5 sm:gap-2">
+                    {activeProject.features.map((feat, index) => (
+                      <li key={index} className="pl-1">
+                        <span className="text-[#D7E2EA] font-medium">{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Sidebar Info (Tech Stack, Live Visit Button) */}
+              <div className="flex flex-col gap-6 sm:gap-8 border-t md:border-t-0 md:border-l border-gray-800 pt-6 md:pt-0 md:pl-8">
+                <div className="flex flex-col gap-3">
+                  <h3 className="text-white font-bold uppercase tracking-wider text-sm sm:text-base pl-1">
+                    Tech Stack
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {activeProject.tech.map((t, index) => (
+                      <span
+                        key={index}
+                        className="border border-gray-800 bg-[#121212] text-[#D7E2EA] text-[10px] sm:text-xs font-semibold px-3 py-1.5 rounded-full"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-4 sm:mt-8 flex flex-col gap-4">
+                  {activeProject.liveUrl ? (
+                    <a
+                      href={activeProject.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full text-center rounded-full bg-gradient-to-r from-[#D7E2EA] to-white text-black hover:opacity-90 font-bold uppercase tracking-widest py-3 sm:py-3.5 text-[10px] sm:text-xs transition duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.06)] cursor-pointer"
+                    >
+                      Visit Website &rarr;
+                    </a>
+                  ) : (
+                    <button
+                      disabled
+                      className="w-full text-center rounded-full border-2 border-gray-800 text-gray-600 font-bold uppercase tracking-widest py-3 sm:py-3.5 text-[10px] sm:text-xs cursor-not-allowed"
+                    >
+                      Website Coming Soon
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }
