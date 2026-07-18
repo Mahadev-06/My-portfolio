@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import { useLenis } from 'lenis/react'
 import FadeIn from '../components/FadeIn'
 import TiltedCard from '../components/TiltedCard'
 import ContactButton from '../components/ContactButton'
@@ -13,6 +14,20 @@ gsap.registerPlugin(ScrollTrigger)
 const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null)
   const cardContainerRef = useRef<HTMLDivElement>(null)
+  const lenis = useLenis()
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault()
+    if (lenis) {
+      lenis.scrollTo(targetId, {
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) // custom exponential out ease
+      })
+    } else {
+      const el = document.querySelector(targetId)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   useGSAP(() => {
     gsap.to(cardContainerRef.current, {
@@ -39,7 +54,8 @@ const HeroSection: React.FC = () => {
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              className="text-[#D7E2EA] font-bold uppercase tracking-wider text-sm md:text-lg cursor-pointer nav-link-roll"
+              onClick={(e) => handleNavClick(e, `#${link.toLowerCase()}`)}
+              className="text-[#D7E2EA] font-bold uppercase tracking-wider text-sm md:text-lg cursor-pointer nav-link-roll active:scale-95 transition-transform duration-200"
             >
               <span className="roll-front">{link}</span>
               <span className="roll-bottom">{link}</span>
