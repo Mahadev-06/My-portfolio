@@ -50,17 +50,17 @@ const PROJECTS: Project[] = [
     ],
     col2Image: '/kinfolk3.webp',
     liveUrl: 'https://kinfolk-zjp4.vercel.app/',
-    overview: 'A design-focused personal exploration site inspired by modern editorial structures.',
-    problem: 'Standard web galleries feel rigid and fail to represent the editorial storytelling of modern layouts.',
-    solution: 'Built a highly interactive editorial interface with fluid scroll animations, typographic emphasis, and modern aesthetic choices.',
+    overview: 'Kinfolk is a modern web application designed to help families map, share, and preserve their lineage. Built with an intuitive node-based interface, it allows users to visually construct their family trees and collaborate with relatives in real time.',
+    problem: 'Documenting family history is traditionally a fragmented process. Families either rely on static physical documents that are difficult to update and share, or they are forced into expensive, overly complex genealogical platforms. Simple drawing tools lack the structured data needed to map complex relationships, and single-player applications make it difficult for multiple relatives to contribute their shared history.',
+    solution: 'Kinfolk bridges the gap by providing a dedicated, structured environment for family mapping without the bloat. It combines a highly interactive, drag-and-drop canvas with real-time multiplayer capabilities, allowing families to piece together their history collaboratively with instant synchronization across active sessions.',
     features: [
-      'Editorial layouts',
-      'Dynamic animations',
-      'Responsive design',
-      'Typographic hierarchy',
-      'Custom hover states'
+      'Visual Canvas: An infinite, interactive node-based canvas for mapping out complex family structures, relationships, and generations.',
+      'Real-Time Collaboration: Multiplayer editing powered by WebSockets. Multiple family members can view and edit the tree simultaneously with instant state synchronization.',
+      'Smart Layout Engine: Automated, conflict-free node positioning and routing so your tree remains organized and readable as it grows.',
+      'Resilient Architecture: Fail-open offline handling and optimistic UI updates ensure a smooth experience even under poor network conditions.',
+      'Secure Cloud Storage: Persistent, secure data storage with robust user authentication and permission controls.'
     ],
-    tech: ['React', 'GSAP', 'Tailwind', 'Vercel']
+    tech: ['Next.js', 'React', 'Tailwind CSS', 'Shadcn UI', 'React Flow', 'Dagre', 'PostgreSQL', 'Supabase', 'Supabase Auth', 'Supabase Realtime', 'Vercel']
   },
   {
     number: '03',
