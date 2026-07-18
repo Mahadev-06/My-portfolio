@@ -71,17 +71,19 @@ const PROJECTS: Project[] = [
       '/wardrobe2.webp',
     ],
     col2Image: '/wardrobe3.webp',
-    overview: 'A personal wardrobe organizer application to catalog clothing items and plan outfits.',
-    problem: 'Tracking personal clothing items and coordinating outfits is usually disorganized and manual.',
-    solution: 'Developed a clean layout dashboard allowing clothing categorization, outfit builder logic, and wardrobe overview.',
+    overview: 'Online Wardrobe is a web application designed to help users digitize their physical clothing collection, receive AI-driven styling feedback, and schedule their daily outfits. The application features a bold neobrutalist design theme and includes a local preview/onboarding mode that lets users test the features using mock items before setting up a database connection.',
+    problem: 'Keeping track of a large physical wardrobe is difficult, leading to unused clothing and repetitive outfits. Existing digital closet apps suffer from a high entry barrier for uploading metadata manually, a lack of matching inspiration for existing clothes, and disorganized outfit scheduling without weather references.',
+    solution: 'Online Wardrobe simplifies this workflow by combining automated cataloging with an interactive style canvas. It integrates Google\'s Gemini API to analyze garment photos (color, fabric, category), presents a drag-and-drop outfit critique builder, and links looks to a weekly weather calendar planner.',
     features: [
-      'Clothing catalog',
-      'Outfit planner',
-      'Categorized filters',
-      'Modern dashboard',
-      'Responsive design'
+      'Local & Cloud Modes: Users can run the app locally using mock items to try out features, or connect their personal Supabase backend for persistent user accounts and database storage.',
+      'Automatic Item Scanning: Extracts garment metadata (color, fabric, category) directly from images using AI.',
+      'AI Curated Outfit Generator: Recommends complete combinations (tops, bottoms, footwear, accessories) based on occasion presets and weather types.',
+      'Style Critique Panel: Evaluates manual outfit combinations, outputs a 1–10 fashion rating, and details why items work or do not work together.',
+      'Suggest Alternatives: If a combination has a low score, the app queries the user\'s digitized closet to find and recommend better matching alternatives.',
+      'Weekly Style Calendar: Schedules outfits for the week and displays weather warnings.',
+      'Interactive Guide Tour: A step-by-step walkthrough utilizing custom CSS box-shadow spotlight masks, interaction lock overlays, and a custom HTML5 canvas confetti celebration modal upon completion.'
     ],
-    tech: ['React', 'Tailwind', 'Vercel']
+    tech: ['React 18', 'TypeScript', 'Zustand', 'Tailwind CSS v4', 'Supabase', 'Google Gemini API', 'React Router DOM v6', 'Lucide React', 'Framer Motion', 'Vite']
   },
 ]
 
