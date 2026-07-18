@@ -85,6 +85,29 @@ const PROJECTS: Project[] = [
     ],
     tech: ['React 18', 'TypeScript', 'Zustand', 'Tailwind CSS v4', 'Supabase', 'Google Gemini API', 'React Router DOM v6', 'Lucide React', 'Framer Motion', 'Vite']
   },
+  {
+    number: '04',
+    category: '🟢 Available for Customization',
+    name: 'AGM Real Estate',
+    col1Images: [
+      'https://images.unsplash.com/photo-1549471013-3364d7220b75?q=80&w=600',
+      'https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=600'
+    ],
+    col2Image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200',
+    liveUrl: 'https://agm-navy.vercel.app/',
+    overview: 'A premium real estate website designed for agencies, builders, and property consultants. Features modern UI, advanced property search, responsive design, lead generation forms, and an admin-ready architecture. This project is available for customization based on your business requirements. AGM Housing is a premium digital showroom designed for high-end boutique real estate. It showcases a curated portfolio of luxury estates, custom bento layouts, and an integrated bespoke search request system. The interface uses a warm, editorial cream-sand aesthetic to match the physical branding of luxury architecture.',
+    problem: 'Traditional property listings platforms are cluttered, slow, and visually uninspiring. They suffer from janky layouts with heavy page refreshes, cluttered search configurations that complicate choice rather than guiding the client, weak mobile support with menus that wrap poorly, and sterile, generic templates that fail to communicate the luxury character of high-end listings.',
+    solution: 'AGM Housing fixes these issues by focusing on premium motion design and micro-interactions. It integrates Lenis momentum scroll physics to maintain smooth frame rates during vertical scroll transitions, provides a collapsible desktop filter grid and slide-up mobile sheets, adds tactile hover/active transitions for inputs, and adopts a warm sand-cream editorial color palette.',
+    features: [
+      'Curated Estates Catalog: A boutique showcase of high-end listings with direct pricing conversions (Lakhs/Crores), floor areas, and configuration badges.',
+      'Granular Filter Engine: An interactive panel to filter properties dynamically by city, type, BHK, price ceiling, Vastu compliance, furnishing, status, size, facing, and transaction type.',
+      'Exit Animations: Filter chips fade and slide smoothly on deletion using layout transition groups, preventing sudden page jumps.',
+      'Bespoke Request Forms: Allows clients to submit custom search criteria directly to advisors for off-market listings.',
+      'Warm Sand Admin Dashboard: A clean database persistence workspace for portfolio managers to add or edit properties and track listed assets.',
+      'Floating Navbar: A responsive, glassmorphic floating menu that remains visible on both desktop and mobile screens.'
+    ],
+    tech: ['Next.js 16', 'TypeScript', 'Tailwind CSS v4', 'Framer Motion', 'Lenis', 'Lucide React', 'LocalStorage API']
+  },
 ]
 
 const ProjectCard: React.FC<{ project: Project; onViewClick: () => void }> = ({ project, onViewClick }) => {
