@@ -90,10 +90,10 @@ const PROJECTS: Project[] = [
     category: '🟢 Available for Customization',
     name: 'AGM Real Estate',
     col1Images: [
-      'https://images.unsplash.com/photo-1549471013-3364d7220b75?q=80&w=600',
-      'https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=600'
+      '/agm1.webp',
+      '/agm2.webp'
     ],
-    col2Image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200',
+    col2Image: '/agm3.webp',
     liveUrl: 'https://agm-navy.vercel.app/',
     overview: 'A premium real estate website designed for agencies, builders, and property consultants. Features modern UI, advanced property search, responsive design, lead generation forms, and an admin-ready architecture. This project is available for customization based on your business requirements. AGM Housing is a premium digital showroom designed for high-end boutique real estate. It showcases a curated portfolio of luxury estates, custom bento layouts, and an integrated bespoke search request system. The interface uses a warm, editorial cream-sand aesthetic to match the physical branding of luxury architecture.',
     problem: 'Traditional property listings platforms are cluttered, slow, and visually uninspiring. They suffer from janky layouts with heavy page refreshes, cluttered search configurations that complicate choice rather than guiding the client, weak mobile support with menus that wrap poorly, and sterile, generic templates that fail to communicate the luxury character of high-end listings.',
