@@ -92,6 +92,7 @@ const ExpertiseSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="services"
+      aria-label="Services and Technical Expertise"
       className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-6 sm:px-8 md:px-10 py-12 sm:py-24 md:py-32"
       style={{ background: '#FFFFFF' }}
     >

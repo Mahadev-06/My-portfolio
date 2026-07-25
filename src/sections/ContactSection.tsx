@@ -106,7 +106,7 @@ const ContactSection: React.FC = () => {
   }, { scope: sectionRef })
 
   return (
-    <section ref={sectionRef} id="contact" className="relative bg-[#F4F4F5] pt-16 pb-24 px-6 md:pt-28 md:pb-40 md:px-16 overflow-hidden z-20 rounded-t-[40px] -mt-10 transform-gpu">
+    <section ref={sectionRef} id="contact" aria-label="Contact Mahadev Patro" className="relative bg-[#F4F4F5] pt-16 pb-24 px-6 md:pt-28 md:pb-40 md:px-16 overflow-hidden z-20 rounded-t-[40px] -mt-10 transform-gpu">
       
       {/* 3D Balloon CSS Art Placeholder - Left edge */}
       <motion.div 
@@ -114,6 +114,7 @@ const ContactSection: React.FC = () => {
         viewport={{ once: false, amount: 0.1 }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         className="contact-deco-left absolute left-[-5%] md:left-[2%] top-[35%] md:top-[30%] z-0 scale-[0.55] md:scale-100 origin-left pointer-events-none opacity-60 md:opacity-100 will-change-transform transform-gpu"
+        aria-hidden="true"
       >
         <div className="relative w-[150px] h-[250px] filter drop-shadow-[0_15px_15px_rgba(138,43,226,0.15)]">
           <div className="absolute top-10 left-10 w-20 h-32 bg-[#8A2BE2] rounded-[100px] shadow-inner rotate-45" style={{ background: 'radial-gradient(circle at 30% 30%, #E9D5FF, #9333EA, #4C1D95)' }}></div>
@@ -129,6 +130,7 @@ const ContactSection: React.FC = () => {
         viewport={{ once: false, amount: 0.1 }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         className="contact-deco-right absolute right-[-5%] md:right-[-2%] top-[8%] md:top-[10%] z-0 scale-[0.5] md:scale-100 origin-right pointer-events-none opacity-60 md:opacity-100 will-change-transform transform-gpu"
+        aria-hidden="true"
       >
         <svg viewBox="0 0 24 24" className="w-[150px] h-[150px] md:w-[220px] md:h-[220px] filter drop-shadow-[0_15px_15px_rgba(245,158,11,0.15)] opacity-90">
           <defs>
@@ -152,7 +154,7 @@ const ContactSection: React.FC = () => {
               <TextReveal text="Get In" className="text-left text-black" style={{ fontSize: 'inherit', lineHeight: 'inherit' }} />
               <TextReveal text="Touch" className="text-left text-black" style={{ fontSize: 'inherit', lineHeight: 'inherit' }} />
             </div>
-            <a href="mailto:patromahadev544@gmail.com" className="text-black text-xl md:text-2xl font-bold underline decoration-4 underline-offset-8 decoration-black hover:text-[#8A2BE2] hover:decoration-[#8A2BE2] transition-colors">
+            <a href="mailto:patromahadev544@gmail.com" aria-label="Send email to Mahadev Patro at patromahadev544@gmail.com" className="text-black text-xl md:text-2xl font-bold underline decoration-4 underline-offset-8 decoration-black hover:text-[#8A2BE2] hover:decoration-[#8A2BE2] transition-colors">
               patromahadev544@gmail.com
             </a>
           </FadeIn>
@@ -174,7 +176,7 @@ const ContactSection: React.FC = () => {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} noValidate autoComplete="off" className="flex flex-col gap-8 mt-8">
+              <form onSubmit={handleSubmit} onKeyDown={handleKeyDown} noValidate autoComplete="off" aria-label="Contact form" className="flex flex-col gap-8 mt-8">
                 {/* Your Name */}
                 <div className="flex flex-col gap-2 relative w-full">
                   <label className="text-xs font-bold uppercase tracking-wider text-black/60 pl-1">

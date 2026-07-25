@@ -133,6 +133,7 @@ const CertificatesSection: React.FC = () => {
     <section 
       ref={containerRef}
       id="certificates" 
+      aria-label="Certifications and Qualifications"
       className="certificates-section rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative px-6 sm:px-12 md:px-16 py-16 sm:py-24 md:py-32"
     >
       <TextReveal
@@ -159,7 +160,7 @@ const CertificatesSection: React.FC = () => {
                 <img 
                   className="swipeimage" 
                   src={cert.image} 
-                  alt={cert.title}
+                  alt={`Certificate for ${cert.title} issued by ${cert.issuer}`}
                   loading="lazy"
                 />
               </div>
@@ -175,10 +176,10 @@ const CertificatesSection: React.FC = () => {
           onClick={() => setSelectedCert(null)}
         >
           <div className="cert-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="cert-modal-close" onClick={() => setSelectedCert(null)}>
+            <button className="cert-modal-close" aria-label="Close certificate preview" onClick={() => setSelectedCert(null)}>
               &times;
             </button>
-            <img src={selectedCert.image} alt={selectedCert.title} className="cert-modal-image" loading="lazy" />
+            <img src={selectedCert.image} alt={`Certificate preview for ${selectedCert.title}`} className="cert-modal-image" loading="lazy" />
             <p className="cert-modal-title">{selectedCert.title}</p>
           </div>
         </div>

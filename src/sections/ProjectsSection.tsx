@@ -154,6 +154,7 @@ const ProjectCard: React.FC<{ project: Project; onViewClick: () => void }> = ({ 
               e.stopPropagation()
               onViewClick()
             }}
+            aria-label={`View details for ${project.name}`}
             className="rounded-full border-2 border-[#D7E2EA] text-[#D7E2EA] font-semibold uppercase tracking-widest px-5 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 text-[10px] sm:text-xs md:text-sm hover:bg-[#D7E2EA]/10 transition-colors duration-200 cursor-pointer inline-flex items-center active:scale-95 transition-transform"
           >
             View Details
@@ -225,6 +226,7 @@ const ProjectsSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="projects"
+      aria-label="Featured Projects & Case Studies"
       className="rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-10 px-6 sm:px-8 md:px-10 py-12 sm:py-24 md:py-32"
       style={{ background: '#0C0C0C' }}
     >

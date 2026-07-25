@@ -57,7 +57,7 @@ function App() {
   return (
     <ReactLenis root options={{ smoothWheel: !prefersReduced, duration: prefersReduced ? 0.001 : 1.2 }}>
       <ScrollSync />
-      <div style={{ background: '#0C0C0C', overflowX: 'clip' }} className="font-kanit">
+      <main id="main-content" style={{ background: '#0C0C0C', overflowX: 'clip' }} className="font-kanit">
         <HeroSection />
         <MarqueeSection />
         <Suspense fallback={null}>
@@ -68,7 +68,7 @@ function App() {
           <ContactSection />
           <FooterSection />
         </Suspense>
-      </div>
+      </main>
     </ReactLenis>
   )
 }

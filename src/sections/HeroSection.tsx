@@ -49,11 +49,12 @@ const HeroSection: React.FC = () => {
     <section ref={sectionRef} id="home" className="h-screen flex flex-col relative" style={{ overflowX: 'clip' }}>
       {/* Navbar */}
       <FadeIn delay={0} y={-20} className="relative z-30 w-full">
-        <nav className="flex justify-between px-6 md:px-12 pt-6 md:pt-8 max-w-[1400px] w-full mx-auto">
+        <nav aria-label="Main Navigation" className="flex justify-between px-6 md:px-12 pt-6 md:pt-8 max-w-[1400px] w-full mx-auto">
           {['ABOUT', 'PROJECTS', 'CONTACT'].map((link) => (
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
+              aria-label={`Navigate to ${link} section`}
               onClick={(e) => handleNavClick(e, `#${link.toLowerCase()}`)}
               className="text-[#D7E2EA] font-bold uppercase tracking-wider text-sm md:text-lg cursor-pointer nav-link-roll active:scale-95 transition-transform duration-200"
             >
@@ -69,7 +70,7 @@ const HeroSection: React.FC = () => {
         {/* Hero Heading */}
         <FadeIn delay={0.15} y={40}>
           <div className="px-4 sm:px-6 md:px-8 w-full text-center">
-            <h1 className="hero-heading font-black uppercase tracking-normal leading-[0.8] whitespace-nowrap mt-8 sm:mt-10 md:mt-12 inline-block transform-gpu origin-center" style={{ fontSize: 'clamp(3.2rem, 15.5vw, 250px)', transform: 'scaleY(1.55)' }}>
+            <h1 aria-label="Mahadev Patro - Full-Stack Developer, AI Engineer & Freelancer" className="hero-heading font-black uppercase tracking-normal leading-[0.8] whitespace-nowrap mt-8 sm:mt-10 md:mt-12 inline-block transform-gpu origin-center" style={{ fontSize: 'clamp(3.2rem, 15.5vw, 250px)', transform: 'scaleY(1.55)' }}>
               HI, I'M DEV
             </h1>
           </div>
@@ -84,7 +85,7 @@ const HeroSection: React.FC = () => {
           >
             <TiltedCard
               imageSrc="/me.webp"
-              altText="Mahadev patro - Full-Stack Developer"
+              altText="Mahadev Patro - Full-Stack Developer & AI Engineer Portfolio Portrait"
               captionText="mahadev patro"
               containerHeight="clamp(280px, 36vw, 420px)"
               containerWidth="clamp(280px, 36vw, 420px)"
@@ -113,7 +114,7 @@ const HeroSection: React.FC = () => {
           <Magnet padding={120} strength={8}>
             <img
               src="/assets/moon_icon.webp"
-              alt="Moon 3D Asset"
+              alt="3D Sphere Asset - Mahadev Patro Portfolio"
               className="w-full float-item-1 opacity-40 sm:opacity-100"
               loading="lazy"
             />
@@ -128,7 +129,7 @@ const HeroSection: React.FC = () => {
           <Magnet padding={120} strength={8}>
             <img
               src="/assets/lego_icon.webp"
-              alt="Lego 3D Asset"
+              alt="3D Element Asset - Mahadev Patro Portfolio"
               className="w-full float-item-3 opacity-40 sm:opacity-100"
               loading="lazy"
             />
