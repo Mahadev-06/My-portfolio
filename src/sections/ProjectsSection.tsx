@@ -29,7 +29,7 @@ const PROJECTS: Project[] = [
       '/premashraya2.webp',
     ],
     col2Image: '/premashraya3.webp',
-    liveUrl: 'https://premashraya.vercel.app/',
+    liveUrl: 'https://www.premashraya.in/',
     overview: 'Premashraya is a modern, highly performant, and premium web application built for the Premashraya Charitable Trust, a free cancer patient shelter based in Bhubaneswar and Cuttack, Odisha, India. The platform is designed to connect patients and their families with the shelter\'s services, facilitate direct donations, and make it seamless to inquire about stays.',
     problem: 'Cancer treatment (especially chemotherapy and radiation) requires patients to stay near major treatment centers in cities like Bhubaneswar and Cuttack for weeks or months. This introduces severe financial strain for accommodations and food, lack of sanitized lodging options for patients with compromised immune systems, logistical navigation stress, and emotional exhaustion on caregivers.',
     solution: 'The Premashraya Care Web App addresses these problems by providing clean digital access to amenities (rooms, floor plans, sanitization rules), clear visibility into hospital guidance teams, frictionless donation options (Razorpay and copyable UPI details), bilingual translations (English and Odia), and light-speed mobile performance.',
